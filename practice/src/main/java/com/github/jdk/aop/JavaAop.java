@@ -46,17 +46,22 @@ class JavaProxy implements InvocationHandler{
 	private Object targetObject;
 	
 	public Object createProxyObject(Object targetObject) {
+		//保存要代理的原始对象
 		this.targetObject = targetObject;
 		
+		//生成代理对象
 		return Proxy.newProxyInstance(this.targetObject.getClass().getClassLoader(),
 				this.targetObject.getClass().getInterfaces(), this);
 		
 	}
 
+	//代理对象要调用的代理的方法
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
 		System.out.println("before " + method);
+		
+		//原对象方法调用
 		Object object = method.invoke(this.targetObject, args);
 		System.out.println("after " + method);
 		return object;
