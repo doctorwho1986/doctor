@@ -55,7 +55,7 @@ class JavaProxy implements InvocationHandler{
 		
 	}
 
-	//代理对象要调用的代理的方法
+	//代理对象调用方法时候，  会  要 调用到的代理的方法
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
