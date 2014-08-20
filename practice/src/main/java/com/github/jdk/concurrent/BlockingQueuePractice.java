@@ -4,6 +4,12 @@ import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
+/**
+ * 
+ * @author doctor
+ * BlockingQueuePractice 生产者消费者
+ *
+ */
 
 public class BlockingQueuePractice {
 
