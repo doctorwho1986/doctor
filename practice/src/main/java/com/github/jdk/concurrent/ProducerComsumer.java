@@ -33,7 +33,7 @@ public class ProducerComsumer {
 	 */
 	public static void main(String[] args) {
 
-		Store<Instant> store = new Store(20);
+		Store<Instant> store = new Store<Instant>(20);
 		new Thread(new Producer_1(store)).start();
 		new Thread(new Consumer_1(store)).start();
 		new Thread(new Consumer_1(store)).start();
@@ -45,7 +45,7 @@ class Store<T> {
 	private int capacity;
 	private Queue<T> queue;
 
-	public <T> Store(int capactiy) {
+	public  Store(int capactiy) {
 		this.capacity = capactiy;
 		queue = new ArrayDeque<>(capactiy);
 	}
