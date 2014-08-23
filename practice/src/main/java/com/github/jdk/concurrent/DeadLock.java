@@ -1,5 +1,6 @@
 package com.github.jdk.concurrent;
 
+import java.lang.management.ManagementFactory;
 import java.util.concurrent.TimeUnit;
 
 
@@ -10,8 +11,15 @@ import java.util.concurrent.TimeUnit;
  * @date 2014年8月23日 下午8:46:37
  */
 public class DeadLock {
-
+	/**
+	 * 1、linux 命令 kill -3 pid 对于线程状态观察,eclipse console 会输出
+	 * 2、java 命令 jstack pid 观察线程状态。
+	 * @param args
+	 */
 	public static void main(String[] args) {
+		
+		//得到jvm线程，用命令观察线程死锁信息
+		System.out.println(ManagementFactory.getRuntimeMXBean().getName());
 		DeadLockAB deadLockAB = new DeadLockAB();
 		new Thread(new Dead1(deadLockAB)).start();
 		new Thread(new Dead2(deadLockAB)).start();
