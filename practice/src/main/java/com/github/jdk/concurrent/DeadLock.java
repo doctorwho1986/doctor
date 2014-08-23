@@ -18,7 +18,7 @@ public class DeadLock {
 	 */
 	public static void main(String[] args) {
 		
-		//得到jvm线程，用命令观察线程死锁信息
+		//得到jvm线程 pid ，用命令观察线程死锁信息 pid@域名
 		System.out.println(ManagementFactory.getRuntimeMXBean().getName());
 		DeadLockAB deadLockAB = new DeadLockAB();
 		new Thread(new Dead1(deadLockAB)).start();
