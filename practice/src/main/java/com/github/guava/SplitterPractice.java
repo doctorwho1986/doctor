@@ -18,6 +18,7 @@ package com.github.guava;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
@@ -45,6 +46,12 @@ public class SplitterPractice {
 		
 		Assert.assertEquals(expectlList, splitToList);
 		
+		//jdk自带的会丢去后面的空内容，有时候，并不是我们需要的
+		String[] split = ",,name,doctor,,".split(",");
+		expectlList.remove(splitToList.size()-1);
+		expectlList.remove(splitToList.size()-2);
+		Assert.assertEquals(expectlList, Arrays.asList(split));
+
 	}
 
 }
