@@ -64,8 +64,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class DefaultWebApplicationInitializer implements WebApplicationInitializer {
 
 	@Override
-	public void onStartup(ServletContext servletContext)
-			throws ServletException {
+	public void onStartup(ServletContext servletContext) throws ServletException {
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
 		rootContext.register(com.github.springMvc.config.SpringContextConfig.class);
 		
