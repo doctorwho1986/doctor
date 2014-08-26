@@ -15,7 +15,8 @@
 		<guava.version>17.0</guava.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<spring.version>4.0.6.RELEASE</spring.version>
-		<jetty.version>9.2.2.v20140723</jetty.version>
+		<!-- <jetty.version>9.2.2.v20140723</jetty.version> -->
+		<jetty.version>8.1.12.v20130726</jetty.version>
 		<junit.version>4.11</junit.version>
 	</properties>
 
