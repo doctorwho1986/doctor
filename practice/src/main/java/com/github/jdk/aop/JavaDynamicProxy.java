@@ -9,7 +9,6 @@ public class JavaDynamicProxy {
 	public static void main(String[] args) {
 		Talk proxyObject = (Talk) new MyDynamicProxy().bind(new PersonTalk());
 		proxyObject.talk("hello");
-
 	}
 
 }
@@ -31,6 +30,8 @@ class MyDynamicProxy implements InvocationHandler{
 		return object;
 	}
 }
+
+
 interface Talk{
 	void talk(String message);
 }
