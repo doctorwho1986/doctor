@@ -17,11 +17,16 @@
 		<spring.version>4.0.6.RELEASE</spring.version>
 		<!-- <jetty.version>9.2.2.v20140723</jetty.version> -->
 		<jetty.version>8.1.12.v20130726</jetty.version>
+		<cglib.verson>3.1</cglib.verson>
 		<junit.version>4.11</junit.version>
 	</properties>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>${cglib.verson}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
