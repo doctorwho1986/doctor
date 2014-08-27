@@ -16,13 +16,12 @@ public class IsayServiceImpl implements IsayService{
 	@Override
 	public String sayHello(String message) {
 		person.setName("sd");
-		System.out.println(person.getName());
 		return "hello " + message;
 	}
 
 	@Override
 	public Person getPerson() {
-		
+		person.setName("doctor");
 		return person;
 	}
 	
