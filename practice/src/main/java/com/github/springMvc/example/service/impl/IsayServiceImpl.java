@@ -20,4 +20,12 @@ public class IsayServiceImpl implements IsayService{
 		return "hello " + message;
 	}
 
+	@Override
+	public Person getPerson() {
+		
+		return person;
+	}
+	
+	
+
 }
