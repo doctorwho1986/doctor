@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>%d{MM-dd HH:mm:ss.SSS} %-5thread %-5level %logger{1} - %msg%n</pattern>
+		</encoder>
+	</appender> 
+	
+	 <appender name="defaultAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${catalina.home}/logs/practice.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${catalina.home}/logs/practice.log.out.%d{yyyy-MM-dd}</FileNamePattern>
+		</rollingPolicy>		
+		<encoder>
+			<pattern>%-16(%d{MM-dd HH:mm:ss}) %-5thread %-5level %logger{3} - %msg%n</pattern>
+		</encoder>
+    </appender>
+	
+	<root level="info">
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="defaultAppender"/>
+	</root>
+</configuration>  
