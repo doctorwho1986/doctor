@@ -18,10 +18,24 @@
 		<!-- <jetty.version>9.2.2.v20140723</jetty.version> -->
 		<jetty.version>8.1.12.v20130726</jetty.version>
 		<cglib.verson>3.1</cglib.verson>
+		<mybatis.version>3.2.7</mybatis.version>
+		<mybatis-spring.version>1.2.2</mybatis-spring.version>
 		<junit.version>4.11</junit.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
