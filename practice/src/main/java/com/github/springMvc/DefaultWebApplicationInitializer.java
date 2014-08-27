@@ -75,10 +75,10 @@ public class DefaultWebApplicationInitializer implements WebApplicationInitializ
 		
 		
 		AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
-		dispatcherContext.register(com.github.springMvc.config.SpingMvcConfig.class);
-		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
+		dispatcherContext.register(com.github.springMvc.config.remoteServletConfig.class);
+		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("remote-servlet", new DispatcherServlet(dispatcherContext));
 	    dispatcher.setLoadOnStartup(1);
-	    dispatcher.addMapping("/");
+	    dispatcher.addMapping("/remote/*");
 	}
 
 }
