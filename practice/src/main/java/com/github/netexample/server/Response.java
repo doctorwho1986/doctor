@@ -34,7 +34,7 @@ public class Response implements ServletResponse{
 		byte[] buffer = new byte[BUFFER_SIZE];
 		FileInputStream fileInputStream = null;
 		try {
-			File file = new File(HttpServer.WEB_ROOT,request.getUri());
+			File file = new File(Constants.WEB_ROOT,request.getUri());
 			if (file.exists()) {
 				fileInputStream = new FileInputStream(file);
 				int readNum = fileInputStream.read(buffer);
@@ -44,7 +44,7 @@ public class Response implements ServletResponse{
 				}
 			}else {
 				//file not found
-				logger.info("{sendStaticResource:{} {} file not found}",HttpServer.WEB_ROOT,request.getUri());
+				logger.info("{sendStaticResource:{} {} file not found}",Constants.WEB_ROOT,request.getUri());
 				String errorMessage  = "HTTP/1.1 404 File Not Found \r\n" +
 						"Content-Type:test/html\r\r" + 
 						"Content-Length:23\r\n" +
