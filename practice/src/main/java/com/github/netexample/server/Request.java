@@ -32,6 +32,7 @@ public class Request {
 		}
 		
 		uri = parseUri(request.toString());
+		logger.info(uri);
 	}
 	
 	
