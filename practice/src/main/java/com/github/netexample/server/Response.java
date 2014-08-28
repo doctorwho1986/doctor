@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Response {
-	protected static final Logger logger = LoggerFactory.getLogger(Request.class);
+	protected static final Logger logger = LoggerFactory.getLogger(Response.class);
 	private static final int BUFFER_SIZE = 1024;
 	
 	private OutputStream outputStream;
