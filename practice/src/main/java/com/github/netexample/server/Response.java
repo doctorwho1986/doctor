@@ -37,6 +37,7 @@ public class Response {
 				}
 			}else {
 				//file not found
+				logger.info("{sendStaticResource:{} {} file not found}",HttpServer.WEB_ROOT,request.getUri());
 				String errorMessage  = "HTTP/1.1 404 File Not Found \r\n" +
 						"Content-Type:test/html\r\r" + 
 						"Content-Length:23\r\n" +
