@@ -1,6 +1,5 @@
 package com.github.netexample.server;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -13,9 +12,6 @@ import org.slf4j.LoggerFactory;
 
 public class HttpServer {
 	protected static final Logger logger = LoggerFactory.getLogger(HttpServer.class);
-	
-	public static final String WEB_ROOT = 
-			System.getProperty("user.dir") + File.separator + "src/main/webroot";
 	
 	private static final String SHUTDOWN_COMMAND = "/shutdown";
 	
