@@ -15,7 +15,7 @@ public class HttpServer {
 	protected static final Logger logger = LoggerFactory.getLogger(HttpServer.class);
 	
 	public static final String WEB_ROOT = 
-			System.getProperty("user.dir") + File.separator + "webroot";
+			System.getProperty("user.dir") + File.separator + "src/main/webroot";
 	
 	private static final String SHUTDOWN_COMMAND = "/shutdown";
 	
@@ -37,11 +37,13 @@ public class HttpServer {
 			System.exit(1);
 		}
 		
+		logger.info("{msg:server start}");
 		while (!isShutdown) {
 			Socket socket = null;
 			OutputStream out;
 			InputStream in;
 			try {
+				
 				socket = serverSocket.accept();
 				in = socket.getInputStream();
 				out = socket.getOutputStream();
