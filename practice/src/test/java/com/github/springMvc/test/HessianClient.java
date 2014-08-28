@@ -17,6 +17,7 @@ public class HessianClient {
 		IsayService api = (IsayService) factory.create(IsayService.class, url);
 
 		System.out.println(api.sayHello("weitang"));
+		System.out.println(api.getPerson());
 	}
 
 }
