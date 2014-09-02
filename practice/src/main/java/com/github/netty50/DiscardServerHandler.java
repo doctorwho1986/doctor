@@ -3,6 +3,7 @@ package com.github.netty50;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
 
 /**
@@ -21,7 +22,9 @@ public class DiscardServerHandler extends ChannelHandlerAdapter{
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		try {
 			 // Discard the received data silently.
-			((ByteBuf)msg).release();
+//			((ByteBuf)msg).release();
+			ByteBuf buf = (ByteBuf) msg;
+			System.out.println(buf.toString(CharsetUtil.UTF_8));
 		} finally {
 			ReferenceCountUtil.release(msg);
 		}
