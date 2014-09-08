@@ -20,6 +20,7 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.Enumeration;
 
 /**
@@ -58,6 +59,16 @@ public class InetAddressPractice {
 				System.out.println("net address:" + netAddressType + inetAddress.getHostAddress());
 				
 			}
+		}
+		
+		System.out.println("----------------------------------------------");
+		try {
+			InetAddress[] byName = InetAddress.getAllByName("www.baidu.com");
+			for (InetAddress address : byName) {
+				System.out.println(address.getHostAddress());
+			}
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
 		}
 	}
 
