@@ -1,5 +1,9 @@
 package com.github.springMvc;
 
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration.Dynamic;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -65,6 +69,11 @@ public class DefaultWebApplicationInitializer implements WebApplicationInitializ
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("remote", new DispatcherServlet(dispatcherContext));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/remote/*");
+
+		Dynamic filter = servletContext.addFilter("springFilter", org.springframework.web.filter.DelegatingFilterProxy.class);
+
+		EnumSet<DispatcherType> dispatcherTypes = EnumSet.allOf(DispatcherType.class);
+		filter.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
 	}
 
 }
