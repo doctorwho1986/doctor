@@ -1,6 +1,7 @@
 package com.github.springMvc.springbeans.filter;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -24,9 +25,17 @@ public class SpringFilter implements Filter {
 	@Autowired
 	@Qualifier("person")
 	private Person person;
+	
+	@Autowired
+	private List<SpringFilterTemplate> listFilter;
+	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		log.info(getClass().getName() + "Filter init");
+		if (null != listFilter) {
+			for (SpringFilterTemplate filter : listFilter) {
+				filter.init(filterConfig);
+			}
+		}
 
 	}
 
@@ -34,12 +43,21 @@ public class SpringFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		log.info(getClass().getName() + "Filter doFilter");
 		log.info("{person:{}}", person.getName());
-		chain.doFilter(request, response);
+//		chain.doFilter(request, response);
+		if (null != listFilter) {
+			for (SpringFilterTemplate filter : listFilter) {
+				filter.doFilter(request, response, chain);
+			}
+		}
 	}
 
 	@Override
 	public void destroy() {
-		log.info(getClass().getName() + "Filter destroy");
+		if (null != listFilter) {
+			for (SpringFilterTemplate filter : listFilter) {
+				filter.destroy();
+			}
+		}
 
 	}
 
