@@ -18,6 +18,7 @@
 		<spring-security-web.version>3.2.5.RELEASE</spring-security-web.version>
 		<!-- <jetty.version>9.2.2.v20140723</jetty.version> -->
 		<jetty.version>8.1.12.v20130726</jetty.version>
+		<jetty-all.version>9.2.2.v20140723</jetty-all.version>
 		<cglib.verson>3.1</cglib.verson>
 		<mybatis.version>3.2.7</mybatis.version>
 		<mybatis-spring.version>1.2.2</mybatis-spring.version>
@@ -31,6 +32,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-all</artifactId>
+			<version>${jetty-all.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>io.netty</groupId>
