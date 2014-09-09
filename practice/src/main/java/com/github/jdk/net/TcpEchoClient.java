@@ -23,7 +23,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 
 /**
  * @author doctor
@@ -45,13 +44,11 @@ public class TcpEchoClient {
 			socket = new Socket(serverIp, serverPort);
 			PrintWriter printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())),true);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			BufferedReader consoleRead = new BufferedReader(new InputStreamReader(System.in));
+			BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 			while(true){
-				String nextLine = consoleRead.readLine();
+				String nextLine = consoleReader.readLine();
 				printWriter.println(nextLine);
-				
-				String readLine = reader.readLine();
-				System.out.println(readLine);
+				System.out.println(reader.readLine());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -64,7 +61,7 @@ public class TcpEchoClient {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		new TcpEchoClient("127.0.0.1", 8089).start();
+		new TcpEchoClient("127.0.0.1", 8189).start();
 
 	}
 
