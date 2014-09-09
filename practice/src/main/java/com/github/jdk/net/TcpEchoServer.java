@@ -16,6 +16,7 @@
  */
 package com.github.jdk.net;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -25,12 +26,16 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author doctor
  *
  * @date 2014年9月8日 下午11:45:50
  */
 public class TcpEchoServer {
+	protected Logger logger = LoggerFactory.getLogger(getClass());
 	private int port;
 	public TcpEchoServer(int port){
 		this.port = port;
@@ -40,18 +45,18 @@ public class TcpEchoServer {
 		ServerSocket serverSocket = null;
 		try {
 			serverSocket = new ServerSocket(port);
-			
 			while(true){
+				
 				Socket clientSocket = serverSocket.accept();
 				BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-				PrintWriter printWriter = new PrintWriter( new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())),true);
+				PrintWriter printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())),true);
 				
 				while(true){
 					String readLine = reader.readLine();
 					if (null == readLine) {
 						break;
 					}
-					printWriter.println("server: "  +readLine);
+					printWriter.println("server :" + readLine);
 				}
 			}
 		} catch (IOException e) {
@@ -62,7 +67,7 @@ public class TcpEchoServer {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		new TcpEchoServer(8089).start();
+		new TcpEchoServer(8189).start();
 
 	}
 
