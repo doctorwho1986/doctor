@@ -70,6 +70,7 @@ public class DefaultWebApplicationInitializer implements WebApplicationInitializ
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/remote/*");
 
+		//注册spring管理的filter
 		Dynamic filter = servletContext.addFilter("springFilter", org.springframework.web.filter.DelegatingFilterProxy.class);
 
 		EnumSet<DispatcherType> dispatcherTypes = EnumSet.allOf(DispatcherType.class);
