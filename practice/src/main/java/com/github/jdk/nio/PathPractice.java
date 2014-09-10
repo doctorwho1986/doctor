@@ -29,6 +29,9 @@ public class PathPractice {
 
 		System.out.println("---------------------");
 		System.out.println(Paths.get("b","b","../c").normalize().toAbsolutePath());
+		Path path11 = Paths.get("a");
+		Path path12 = Paths.get("b");
+		System.out.println(Paths.get(path11.toString(),path12.toString()).toAbsolutePath());
 	}
 
 }
