@@ -43,6 +43,8 @@ public class LambdaNew {
 //		    构造函数.则是ClassName::new
 
 		new Thread(LambdaNew::doSomething ).start();
+		
+		list.forEach(p -> System.out.println(p));
 	
 	}
 	
