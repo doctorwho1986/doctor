@@ -27,6 +27,8 @@ public class PathPractice {
 			}
 		}
 
+		System.out.println("---------------------");
+		System.out.println(Paths.get("b","b","../c").normalize().toAbsolutePath());
 	}
 
 }
