@@ -12,29 +12,49 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<guava.version>17.0</guava.version>
+
 		<commons-lang3.version>3.3.2</commons-lang3.version>
+		<commons-io.version>2.4</commons-io.version>
+
 		<spring.version>4.1.0.RELEASE</spring.version>
 		<spring-security-web.version>3.2.5.RELEASE</spring-security-web.version>
+
 		<!-- <jetty.version>9.2.2.v20140723</jetty.version> -->
 		<jetty.version>8.1.12.v20130726</jetty.version>
 		<jetty-all.version>9.2.2.v20140723</jetty-all.version>
+
 		<cglib.verson>3.1</cglib.verson>
+
 		<mybatis.version>3.2.7</mybatis.version>
 		<mybatis-spring.version>1.2.2</mybatis-spring.version>
-		<junit.version>4.11</junit.version>
+
 		<hessian.version>4.0.38</hessian.version>
+
 		<logback-classic.version>1.1.2</logback-classic.version>
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j-api.version>1.7.7</slf4j-api.version>
-		<httpclient.version>4.3.4</httpclient.version>
+
 		<netty.version>5.0.0.Alpha1</netty.version>
+		<javax.servlet.version>9.2.2.v20140723</javax.servlet.version>
+
+		<httpclient.version>4.3.4</httpclient.version>
+		<httpunit.version>1.7.2</httpunit.version>
+		<selenium-java.version>2.42.2</selenium-java.version>
+		<junit.version>4.11</junit.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all</artifactId>
+			<version>${jetty-all.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-jsp</artifactId>
 			<version>${jetty-all.version}</version>
 		</dependency>
 
@@ -76,6 +96,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons-lang3.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
 		</dependency>
 
 		<dependency>
@@ -174,7 +200,18 @@
 			<version>${httpclient.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium-java.version}</version>
+		</dependency>
 
+		<dependency>
+			<groupId>org.httpunit</groupId>
+			<artifactId>httpunit</artifactId>
+			<version>${httpunit.version}</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
