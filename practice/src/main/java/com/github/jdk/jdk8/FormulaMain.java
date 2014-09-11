@@ -1,13 +1,12 @@
 package com.github.jdk.jdk8;
 
-import junit.framework.Assert;
+
 
 
 
 
 public class FormulaMain {
 
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		
 		Formula formula = new Formula(){
@@ -19,7 +18,7 @@ public class FormulaMain {
 			
 		};
 		
-		Assert.assertEquals((double)5, formula.sqrt(25));
+		System.out.println(formula.add(3, 5));
 	}
 
 }
