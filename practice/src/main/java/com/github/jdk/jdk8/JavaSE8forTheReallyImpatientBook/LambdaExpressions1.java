@@ -58,6 +58,11 @@ public class LambdaExpressions1 {
 	}
 
 }
+/**
+ * 
+ * @author java 8 is outlawed??
+ *
+ */
 
 interface InterfaceMore {
 	void interfaceCommon();
