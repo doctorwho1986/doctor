@@ -2,20 +2,22 @@ package com.github.jdk.jdk8;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
+
+import com.github.jdk.jdk8.PersonT.Gender;
 
 /**
  * 
  * @author see
- *         http://technology.amis.nl/2013/10/05/java-8-collection-enhancements
- *         -leveraging-lambda-expressions-or-how-java-emulates-sql/
+ *         http://technology.amis.nl/2013/10/05/java-8-collection-enhancements-leveraging-lambda-expressions-or-how-java-emulates-sql/
  *
  */
 public class HowJavaEmulaesSql {
@@ -23,7 +25,7 @@ public class HowJavaEmulaesSql {
 	public static void main(String[] args) {
 		List<PersonT> people = new ArrayList<PersonT>();
 
-		people.add(new PersonT("Louise", "Smith", "Dallas", 16000, LocalDate.of(1976, Month.MARCH, 11), PersonT.Gender.FEMALE));
+		people.add(new PersonT("Louise", "Smith", "Dallas", 16000, LocalDate.of(1943, Month.NOVEMBER, 1), PersonT.Gender.FEMALE));
 		people.add(new PersonT("Tobias", "Jellema", "Hagestein", 4, LocalDate.of(2000, Month.OCTOBER, 30), PersonT.Gender.MALE));
 		people.add(new PersonT("Mike", "Smith", "Melbourne", 2000, LocalDate.of(1943, Month.NOVEMBER, 1), PersonT.Gender.MALE));
 		people.add(new PersonT("Mike", "Weber", "Pretoria", 4411, LocalDate.of(1961, Month.DECEMBER, 5), PersonT.Gender.MALE));
@@ -67,11 +69,43 @@ public class HowJavaEmulaesSql {
 		System.out.println(reduce);
 
 		/*
-		 * select gender , sum(age) as aggregated_age 
-		 * from people 
-		 * group by gender
+		 * select gender , sum(age) as aggregated_age from people group by
+		 * gender
 		 */
+		Map<PersonT.Gender, List<PersonT>> collect3 = people.stream().collect(Collectors.groupingBy(PersonT::getGender));
+		Map<PersonT.Gender, Integer> sumMap = new HashMap<>();
+		for (Gender gender : collect3.keySet()) {
+			int sum2 = collect3.get(gender).stream().mapToInt(p -> p.getAge()).sum();
+			sumMap.put(gender, sum2);
+		}
+
+		sumMap.forEach((k, v) -> System.out.println(k + "sum age:" + v));
+
+		/*
+		 * select * 
+		 * from people
+		 *  where age = ( 
+		 *  				select max(age) 
+		 *                  from people 
+		 *                  where gender ='MALE' ) 
+		 *       and gender ='MALE'
+		 */
+		PersonT personT = people.parallelStream().filter(p -> p.getGender() == PersonT.Gender.MALE).max((a,b)-> a.getAge().compareTo(b.getAge())).get();
+		System.out.println(personT);
 		
+		/*
+		 * select * 
+		 * from people
+		 *  where age = ( 
+		 *  				select max(age) 
+		 *                  from people 
+		 *                  where gender ='MALE' ) 
+		 *       and gender ='FEMALE'
+		 */
+		OptionalInt ageMax = people.stream().filter(pp -> pp.getGender() == PersonT.Gender.MALE).mapToInt(pp->pp.getAge()).max();
+		System.out.println(ageMax);
+		List<PersonT> list = people.stream().filter(p -> p.getGender() == PersonT.Gender.FEMALE && p.getAge() == ageMax.getAsInt() ).collect(Collectors.toList());
+		 list.forEach(System.out::println);
 		
 	}
 
@@ -148,7 +182,7 @@ class PersonT {
 
 	public Integer getAge() {
 		LocalDate now = LocalDate.now();
-		long year = ChronoUnit.YEARS.between(now, this.dateOfBirth);
+		long year = ChronoUnit.YEARS.between(this.dateOfBirth, now);
 
 		return Long.valueOf(year).intValue();
 	}
