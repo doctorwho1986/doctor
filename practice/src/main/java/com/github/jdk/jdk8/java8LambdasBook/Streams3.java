@@ -45,6 +45,23 @@ public class Streams3 {
 		Assert.assertTrue(Arrays.asList("1dd").equals(list3));
 		
 		//next -> P25
+		/*
+		 * flatMap (see Figure 3-7) lets you replace a value with a Stream and
+		 * concatenates all the streams together.
+		 * 
+		 * You’ve already seen the map operation, which replaces a value in a
+		 * Stream with a new value. Sometimes you want a variant of map in which
+		 * you produce a new Stream object as the replacement. Frequently you
+		 * don’t want to end up with a stream of streams, though, and this is
+		 * where flatMap comes in handy.
+		 */
+		
+		List<Integer> list4 = Stream.of(Arrays.asList(1,22),Arrays.asList(55,88)).flatMap(p -> p.stream()).collect(Collectors.toList());
+		Assert.assertTrue(Arrays.asList(1,22,55,88).equals(list4));
+		
+		Integer reduce = Stream.of(1,2,3,4,5).reduce(0, (a,b) -> a + b);
+		Assert.assertEquals(1+2+3+4+5, reduce.intValue());
+
 
 	}
 
