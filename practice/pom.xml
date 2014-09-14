@@ -21,7 +21,6 @@
 		<spring.version>4.1.0.RELEASE</spring.version>
 		<spring-security-web.version>3.2.5.RELEASE</spring-security-web.version>
 
-		<!-- <jetty.version>9.2.2.v20140723</jetty.version> -->
 		<jetty.version>8.1.12.v20130726</jetty.version>
 		<jetty-all.version>9.2.2.v20140723</jetty-all.version>
 
@@ -43,32 +42,16 @@
 		<httpunit.version>1.7.2</httpunit.version>
 		<selenium-java.version>2.42.2</selenium-java.version>
 		<junit.version>4.11</junit.version>
-		<jstorm.version>0.9.4.1</jstorm.version>
-		<storm.version>storm-0.9.2-incubating</storm.version>
+		<hbase.verson>0.98.5-hadoop2</hbase.verson>
 	</properties>
 
 	<dependencies>
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.alibaba.jstorm</groupId> -->
-<!-- 			<artifactId>jstorm-client-extension</artifactId> -->
-<!-- 			<version>${jstorm.version}</version> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-client</artifactId>
+			<version>${hbase.verson}</version>
+		</dependency>
 
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.alibaba.jstorm</groupId> -->
-<!-- 			<artifactId>jstorm-client</artifactId> -->
-<!-- 			<version>${jstorm.version}</version> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.alibaba.jstorm</groupId> -->
-<!-- 			<artifactId>jstorm-server</artifactId> -->
-<!-- 			<version>${jstorm.version}</version> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all</artifactId>
@@ -270,10 +253,6 @@
 
 	<repositories>
 		<repository>
-			<id>taobao</id>
-			<url>http://mvnrepo.code.taobao.org/nexus/content/repositories/releases/</url>
-		</repository>
-		<repository>
 			<id>twitter4j</id>
 			<url>http://twitter4j.org/maven2</url>
 		</repository>
@@ -288,6 +267,16 @@
 		<repository>
 			<id>sonatype</id>
 			<url>http://repository.sonatype.org/content/groups/public/</url>
+		</repository>
+
+		<repository>
+			<id>central-maven</id>
+			<name>Maven Repository Switchboard</name>
+			<layout>default</layout>
+			<url>http://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 </project>
