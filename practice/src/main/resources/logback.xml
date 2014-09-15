@@ -16,6 +16,7 @@
 		</encoder>
     </appender>
 	
+	<logger name="org.apache.hadoop" level="INFO"/> 
 	<root level="info">
 		<appender-ref ref="stdout"/>
 		<appender-ref ref="defaultAppender"/>
