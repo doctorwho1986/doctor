@@ -42,11 +42,22 @@
 		<httpunit.version>1.7.2</httpunit.version>
 		<selenium-java.version>2.42.2</selenium-java.version>
 		<junit.version>4.11</junit.version>
+
 		<hbase.verson>0.98.5-hadoop2</hbase.verson>
 		<hadoop.version>2.5.1</hadoop.version>
+
+		<jstorm.version>0.9.4.1</jstorm.version>
+		<storm.version>0.9.2-incubating</storm.version>
 	</properties>
 
 	<dependencies>
+		<!-- <dependency>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-core</artifactId>
+			<version>${storm.version}</version>
+		</dependency> -->
+
+
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-client</artifactId>
@@ -245,6 +256,28 @@
 		<finalName>practice</finalName>
 		<plugins>
 			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>storm.starter.SequenceTopology</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
@@ -269,8 +302,14 @@
 
 	<repositories>
 		<repository>
-			<id>twitter4j</id>
-			<url>http://twitter4j.org/maven2</url>
+			<id>CN</id>
+			<name>OSChina Central</name>
+			<url>http://maven.oschina.net/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>ui</id>
+			<name>Human Readable Name for this Mirror.</name>
+			<url>http://uk.maven.org/maven2/</url>
 		</repository>
 		<repository>
 			<id>central</id>
@@ -281,18 +320,28 @@
 			<url>http://clojars.org/repo/</url>
 		</repository>
 		<repository>
-			<id>sonatype</id>
-			<url>http://repository.sonatype.org/content/groups/public/</url>
+			<id>twitter4j</id>
+			<url>http://twitter4j.org/maven2</url>
 		</repository>
 
 		<repository>
-			<id>central-maven</id>
-			<name>Maven Repository Switchboard</name>
-			<layout>default</layout>
-			<url>http://repo1.maven.org/maven2</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
+			<id>ibiblio</id>
+			<name>Human Readable Name for this Mirror.</name>
+			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2/</url>
+		</repository>
+		<repository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Repository Group</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>github-releases</id>
+			<url>http://oss.sonatype.org/content/repositories/github-releases/</url>
+		</repository>
+
+		<repository>
+			<id>taobao</id>
+			<url>http://mvnrepo.code.taobao.org/nexus/content/repositories/releases/</url>
 		</repository>
 	</repositories>
 </project>
