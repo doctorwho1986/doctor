@@ -15,6 +15,8 @@ public class Person implements Serializable {
 	private Gender gender;
 	private String address;
 
+	public Person() {}
+	
 	public Person(String name,Gender gender,String address ){
 		this.name = name;
 		this.gender = gender;
