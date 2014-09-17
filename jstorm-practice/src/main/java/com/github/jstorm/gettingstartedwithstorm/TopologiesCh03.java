@@ -33,6 +33,7 @@ import com.alibaba.jstorm.local.LocalCluster;
 import backtype.storm.Config;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
+import backtype.storm.generated.NotAliveException;
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
@@ -50,7 +51,7 @@ import backtype.storm.tuple.Values;
  * @date 2014年9月16日 下午9:03:18
  */
 public class TopologiesCh03 {
-
+	private static final Logger log = LoggerFactory.getLogger(TopologiesCh03.class);
 	/**
 	 * @param args
 	 * @throws InvalidTopologyException
@@ -82,7 +83,11 @@ public class TopologiesCh03 {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
+		try {
+			cluster.killTopology("Count-Word-Toplogy-With-Refresh-Cache");
+		} catch (NotAliveException e) {
+			log.error("{killTopology error: {}}",e.getMessage());
+		}
 		cluster.shutdown();
 
 	}
@@ -264,6 +269,7 @@ class WordCounterBoltCh03 extends BaseRichBolt {
 
 	@Override
 	public void cleanup() {
+		log.info("{cleanup................}");
 		countMap.forEach((k, v) -> {
 			log.info("{clean up.................}");
 			log.info("k : {} , v : {}", k, v);
