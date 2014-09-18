@@ -281,5 +281,14 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+
+		<repository>
+			<id>opensesame</id>
+			<name>Alibaba OpenSource Repsoitory</name>
+			<url>http://code.alibabatech.com/mvn/releases/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 </project>
