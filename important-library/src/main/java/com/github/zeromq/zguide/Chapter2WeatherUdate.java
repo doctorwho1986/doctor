@@ -8,6 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zeromq.ZMQ;
 
+/**
+ * 
+ * @author see http://zguide.zeromq.org/page:all
+ *
+ */
 public class Chapter2WeatherUdate {
 	private Logger log = LoggerFactory.getLogger(Chapter2WeatherUdate.class);
 	
@@ -40,7 +45,7 @@ public class Chapter2WeatherUdate {
 		subscriber.subscribe("abcde".getBytes());
 		log.info("{msg:'subscriber starting...'}");
 		
-		for(int i = 0; i < 100; i++){
+		for(int i = 0; i < Integer.MAX_VALUE; i++){
 			String recvStr = subscriber.recvStr(0);
 			log.info("{msg:'subsriber {}'}",recvStr);
 		}
