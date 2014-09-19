@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.io.IOUtils;
 
@@ -69,6 +70,15 @@ public class MapPractice {
 		}
 		Map<?,?> parseObject = JSON.parseObject(jString2, Map.class);
 		System.out.println(JSON.toJSON(parseObject));
+		
+		System.out.println("手动遍历");
+		
+		Object object = parseObject.get("currentKey");
+		System.out.println("currentKey" + ":" + object);
+		Map<?, ?> object2 = (Map<?, ?>) parseObject.get("keyMap");
+		for (Object key : object2.keySet()) {
+			System.out.println(key + ":" + object2.get(key));
+		}
 	}
 
 	
