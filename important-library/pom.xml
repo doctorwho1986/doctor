@@ -12,7 +12,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<guava.version>17.0</guava.version>
+		<guava.version>18.0</guava.version>
 
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>2.4</commons-io.version>
@@ -125,10 +125,11 @@
 			<version>${hessian.version}</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.mybatis</groupId> <artifactId>mybatis</artifactId> 
-			<version>${mybatis.version}</version> </dependency> <dependency> <groupId>org.mybatis</groupId> 
-			<artifactId>mybatis-spring</artifactId> <version>${mybatis-spring.version}</version> 
-			</dependency> -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
 
 
 		<dependency>
