@@ -3,7 +3,6 @@ package com.github.guava;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
@@ -26,7 +25,7 @@ public class Iopractice {
 	}
 
 	@Test
-	public void testFilesCopy() throws IOException, InterruptedException{
+	public void testFilesCopy() throws IOException{
 		String pathSrc = "src/main/resources/guavatest/file.txt";
 		String pathDes = "src/main/resources/guavatest/file1.txt";
 		File file = new File(pathDes);
@@ -38,13 +37,10 @@ public class Iopractice {
 		Files.copy(new File(pathSrc), new File(pathDes));
 		
 		Assert.assertTrue(new File(pathDes).exists());
-		Assert.assertEquals(IOUtils.toString(Iopractice.class.getResourceAsStream("/guavatest/file.txt")), 
-					IOUtils.toString(Iopractice.class.getResourceAsStream("/guavatest/file1.txt")));
 		
 		Assert.assertTrue(Files.equal(new File(pathSrc), new File(pathDes)));
 		
-		TimeUnit.SECONDS.sleep(4);
-		file.delete();
+		file.delete(); 
 	}
 	
 	@Test
