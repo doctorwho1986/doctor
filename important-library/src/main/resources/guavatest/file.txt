@@ -1,0 +1,124 @@
+Thrift: The Missing Guide
+Diwaker Gupta
+<me@diwakergupta.info>
+2013-07-09
+Written against Thrift 0.6.0
+
+From the Thrift website:
+Thrift is a software framework for scalable cross-language services development. It combines a software stack with a code generation engine to build services that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml.
+
+Thrift is clearly abundant in features. What is sorely lacking though is good documentation. This guide is an attempt to fill that hole. But note that this is a reference guide — for a step-by-step example on how to use Thrift, refer to the Thrift tutorial.
+
+Many aspects of the structure and organization of this guide have been borrowed from the (excellent) Google Protocol Buffer Language Guide. I thank the authors of that document.
+
+A PDF version is also available.
+Copyright
+
+Copyright © 2013 Diwaker Gupta
+
+This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License.
+Contributions
+
+I welcome feedback and contributions to this guide. You can find the source code over at GitHub. Alternatively, you can file a bug.
+Acknowledgements
+
+I thank the authors of Thrift for the software, the authors of the Google Protocol Buffer documentation for the inspiration and the Thrift community for the feedback. Special thanks to Dave Engberg from Evernote for his input.
+About the Author
+
+I’m an open source geek and a software architect. I blog over at Floating Sun and you can find more about me here.
+Language Reference
+Types
+
+The Thrift type system consists of pre-defined base types, user-defined structs, container types, exceptions and service definitions.
+Base Types
+
+    bool: A boolean value (true or false), one byte
+
+    byte: A signed byte
+
+    i16: A 16-bit signed integer
+
+    i32: A 32-bit signed integer
+
+    i64: A 64-bit signed integer
+
+    double: A 64-bit floating point number
+
+    string: Encoding agnostic text or binary string
+
+Note that Thrift does not support unsigned integers because they have no direct translation to native (primitive) types in many of Thrift’s target languages.
+Containers
+
+Thrift containers are strongly typed containers that map to the most commonly used containers in popular programming languages. They are annotated using the Java Generics style. There are three containers types available:
+
+    list<t1>: An ordered list of elements of type t1. May contain duplicates.
+
+    set<t1>: An unordered set of unique elements of type t1.
+
+    map<t1,t2>: A map of strictly unique keys of type t1 to values of type t2.
+
+Types used in containers many be any valid Thrift type (including structs and exceptions) excluding services.
+Structs and Exceptions
+
+A Thrift struct is conceptually similar to a C struct — a convenient way of grouping together (and encapsulating) related items. Structs translate to classes in object-oriented languages.
+
+Exceptions are syntactically and functionally equivalent to structs except that they are declared using the exception keyword instead of the struct keyword. They differ from structs in semantics — when defining RPC services, developers may declare that a remote method throws an exception.
+
+Details on defining structs and exceptions are the subject of a later section.
+Services
+
+Service definitions are semantically equivalent to defining an interface (or a pure virtual abstract class) in object-oriented programming. The Thrift compiler generates fully functional client and server stubs that implement the interface.
+
+Details on defining services are the subject of a later section.
+Typedefs
+
+Thrift supports C/C++ style typedefs.
+
+typedef i32 MyInteger   // 1
+typedef Tweet ReTweet   // 2
+
+1	Note there is no trailing semi-colon
+2	Structs can also be used in typedefs
+Enums
+
+When you’re defining a message type, you might want one of its fields to only have one of a pre-defined list of values. For example, let’s say you want to add a tweetType field for each Tweet, where the tweetType can be TWEET, RETWEET, DM, or REPLY. You can do this very simply by adding an enum to your message definition — a field with an enum type can only have one of a specified set of constants as its value (if you try to provide a different value, the parser will treat it like an unknown field). In the following example we’ve added an enum called TweetType with all the possible values, and a field of the same type:
+
+enum TweetType {
+    TWEET,       // 1
+    RETWEET = 2, // 2
+    DM = 0xa,    // 3
+    REPLY
+}                // 4
+
+struct Tweet {
+    1: required i32 userId;
+    2: required string userName;
+    3: required string text;
+    4: optional Location loc;
+    5: optional TweetType tweetType = TweetType.TWEET // 5
+    16: optional string language = "english"
+}
+
+1	Enums are specified C-style. Compiler assigns default values starting at 0.
+2	You can of course, supply specific integral values for constants.
+3	Hex values are also acceptable.
+4	Again notice no trailing semi-colon
+5	Use the fully qualified name of the constant when assigning default values.
+
+Note that unlike Protocol Buffers, Thrift does NOT yet support nested enums (or structs, for that matter).
+
+Enumerator constants MUST be in the range of postive 32-bit integers.
+Comments
+
+Thrift supports shell-style, C-style multi-line as well as single-line Java/C++ style comments.
+
+# This is a valid comment.
+
+/*
+ * This is a multi-line comment.
+ * Just like in C.
+ */
+
+// C++/Java style single-line comments work just as well.
+
+Namespace
