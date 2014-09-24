@@ -14,6 +14,7 @@
 
 		<guava.version>18.0</guava.version>
 		<opencsv.verson>2.3</opencsv.verson>
+		<reflections.version>0.9.9-RC2</reflections.version>
 
 		<commons-parent.version>34</commons-parent.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
@@ -51,6 +52,12 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>${reflections.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>net.sf.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
