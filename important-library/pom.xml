@@ -13,6 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<guava.version>18.0</guava.version>
+		<opencsv.verson>2.3</opencsv.verson>
 
 		<commons-parent.version>34</commons-parent.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
@@ -49,6 +50,12 @@
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>${opencsv.verson}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.elasticsearch</groupId>
@@ -106,7 +113,7 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons-lang3.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-math3</artifactId>
@@ -128,17 +135,12 @@
 			<version>${commons-codec.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-  		    <artifactId>commons-csv</artifactId>
-    		<version>${commons-csv.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-dbutils</groupId>
 			<artifactId>commons-dbutils</artifactId>
 			<version>${commons-dbutils.version}</version>
 		</dependency>
-		
-		
+
+
 
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -182,7 +184,7 @@
 	<build>
 		<finalName>important-library</finalName>
 		<plugins>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
