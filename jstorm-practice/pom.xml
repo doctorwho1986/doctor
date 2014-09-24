@@ -46,7 +46,7 @@
 		<hbase.verson>0.98.5-hadoop2</hbase.verson>
 		<hadoop.version>2.5.1</hadoop.version>
 
-		<jstorm.version>0.9.5.1</jstorm.version>
+		<jstorm.version>0.9.6</jstorm.version>
 		<storm.version>0.9.2-incubating</storm.version>
 	</properties>
 
