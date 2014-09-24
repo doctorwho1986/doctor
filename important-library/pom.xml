@@ -14,21 +14,20 @@
 
 		<guava.version>18.0</guava.version>
 
+		<commons-parent.version>34</commons-parent.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>2.4</commons-io.version>
-
-		<spring.version>4.1.0.RELEASE</spring.version>
-		<spring-security-web.version>3.2.5.RELEASE</spring-security-web.version>
+		<commons-math3.version>3.3</commons-math3.version>
+		<commons-collections4.version>4.0</commons-collections4.version>
+		<commons-beanutils.version>1.9.2</commons-beanutils.version>
+		<commons-codec.version>1.9</commons-codec.version>
+		<commons-csv.version>1.0</commons-csv.version>
+		<commons-dbutils.version>1.6</commons-dbutils.version>
 
 		<jetty.version>8.1.12.v20130726</jetty.version>
 		<jetty-all.version>9.2.2.v20140723</jetty-all.version>
 
 		<cglib.verson>3.1</cglib.verson>
-
-		<mybatis.version>3.2.7</mybatis.version>
-		<mybatis-spring.version>1.2.2</mybatis-spring.version>
-
-		<hessian.version>4.0.38</hessian.version>
 
 		<logback-classic.version>1.1.2</logback-classic.version>
 		<log4j.version>1.2.17</log4j.version>
@@ -42,14 +41,6 @@
 		<selenium-java.version>2.42.2</selenium-java.version>
 		<junit.version>4.11</junit.version>
 
-		<hbase.verson>0.98.5-hadoop2</hbase.verson>
-		<hadoop.version>2.5.1</hadoop.version>
-
-		<jstorm.version>0.9.5.1</jstorm.version>
-		<storm.version>0.9.2-incubating</storm.version>
-
-
-		<libthrift.version>0.9.1</libthrift.version>
 		<jzmq.version>3.1.0</jzmq.version>
 		<jeromq.version>0.3.5-SNAPSHOT</jeromq.version>
 
@@ -71,8 +62,6 @@
 			<version>${fastjson.version}</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.zeromq</groupId> <artifactId>jzmq</artifactId> 
-			<version>${jzmq.version}</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.zeromq</groupId>
@@ -80,37 +69,16 @@
 			<version>${jeromq.version}</version>
 		</dependency>
 
-
-
-
-
-
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all</artifactId>
 			<version>${jetty-all.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>javax.servlet-api</artifactId>
-					<groupId>javax.servlet</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-jsp</artifactId>
 			<version>${jetty-all.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>javax.servlet-api</artifactId>
-					<groupId>javax.servlet</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>javax.el</artifactId>
-					<groupId>org.glassfish</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -119,11 +87,6 @@
 			<version>${netty.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.caucho</groupId>
-			<artifactId>hessian</artifactId>
-			<version>${hessian.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -132,11 +95,50 @@
 		</dependency>
 
 
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>${commons-math3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>${commons-collections4.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons-beanutils.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+  		    <artifactId>commons-csv</artifactId>
+    		<version>${commons-csv.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbutils</groupId>
+			<artifactId>commons-dbutils</artifactId>
+			<version>${commons-dbutils.version}</version>
+		</dependency>
+		
+		
 
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -180,28 +182,7 @@
 	<build>
 		<finalName>important-library</finalName>
 		<plugins>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<archive>
-						<manifest>
-							<mainClass>storm.starter.SequenceTopology</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
