@@ -18,8 +18,12 @@
 				%msg%n</pattern>
 		</encoder>
 	</appender>
+	 <logger name="org.apache.zookeeper.ZooKeeper" level="DEBUG" >
+	 	<appender-ref ref="stdout"/>
+	 	<appender-ref ref="defaultAppender"/>
+	 </logger>
 
-	<root level="info">
+	<root level="DEBUG">
 		<appender-ref ref="stdout" />
 		<appender-ref ref="defaultAppender" />
 	</root>
