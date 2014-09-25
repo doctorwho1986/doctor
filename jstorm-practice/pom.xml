@@ -47,10 +47,17 @@
 		<hadoop.version>2.5.1</hadoop.version>
 
 		<jstorm.version>0.9.6</jstorm.version>
-		<storm.version>0.9.2-incubating</storm.version>
+		<zookeeper.version>3.4.6</zookeeper.version>
 	</properties>
 
 	<dependencies>
+	
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>${zookeeper.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.alibaba.jstorm</groupId>
 			<artifactId>jstorm-client-extension</artifactId>
