@@ -20,9 +20,9 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class Practice1 {
-
+	private static  ZookeeperInstance1 zInstance;
 	public static void main(String[] args) throws IOException, KeeperException, InterruptedException {
-		ZookeeperInstance1 zInstance = new ZookeeperInstance1();
+		zInstance = new ZookeeperInstance1();
 		String connectString = "localhost:2181";
 		zInstance.createZKInsatnce(connectString );
 		String data = "group";
@@ -36,9 +36,34 @@ public class Practice1 {
 			System.out.println("字节点有：");
 			listMembers.parallelStream().forEach(System.out::println);
 		}
+		
+		listMemberLikeDir("/",0);
 		zInstance.closeZK();
 	}
+	
+	private static String repeate(String str,int count){
+		StringBuffer stringBuffer = new StringBuffer(str);
+		for (int i = 0; i < count; i++) {
+			stringBuffer.append(str);
+		}
+		
+		return stringBuffer.toString();
+	}
 
+	private static void listMemberLikeDir(String path, int depth){
+		int depthNow = depth ;
+		depthNow++;
+		String repeate = repeate("--", depth);
+		System.out.println(repeate + path);
+		List<String> listMembers = zInstance.listMembers(path);
+		if (null == listMembers || listMembers.isEmpty()) {
+			return;
+		}
+		
+		for (String member : listMembers) {
+			listMemberLikeDir(((1==depthNow) ?"" : path) + "/" + member, depthNow);
+		}
+	}
 }
 
 class ZookeeperInstance1{
