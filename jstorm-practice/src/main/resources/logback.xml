@@ -14,16 +14,11 @@
 			</FileNamePattern>
 		</rollingPolicy>
 		<encoder>
-			<pattern>%-16(%d{MM-dd HH:mm:ss}) %-5thread %-5level %logger{3} -
-				%msg%n</pattern>
+			<pattern>%-16(%d{MM-dd HH:mm:ss}) %-5thread %-5level %logger{3} -%msg%n</pattern>
 		</encoder>
 	</appender>
-	 <logger name="org.apache.zookeeper.ZooKeeper" level="DEBUG" >
-	 	<appender-ref ref="stdout"/>
-	 	<appender-ref ref="defaultAppender"/>
-	 </logger>
 
-	<root level="DEBUG">
+	<root level="all">
 		<appender-ref ref="stdout" />
 		<appender-ref ref="defaultAppender" />
 	</root>
