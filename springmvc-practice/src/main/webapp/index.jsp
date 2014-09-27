@@ -9,6 +9,6 @@
 </head>
 <body>
 	<p><%= new Date() %></p>
-	<p>hello embed </p>
+	<p>hello body </p>
 </body>
 </html>
