@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans default-autowire="byName"
-	xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
@@ -19,10 +21,10 @@
 	<bean name="springCompositeFilter" class="org.springframework.web.filter.CompositeFilter">
 		<property name="filters">
 			<list>
-				<ref bean="practiceFilter"/>
+				<ref bean="practiceFilter" />
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean name="practiceFilter" class="com.gitjub.springmvc.filter.PracticeFilter"></bean>
 </beans>
