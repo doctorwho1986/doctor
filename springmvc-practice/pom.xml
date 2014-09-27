@@ -21,8 +21,7 @@
 		<spring.version>4.1.0.RELEASE</spring.version>
 		<spring-security-web.version>3.2.5.RELEASE</spring-security-web.version>
 
-		<jetty.version>8.1.12.v20130726</jetty.version>
-		<jetty-all.version>9.2.2.v20140723</jetty-all.version>
+		<jetty.version>8.1.16.v20140903</jetty.version>
 
 		<cglib.verson>3.1</cglib.verson>
 
