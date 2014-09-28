@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,12 @@ public class FilterAnnotationPractice implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		log.info("{msg:'FilterAnnotationPractice  doFilter'}");
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		log.info("{ContextPath :'{}'}",httpRequest.getServletContext().getContextPath());
+		log.info("{ServerInfo :'{}'}",httpRequest.getServletContext().getServerInfo());
+		log.info("{RequestURL :'{}'}",httpRequest.getRequestURL());
+		log.info("{RequestURI :'{}'}",httpRequest.getRequestURI());
+
 		chain.doFilter(request, response);
 	}
 
