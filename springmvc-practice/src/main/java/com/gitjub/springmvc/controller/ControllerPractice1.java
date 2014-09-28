@@ -15,4 +15,10 @@ public class ControllerPractice1 {
 	public String jspTest() {
 		return " ! hello jsp tester,\n time now:" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
+	
+	
+	@RequestMapping(value="/jsp",method={RequestMethod.GET,RequestMethod.POST})
+	public String jsp() {
+		return "jsptest";
+	}
 }
