@@ -1,6 +1,5 @@
 package com.gitjub.springmvc.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
