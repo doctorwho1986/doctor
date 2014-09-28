@@ -31,6 +31,8 @@ public class FilterAnnotationPractice implements Filter {
 		log.info("{ServerInfo :'{}'}",httpRequest.getServletContext().getServerInfo());
 		log.info("{RequestURL :'{}'}",httpRequest.getRequestURL());
 		log.info("{RequestURI :'{}'}",httpRequest.getRequestURI());
+		log.info("{PathInfo() :'{}'}",httpRequest.getPathInfo());
+		log.info("{CharacterEncoding() :'{}'}",httpRequest.getCharacterEncoding());
 
 		chain.doFilter(request, response);
 	}
