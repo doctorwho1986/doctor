@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebFilter(filterName = "filterAnnotationPractice",urlPatterns = {"/*"})
+@WebFilter("/*")
 public class FilterAnnotationPractice implements Filter {
 	private static final Logger log = LoggerFactory.getLogger(FilterAnnotationPractice.class);
 	@Override
