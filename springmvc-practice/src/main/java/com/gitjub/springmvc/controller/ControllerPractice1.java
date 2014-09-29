@@ -26,6 +26,12 @@ public class ControllerPractice1 {
 		return "jsptest";
 	}
 	
+	
+	@RequestMapping(value="/jSPScriptlets",method={RequestMethod.GET})
+	public String jSPScriptlets() {
+		return "jSPScriptlets";
+	}
+	
 	@RequestMapping(value="/form-post")
 	@ResponseBody
 	public String getEncode() {
