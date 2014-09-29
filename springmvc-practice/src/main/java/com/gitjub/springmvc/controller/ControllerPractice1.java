@@ -5,15 +5,21 @@ import java.time.format.DateTimeFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+
 @Controller
 public class ControllerPractice1 {
+	private static final Logger log = LoggerFactory.getLogger(ControllerPractice1.class);
+
 	@RequestMapping(value="/jsptest",method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public String jspTest() {
@@ -41,5 +47,14 @@ public class ControllerPractice1 {
 		message = message + request.getCharacterEncoding();
 		
 		return message;
+	}
+	
+	@RequestMapping(value="/escape",method=RequestMethod.POST)
+	@ResponseBody
+	public String getEscapeString(@RequestParam("name") String name) {
+		ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		HttpServletRequest request = requestAttributes.getRequest();
+		log.info("{getEscapeString  {}: '{}'}",name,request.getParameter("name"));
+		return request.getParameter("name");
 	}
 }
