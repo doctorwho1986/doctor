@@ -10,5 +10,11 @@
 <body>
 	<p><%= new Date() %></p>
 	<p>hello body </p>
+	
+	<br/>
+	<form action="escape.html" method="post">
+		<input type="text" name="name" value="<b>dd</b>"/>
+		<input type="submit" value="submit" />
+	</form>
 </body>
 </html>
