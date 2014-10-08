@@ -15,7 +15,8 @@ import com.github.design_patterns.HumanFactory.HumanItem;
  *         Based on different parameters, the factory produce different stuff.
  *         
  *         
- *         @link Calendar
+ *         @link Calendar 
+ *         @link NumberFormat 
  */
 
 public class FactoryPattern {
