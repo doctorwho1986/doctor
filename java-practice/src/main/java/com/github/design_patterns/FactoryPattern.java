@@ -13,6 +13,9 @@ import com.github.design_patterns.HumanFactory.HumanItem;
  *         the factory will produce a boy; if we ask
  *         for a girl, the factory will produce a girl.
  *         Based on different parameters, the factory produce different stuff.
+ *         
+ *         
+ *         @link Calendar
  */
 
 public class FactoryPattern {
