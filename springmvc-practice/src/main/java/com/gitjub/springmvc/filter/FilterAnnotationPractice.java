@@ -9,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +35,10 @@ public class FilterAnnotationPractice implements Filter {
 		log.info("{RequestURI :'{}'}",httpRequest.getRequestURI());
 		log.info("{PathInfo() :'{}'}",httpRequest.getPathInfo());
 		log.info("{CharacterEncoding() :'{}'}",httpRequest.getCharacterEncoding());
-
+		
+		HttpServletResponse httpServletResponse = (HttpServletResponse)response;
+		Cookie cookie = new Cookie("doctorname", "doctor who");
+		httpServletResponse.addCookie(cookie);
 		chain.doFilter(request, response);
 	}
 
