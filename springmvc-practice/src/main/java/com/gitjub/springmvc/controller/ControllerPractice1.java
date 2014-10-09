@@ -3,6 +3,7 @@ package com.gitjub.springmvc.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -56,5 +57,23 @@ public class ControllerPractice1 {
 		HttpServletRequest request = requestAttributes.getRequest();
 		log.info("{getEscapeString  {}: '{}'}",name,request.getParameter("name"));
 		return request.getParameter("name");
+	}
+	
+	@RequestMapping(value="/cookie",method=RequestMethod.GET)
+	@ResponseBody
+	public String getCookies(){
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append("cookies:<br/>");
+		
+		ServletRequestAttributes requestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+		Cookie[] cookies = requestAttributes.getRequest().getCookies();
+		if (null != cookies) {
+			log.info("{cookie length:{}}",cookies.length);
+			for (Cookie cookie : cookies) {
+				stringBuffer.append(cookie.getName()).append(":").append(cookie.getValue());
+				stringBuffer.append("<br/>");
+			}
+		}
+		return stringBuffer.toString();
 	}
 }
