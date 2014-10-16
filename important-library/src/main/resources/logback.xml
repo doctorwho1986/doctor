@@ -14,10 +14,14 @@
 			</FileNamePattern>
 		</rollingPolicy>
 		<encoder>
-			<pattern>%-16(%d{MM-dd HH:mm:ss}) %-5thread %-5level %logger{3} -%msg%n</pattern>
+			<pattern>%-16(%d{MM-dd HH:mm:ss}) %-5thread %-5level %logger{3}
+				-%msg%n</pattern>
 		</encoder>
 	</appender>
 
+	<logger name="com.taobao.metamorphosis" level="info" />
+	<logger name="com.taobao.gecko" level="info" />
+	<logger name="org.apache.zookeeper" level="info" />
 	<root level="info">
 		<appender-ref ref="stdout" />
 		<appender-ref ref="defaultAppender" />
