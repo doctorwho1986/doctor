@@ -11,7 +11,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
+	
+		<metaq.version>1.4.6.3-SNAPSHOT</metaq.version>
 		<guava.version>18.0</guava.version>
 		<opencsv.verson>2.3</opencsv.verson>
 		<reflections.version>0.9.9-RC2</reflections.version>
@@ -58,7 +59,19 @@
 		<dependency>
 			<groupId>com.taobao.metamorphosis</groupId>
 			<artifactId>metamorphosis-client</artifactId>
-			<version>1.4.6.3-SNAPSHOT</version>
+			<version>${metaq.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.taobao.metamorphosis</groupId>
+			<artifactId>metamorphosis-client-extension</artifactId>
+			<version>${metaq.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.taobao.metamorphosis</groupId>
+			<artifactId>metamorphosis-server</artifactId>
+			<version>${metaq.version}</version>
 		</dependency>
 		
 		<dependency>
