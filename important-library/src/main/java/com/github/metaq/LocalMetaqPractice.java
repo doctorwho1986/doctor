@@ -31,8 +31,9 @@ public class LocalMetaqPractice {
 	private static MessageProducer producer;
 	private static MessageConsumer consumer;
 
+	private static String zkServers = "192.168.8.8:2181,192.168.8.9:2181,192.168.8.10:2181";
 	static{
-		zkConfig.setZkConnect("127.0.0.1:2181");
+		zkConfig.setZkConnect(zkServers);
 		metaClientConfig.setZkConfig(zkConfig);
 		try {
 			
