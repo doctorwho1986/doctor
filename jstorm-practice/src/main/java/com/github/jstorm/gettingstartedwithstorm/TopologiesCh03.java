@@ -28,9 +28,8 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.jstorm.local.LocalCluster;
-
 import backtype.storm.Config;
+import backtype.storm.LocalCluster;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
 import backtype.storm.generated.NotAliveException;
@@ -83,11 +82,7 @@ public class TopologiesCh03 {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		try {
-			cluster.killTopology("Count-Word-Toplogy-With-Refresh-Cache");
-		} catch (NotAliveException e) {
-			log.error("{killTopology error: {}}",e.getMessage());
-		}
+		cluster.killTopology("Count-Word-Toplogy-With-Refresh-Cache");
 		cluster.shutdown();
 
 	}
