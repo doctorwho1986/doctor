@@ -1,0 +1,8 @@
+javaLibraryPath: "/usr/local/lib:/opt/local/lib:/usr/lib"
+
+### storm.* configs are general configurations
+# the local dir is where jars are kept
+stormLocalDir: "jstorm-local"
+stormZookeeperServers :
+    - "localhost"
+    - "192.16.8.8"
