@@ -249,6 +249,30 @@
 
 	<repositories>
 		<repository>
+			<id>io.spring.repo.maven.release</id>
+			<url>http://repo.spring.io/release/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>io.spring.repo.maven.milestone</id>
+			<url>http://repo.spring.io/milestone/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>io.spring.repo.maven.snapshot</id>
+			<url>http://repo.spring.io/snapshot/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+
+
+		<repository>
 			<id>CN</id>
 			<name>OSChina Central</name>
 			<url>http://maven.oschina.net/content/groups/public/</url>
