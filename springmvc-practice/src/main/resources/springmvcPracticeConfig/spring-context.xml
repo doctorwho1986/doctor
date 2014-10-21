@@ -19,4 +19,5 @@
 	<import resource="filter.xml"/>	
 	<import resource="spring-quartz.xml"/>
 	<context:component-scan base-package="com.gitjub.springmvc.listener"></context:component-scan>
+	<context:component-scan base-package="com.gitjub.springmvc.scheduler"></context:component-scan>
 </beans>
