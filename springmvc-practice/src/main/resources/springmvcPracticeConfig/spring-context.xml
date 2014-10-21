@@ -14,8 +14,9 @@
         http://code.alibabatech.com/schema/dubbo
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd 
 		http://www.springframework.org/schema/task
-        http://www.springframework.org/schema/task/spring-task-3.0.xsd">
-    
+        http://www.springframework.org/schema/task/spring-task.xsd">
+        
+    <task:annotation-driven/>
 	<import resource="filter.xml"/>	
 	<import resource="spring-quartz.xml"/>
 	<context:component-scan base-package="com.gitjub.springmvc.listener"></context:component-scan>
