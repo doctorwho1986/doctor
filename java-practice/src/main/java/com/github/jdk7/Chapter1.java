@@ -46,6 +46,7 @@ public class Chapter1 {
 			break;
 		case "yes":
 			System.out.println(aString + " is yes ");
+			break;
 		default:
 			System.out.println("defalut");
 			break;
