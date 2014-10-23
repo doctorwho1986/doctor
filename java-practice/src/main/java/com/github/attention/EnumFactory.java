@@ -2,6 +2,8 @@ package com.github.attention;
 
 import static org.junit.Assert.*;
 
+import java.util.EnumSet;
+
 public class EnumFactory {
 
 	public static void main(String[] args) {
@@ -12,6 +14,13 @@ public class EnumFactory {
 		//枚举抽象方法实现工厂方法模式
 		assertEquals(FordCar.class, CarFactory2.FordCar.create().getClass());
 		assertEquals(BuickCar.class, CarFactory2.BuickCar.create().getClass());
+		
+		//enumset
+		EnumSet<CarFactory1> enumSet = EnumSet.allOf(CarFactory1.class);
+		assertEquals(2, enumSet.size());
+		assertEquals("java.util.RegularEnumSet", enumSet.getClass().getName());
+		
+		
 	}
 	
 	interface Car{
