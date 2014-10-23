@@ -5,8 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -91,6 +91,40 @@ public class AttentionPractice {
 		instance.print();
 		
 	}
+	
+	@Test
+	public void test_基本类型asList(){
+		int[] iarray = {12,35,66,88};
+		List<int[]> asList = Arrays.asList(iarray);
+		assertEquals(1, asList.size());
+		asList.stream().forEach(System.out::println);
+		
+		Integer[] integers = {12,35,66,88};
+		List<Integer> asList2 = Arrays.asList(integers);
+		assertEquals(integers.length, asList2.size());
+		asList2.forEach(System.out::println);
+		
+		excetion.expect(UnsupportedOperationException.class);
+		//该list是不可变的
+		asList2.add(33);
+		
+	}
+	
+	@Test
+	public void test_枚举(){
+		Sex[] values = Sex.values();
+		for (Sex sex : values) {
+			System.out.println(sex.getDescription() + sex.ordinal());
+		}
+	
+		assertEquals(Sex.MAN, Sex.of("男"));
+		assertEquals(null, Sex.of("s男"));
+		
+		Sex[] enumConstants = Sex.class.getEnumConstants();
+		for (Sex sex : enumConstants) {
+			System.out.println(sex.getDescription() + sex.ordinal());
+		}
+	}
 }
 
  final class TestS{
@@ -111,4 +145,33 @@ public class AttentionPractice {
 		public  void print() {
 			System.out.println("hello doctor");
 		}
+ }
+ 
+ enum Sex{
+	 MAN("男"),
+	 WOMAN("女");
+	 
+	 private String description;
+	 
+	 Sex(String description){
+		 this.description = description;
+	 }
+	 
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	 
+	public static Sex of(String description) {
+		Sex[] values = Sex.values();
+		for (Sex sex : values) {
+			if (description.equals(sex.getDescription())) {
+				return sex;
+			}
+		}
+		
+		return null;
+	}
  }
