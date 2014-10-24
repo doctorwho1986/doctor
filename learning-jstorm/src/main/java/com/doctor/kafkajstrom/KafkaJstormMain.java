@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
+import kafka.serializer.Decoder;
+import kafka.serializer.StringDecoder;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,6 +65,8 @@ public class KafkaJstormMain {
 		
 		private static final Logger LOG = LoggerFactory.getLogger(KafkaBolt.class);
 		private static final long serialVersionUID = 1L;
+		
+		private StringDecoder stringDecoder = new StringDecoder(null);
 
 		@Override
 		public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
@@ -71,7 +76,8 @@ public class KafkaJstormMain {
 
 		@Override
 		public void execute(Tuple input) {
-			String logMessage = input.getStringByField("bytes");
+			byte[] message = input.getBinaryByField("bytes");
+			String logMessage = stringDecoder.fromBytes(message);
 			System.out.println(logMessage);
 			LOG.info("{msg:'{}  获得数据  {}'}", Thread.currentThread().getName() + " -- " + KafkaBolt.class.getName(), logMessage);
 
