@@ -59,7 +59,11 @@
 			<artifactId>kafka_2.10</artifactId>
 			<version>0.8.1.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>nl.minvenj.nfi.storm</groupId>
+			<artifactId>kafka-spout</artifactId>
+			<version>0.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.101tec</groupId>
