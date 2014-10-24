@@ -11,7 +11,6 @@ import com.doctor.kafkajstrom.util.ConfigUtil;
 
 import nl.minvenj.nfi.storm.kafka.KafkaSpout;
 import backtype.storm.Config;
-import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
@@ -21,6 +20,13 @@ import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.topology.base.BaseRichBolt;
 import backtype.storm.tuple.Tuple;
+
+/**
+ * 提交教程https://github.com/alibaba/jstorm/wiki/%E5%BA%94%E7%94%A8%E4%BE%8B%E5%AD%90
+ * @author doctor
+ *
+ * @time   2014年10月24日 下午4:10:01
+ */
 
 public class KafkaJstormMain {
 	private static final Logger LOG = LoggerFactory.getLogger(KafkaJstormMain.class);
