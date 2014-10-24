@@ -20,7 +20,7 @@
 
  	<appender name="kafka" class="com.doctor.logbackextend.KafkaAppender">
  		<topic>kafka-test</topic>
- 		<zookeeperHost>localhost:2181</zookeeperHost>
+ 		<zookeeperHost>127.0.0.1:2181</zookeeperHost>
  	</appender>
  	
  	
