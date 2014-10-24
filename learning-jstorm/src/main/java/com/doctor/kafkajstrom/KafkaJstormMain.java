@@ -65,7 +65,6 @@ public class KafkaJstormMain {
 		private static final Logger LOG = LoggerFactory.getLogger(KafkaBolt.class);
 		private static final long serialVersionUID = 1L;
 		
-		private StringDecoder stringDecoder = new StringDecoder(null);
 
 		@Override
 		public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
