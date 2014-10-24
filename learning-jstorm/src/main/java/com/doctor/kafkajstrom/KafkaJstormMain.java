@@ -5,12 +5,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Properties;
 
-import kafka.serializer.StringDecoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import clojure.string__init;
 
 import com.doctor.kafkajstrom.util.ConfigUtil;
 
