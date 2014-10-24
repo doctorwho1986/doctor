@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
-import kafka.serializer.Decoder;
 import kafka.serializer.StringDecoder;
 
 import org.slf4j.Logger;
