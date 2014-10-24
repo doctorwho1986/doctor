@@ -1,6 +1,7 @@
 package com.doctor.kafkajstrom;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Properties;
 
@@ -8,6 +9,8 @@ import kafka.serializer.StringDecoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import clojure.string__init;
 
 import com.doctor.kafkajstrom.util.ConfigUtil;
 
@@ -74,8 +77,9 @@ public class KafkaJstormMain {
 
 		@Override
 		public void execute(Tuple input) {
-			System.out.println(input);
-			LOG.info("{msg:'{}  获得数据  {}'}", Thread.currentThread().getName() + " -- " + KafkaBolt.class.getName(), input);
+			byte[] byteByField = input.getBinaryByField("bytes");
+			String message = new String(byteByField,StandardCharsets.UTF_8);
+			LOG.info("{msg:'{}  获得数据  {}'}", Thread.currentThread().getName() + " -- " + KafkaBolt.class.getName(), message);
 
 		}
 
