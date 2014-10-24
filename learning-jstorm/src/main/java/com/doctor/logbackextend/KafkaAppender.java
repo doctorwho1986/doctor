@@ -31,7 +31,7 @@ public class KafkaAppender extends AppenderBase<ILoggingEvent> {
 		
 		super.start();
 		Properties props = new Properties();
-		props.put("zk.connect", this.zookeeperHost);
+		props.put("metadata.broker.list", this.zookeeperHost);
 		props.put("serializer.class", "kafka.serializer.StringEncoder");
 		
 		ProducerConfig config = new ProducerConfig(props);
