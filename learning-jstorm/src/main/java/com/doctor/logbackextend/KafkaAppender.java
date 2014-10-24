@@ -12,10 +12,19 @@ public class KafkaAppender extends AppenderBase<ILoggingEvent> {
 
 	private String topic;
 	private String zookeeperHost;
+	
+
+	private String broker;
 	private Producer<String, String> producer;
 	private Formatter formatter;
 	
-	
+	public String getBroker() {
+		return broker;
+	}
+
+	public void setBroker(String broker) {
+		this.broker = broker;
+	}
 	@Override
 	protected void append(ILoggingEvent eventObject) {
 		String message = this.formatter.formate(eventObject);
@@ -31,7 +40,8 @@ public class KafkaAppender extends AppenderBase<ILoggingEvent> {
 		
 		super.start();
 		Properties props = new Properties();
-		props.put("metadata.broker.list", this.zookeeperHost);
+		props.put("zk.connect", this.zookeeperHost);
+		props.put("metadata.broker.list", this.broker);
 		props.put("serializer.class", "kafka.serializer.StringEncoder");
 		
 		ProducerConfig config = new ProducerConfig(props);
@@ -78,6 +88,8 @@ public class KafkaAppender extends AppenderBase<ILoggingEvent> {
 	public void setFormatter(Formatter formatter) {
 		this.formatter = formatter;
 	}
+	
+	
 	
 	/**
 	 * 格式化日志格式
