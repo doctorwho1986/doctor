@@ -75,10 +75,8 @@ public class KafkaJstormMain {
 
 		@Override
 		public void execute(Tuple input) {
-			byte[] message = input.getBinaryByField("bytes");
-			String logMessage = stringDecoder.fromBytes(message);
-			System.out.println(logMessage);
-			LOG.info("{msg:'{}  获得数据  {}'}", Thread.currentThread().getName() + " -- " + KafkaBolt.class.getName(), logMessage);
+			System.out.println(input);
+			LOG.info("{msg:'{}  获得数据  {}'}", Thread.currentThread().getName() + " -- " + KafkaBolt.class.getName(), input);
 
 		}
 
