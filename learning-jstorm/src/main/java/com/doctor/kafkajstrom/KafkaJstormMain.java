@@ -35,7 +35,7 @@ public class KafkaJstormMain {
 
 		Properties props = new Properties();
 		try {
-			props.load(KafkaJstormMain.class.getResourceAsStream("learningJstormDefaultPop/kafka-config.properties"));
+			props.load(KafkaJstormMain.class.getResourceAsStream("/learningJstormDefaultPop/kafka-config.properties"));
 		} catch (IOException e) {
 			throw new IllegalArgumentException("learningJstormDefaultPop/kafka-config.properties io error");
 		}
@@ -46,7 +46,7 @@ public class KafkaJstormMain {
 //		cluster.submitTopology("my-topology", config, builder.createTopology());
 		
 		try {
-			StormSubmitter.submitTopologyWithProgressBar("kafka-topology", config, builder.createTopology());
+			StormSubmitter.submitTopology("kafka-topology", config, builder.createTopology());
 		} catch (AlreadyAliveException | InvalidTopologyException e) {
 			LOG.error("{msg:'StormSubmitter.submitTopologyWithProgressBar error  {}'}",e);
 		}
