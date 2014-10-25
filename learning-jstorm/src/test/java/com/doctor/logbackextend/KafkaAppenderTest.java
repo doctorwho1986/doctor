@@ -40,8 +40,8 @@ public class KafkaAppenderTest {
 	@Test
 	public void test_comsumer(){
 		Properties props = new Properties();
-		props.put("zookeeper.connect", "127.0.0.1");
-		props.put("group.id", "1");
+		props.put("zookeeper.connect", "127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183");
+		props.put("group.id", "kafkatest-group");
 //		props.put("zookeeper.session.timeout.ms", "400");
 //		props.put("zookeeper.sync.time.ms", "200");
 //		props.put("auto.commit.interval.ms", "1000");
@@ -50,11 +50,15 @@ public class KafkaAppenderTest {
 		
 		Map<String, Integer> topicCountMap = new HashMap<>();
 		topicCountMap.put("kafka-test", new Integer(1));
-		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
-		KafkaStream<byte[], byte[]> stream = consumerMap.get("kafka-test").get(0);
-		ConsumerIterator<byte[], byte[]> it = stream.iterator();
-		while(it.hasNext())
-		System.out.println(new String("test_comsumer: " + new String(it.next().message())));
+		Map<String, List<KafkaStream<byte[], byte[]>>> consumerStream = consumer.createMessageStreams(topicCountMap);
+		List<KafkaStream<byte[], byte[]>> streams = consumerStream.get("kafka-test");
+		
+		for (KafkaStream<byte[], byte[]> stream : streams) {
+			ConsumerIterator<byte[], byte[]> it = stream.iterator();
+			while(it.hasNext())
+			System.out.println(new String("test_comsumer: " + new String(it.next().message())));
+		}
+		
 		
 	}
 
