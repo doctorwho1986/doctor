@@ -20,8 +20,10 @@
 
  	<appender name="kafka" class="com.doctor.logbackextend.KafkaAppender">
  		<topic>kafka-test</topic>
- 		<zookeeperHost>127.0.0.1:2181</zookeeperHost>
- 		<broker>127.0.0.1:9092</broker>
+ 		<!-- <zookeeperHost>127.0.0.1:2181</zookeeperHost> -->
+ 		<!-- <broker>127.0.0.1:9092</broker> -->
+ 		<zookeeperHost>127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183</zookeeperHost>
+ 		<broker>127.0.0.1:9092,127.0.0.1:9093</broker>
  	</appender>
  	
  	
