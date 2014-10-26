@@ -118,6 +118,10 @@ public class CuratorPractice1 {
 				case CHILD_UPDATED:
 					message = message + " child update event";
 					break;
+				case CONNECTION_LOST:
+				case CONNECTION_RECONNECTED:
+				case CONNECTION_SUSPENDED:
+				case INITIALIZED:
 
 				default:
 					message = message + " unknown event";
