@@ -3,6 +3,8 @@ package com.doctor.kafkajstrom.bolt;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
 import backtype.storm.task.OutputCollector;
@@ -16,6 +18,7 @@ import com.doctor.kafkajstrom.log.manager.imp.LogManagerImp;
 import com.doctor.kafkajstrom.util.SpringUtil;
 
 public  class KafkaBolt extends BaseRichBolt {
+	private static final Logger LOG = LoggerFactory.getLogger(KafkaBolt.class);
 	
 	private static final long serialVersionUID = 1L;
 	private String classPathConfigLocation;
@@ -31,6 +34,7 @@ public  class KafkaBolt extends BaseRichBolt {
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
 		applicationContext = SpringUtil.of(classPathConfigLocation);
 		logManagerImp = applicationContext.getBean(LogManagerImp.class);
+		LOG.info("KafkaBolt prepare");
 	}
 
 	@Override
