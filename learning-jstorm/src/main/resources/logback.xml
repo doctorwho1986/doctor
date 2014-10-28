@@ -26,11 +26,13 @@
  		<broker>127.0.0.1:9092,127.0.0.1:9093</broker>
  	</appender>
  	
- 	
+ 	<logger name="com.doctor" level="info">
+		<appender-ref ref="kafka" />
+	</logger>
+	
 	<root level="info">
 		<appender-ref ref="stdout" />
 		<appender-ref ref="defaultAppender" />
-		<appender-ref ref="kafka" />
 	</root>
 
 </configuration> 
