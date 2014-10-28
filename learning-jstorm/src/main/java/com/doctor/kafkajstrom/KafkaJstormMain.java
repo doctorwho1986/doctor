@@ -32,7 +32,7 @@ public class KafkaJstormMain {
 		TopologyBuilder builder = new TopologyBuilder();
 
 		builder.setSpout("kafka-spout", new KafkaSpout());
-		builder.setBolt("kafka-bolt", new KafkaBolt("learningJstormConfig/spring-kafkabolt-context.xml")).allGrouping("kafka-spout");
+		builder.setBolt("kafka-bolt", new KafkaBolt("learningJstormConfig/spring-kafkabolt-context.xml"),5).allGrouping("kafka-spout");
 		
 
 		Properties props = new Properties();
@@ -43,6 +43,7 @@ public class KafkaJstormMain {
 		}
 		
 		Config config = ConfigUtil.of(props);
+		config.setNumWorkers(3);
 		
 //		LocalCluster cluster = new LocalCluster();
 //		cluster.submitTopology("my-topology", config, builder.createTopology());
