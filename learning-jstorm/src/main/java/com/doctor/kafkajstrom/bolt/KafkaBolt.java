@@ -17,31 +17,38 @@ import com.doctor.kafkajstrom.log.manager.LogManager;
 import com.doctor.kafkajstrom.log.manager.imp.LogManagerImp;
 import com.doctor.kafkajstrom.util.SpringUtil;
 
-public  class KafkaBolt extends BaseRichBolt {
+public class KafkaBolt extends BaseRichBolt {
 	private static final Logger LOG = LoggerFactory.getLogger(KafkaBolt.class);
-	
+
 	private static final long serialVersionUID = 1L;
 	private String classPathConfigLocation;
-	
+
 	LogManager logManagerImp;
-	private ApplicationContext applicationContext;
-	
+	private ApplicationContext applicationContext = null;
+
 	public KafkaBolt(String classPathConfigLocation) {
 		this.classPathConfigLocation = classPathConfigLocation;
 	}
 
 	@Override
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
-		applicationContext = SpringUtil.of(classPathConfigLocation);
-		logManagerImp = applicationContext.getBean(LogManagerImp.class);
-		LOG.info("KafkaBolt prepare");
+		// 多线程启动，只需初始化一次
+		synchronized (this) {
+			if (applicationContext == null) {
+
+				applicationContext = SpringUtil.of(classPathConfigLocation);
+				logManagerImp = applicationContext.getBean(LogManagerImp.class);
+				LOG.info("----------------------------------------KafkaBolt prepare");
+			}
+		}
+
 	}
 
 	@Override
 	public void execute(Tuple input) {
 		byte[] byteByField = input.getBinaryByField("bytes");
-		String message = new String(byteByField,StandardCharsets.UTF_8);
-		
+		String message = new String(byteByField, StandardCharsets.UTF_8);
+
 		logManagerImp.write(message);
 
 	}
