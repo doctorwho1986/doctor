@@ -1,15 +1,12 @@
 package com.doctor.kafkajstrom;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
 import java.util.Properties;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+import com.doctor.kafkajstrom.bolt.KafkaBolt;
 import com.doctor.kafkajstrom.util.ConfigUtil;
 
 import nl.minvenj.nfi.storm.kafka.KafkaSpout;
@@ -17,12 +14,7 @@ import backtype.storm.Config;
 import backtype.storm.StormSubmitter;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
-import backtype.storm.task.OutputCollector;
-import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.TopologyBuilder;
-import backtype.storm.topology.base.BaseRichBolt;
-import backtype.storm.tuple.Tuple;
 
 /**
  * 提交教程https://github.com/alibaba/jstorm/wiki/%E5%BA%94%E7%94%A8%E4%BE%8B%E5%AD%90
@@ -35,11 +27,12 @@ public class KafkaJstormMain {
 	private static final Logger LOG = LoggerFactory.getLogger(KafkaJstormMain.class);
 	
 	public static void main(String[] args) {
-
+		
+		
 		TopologyBuilder builder = new TopologyBuilder();
 
 		builder.setSpout("kafka-spout", new KafkaSpout());
-		builder.setBolt("kafka-bolt", new KafkaBolt()).allGrouping("kafka-spout");
+		builder.setBolt("kafka-bolt", new KafkaBolt("learningJstormConfig/spring-kafkabolt-context.xml")).allGrouping("kafka-spout");
 		
 
 		Properties props = new Properties();
@@ -61,31 +54,5 @@ public class KafkaJstormMain {
 		}
 	}
 
-	public static class KafkaBolt extends BaseRichBolt {
-		
-		private static final Logger LOG = LoggerFactory.getLogger(KafkaBolt.class);
-		private static final long serialVersionUID = 1L;
-		
-
-		@Override
-		public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void execute(Tuple input) {
-			byte[] byteByField = input.getBinaryByField("bytes");
-			String message = new String(byteByField,StandardCharsets.UTF_8);
-			LOG.info("{msg:'{}  获得数据  {}'}", Thread.currentThread().getName() + " -- " + KafkaBolt.class.getName(), message);
-
-		}
-
-		@Override
-		public void declareOutputFields(OutputFieldsDeclarer declarer) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
+	
 }
