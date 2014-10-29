@@ -21,26 +21,18 @@ public class KafkaBolt extends BaseRichBolt {
 	private static final Logger LOG = LoggerFactory.getLogger(KafkaBolt.class);
 
 	private static final long serialVersionUID = 1L;
-	private String classPathConfigLocation;
 
-	LogManager logManagerImp;
-	private ApplicationContext applicationContext = null;
-
-	public KafkaBolt(String classPathConfigLocation) {
-		this.classPathConfigLocation = classPathConfigLocation;
+	private static final LogManager logManagerImp;
+	
+	private static final ApplicationContext applicationContext;
+	static{
+		applicationContext = SpringUtil.of("learningJstormConfig/spring-kafkabolt-context.xml");
+		logManagerImp = applicationContext.getBean(LogManagerImp.class);
 	}
 
+	
 	@Override
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
-		// 多线程启动，只需初始化一次
-		synchronized (this) {
-			if (applicationContext == null) {
-
-				applicationContext = SpringUtil.of(classPathConfigLocation);
-				logManagerImp = applicationContext.getBean(LogManagerImp.class);
-				LOG.info("----------------------------------------KafkaBolt prepare");
-			}
-		}
 
 	}
 
