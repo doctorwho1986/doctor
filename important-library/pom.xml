@@ -46,7 +46,7 @@
 		<fastjson.version>1.1.41</fastjson.version>
 		<elasticsearch.version>1.3.2</elasticsearch.version>
 
-
+		<jstorm.version>0.9.6.1</jstorm.version>
 
 		<slf4j.version>1.7.7</slf4j.version>
 		<logback.version>1.1.2</logback.version>
@@ -54,6 +54,24 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>com.alibaba.jstorm</groupId>
+			<artifactId>jstorm-client-extension</artifactId>
+			<version>${jstorm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.jstorm</groupId>
+			<artifactId>jstorm-client</artifactId>
+			<version>${jstorm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.jstorm</groupId>
+			<artifactId>jstorm-server</artifactId>
+			<version>${jstorm.version}</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
