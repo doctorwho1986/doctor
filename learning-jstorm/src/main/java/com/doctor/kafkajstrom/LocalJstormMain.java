@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
+import com.doctor.kafkajstrom.log.manager.LogManager;
 import com.doctor.kafkajstrom.util.SpringUtil;
 
 import backtype.storm.Config;
@@ -169,8 +170,11 @@ public class LocalJstormMain {
 		private int id;
 		
 		private static final ApplicationContext applicationContext;
+		private static final LogManager logManager;
+		
 		static{
 			applicationContext = SpringUtil.of("learningJstormConfig/spring-kafkabolt-context.xml");
+			logManager = applicationContext.getBean(LogManager.class);
 			log.info("--------------ApplicationContext initialized from learningJstormConfig/spring-kafkabolt-context.xml ");
 		}
 
@@ -197,6 +201,8 @@ public class LocalJstormMain {
 					Integer count = countMap.get(word);
 					count++;
 					countMap.put(word, count);
+					
+					logManager.write(word + ":" + countMap.get(word));
 				}
 			} else {
 				if ("signals.".equals(input.getSourceStreamId()) && "refreshCache".equals(input.getStringByField("action"))) {
