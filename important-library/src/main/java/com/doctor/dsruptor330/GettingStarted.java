@@ -1,6 +1,7 @@
 package com.doctor.dsruptor330;
 
 import com.lmax.disruptor.EventFactory;
+import com.lmax.disruptor.EventHandler;
 
 /**
  * see https://github.com/LMAX-Exchange/disruptor/wiki/Getting-Started
@@ -36,6 +37,16 @@ public class GettingStarted {
 		@Override
 		public LongEvnet newInstance() {
 			return new LongEvnet();
+		}
+		
+	}
+	
+	public static class LongEventHandler implements EventHandler<LongEvnet>{
+
+		@Override
+		public void onEvent(LongEvnet event, long sequence, boolean endOfBatch) throws Exception {
+			System.out.println("LongEvnet : " + event);
+			
 		}
 		
 	}
