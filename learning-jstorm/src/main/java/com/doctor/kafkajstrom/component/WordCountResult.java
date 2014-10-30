@@ -3,10 +3,7 @@ package com.doctor.kafkajstrom.component;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
-import org.springframework.stereotype.Component;
 
-
-@Component
 public final class WordCountResult {
 	
 	private static ConcurrentLinkedDeque<Data> deque ;
