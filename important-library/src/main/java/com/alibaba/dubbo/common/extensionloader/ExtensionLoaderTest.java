@@ -56,7 +56,7 @@ import com.alibaba.dubbo.common.extensionloader.ext6_wrap.impl.Ext5Wrapper1;
 import com.alibaba.dubbo.common.extensionloader.ext6_wrap.impl.Ext5Wrapper2;
 
 /**
- * @author ding.lid
+ * @author ding.lid  L123
  */
 public class ExtensionLoaderTest {
     @Test
