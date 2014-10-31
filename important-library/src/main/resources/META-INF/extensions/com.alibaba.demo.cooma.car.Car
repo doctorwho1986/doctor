@@ -1,3 +1,0 @@
-racing=com.alibaba.demo.cooma.car.impl.RacingCar
-sport=com.alibaba.demo.cooma.car.impl.SportCar
-+run_counter=com.alibaba.demo.cooma.car.impl.CarRunCountWrapper
