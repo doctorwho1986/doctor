@@ -41,6 +41,8 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 
 /**
+ * see https://github.com/alibaba/cooma
+ * 
  * 加载和管理扩展。
  * <p/>
  * <ul>
