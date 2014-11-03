@@ -73,28 +73,24 @@
 			<version>${slf4j-api.version}</version>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
+			<version>4.3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>${selenium-java.version}</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>fluent-hc</artifactId>
+			<version>4.3.5</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.httpunit</groupId>
-			<artifactId>httpunit</artifactId>
-			<version>${httpunit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<version>4.11</version>
 		</dependency>
+
 
 	</dependencies>
 	<build>
