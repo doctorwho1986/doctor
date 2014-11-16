@@ -1,8 +1,9 @@
 package com.doctor.beanutil;
 
-import java.time.LocalDateTime;
+
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.DefaultBeanIntrospector;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.SuppressPropertiesBeanIntrospector;
@@ -16,7 +17,6 @@ public class SuppressPropertiesBeanIntrospectorPractice {
 		Person person = new Person();
 		person.setAddress("unknown");
 		person.setAge(2000);
-		person.setBirth(LocalDateTime.of(1987, 12, 1, 0, 0));
 		person.setName("doctor who");
 		System.out.println(person);
 		
@@ -39,12 +39,18 @@ public class SuppressPropertiesBeanIntrospectorPractice {
 		describe.remove("class");
 		describe.forEach((k,v) -> System.out.print(k+":" + v + "   "));
 		
+		
+		//试试
+		System.out.println();
+		System.out.println("----------------");
+		PropertyUtils.addBeanIntrospector(SuppressPropertiesBeanIntrospector.SUPPRESS_CLASS);
+		BeanUtils.describe(person).forEach((k,v) -> System.out.print(k+":" + v + "   "));
+		
 	}
 	
 	public static class Person{
 		private String name;
 		private Integer age;
-		private LocalDateTime birth;
 		private String address;
 		public String getName() {
 			return name;
@@ -58,12 +64,6 @@ public class SuppressPropertiesBeanIntrospectorPractice {
 		public void setAge(Integer age) {
 			this.age = age;
 		}
-		public LocalDateTime getBirth() {
-			return birth;
-		}
-		public void setBirth(LocalDateTime birth) {
-			this.birth = birth;
-		}
 		public String getAddress() {
 			return address;
 		}
@@ -75,7 +75,6 @@ public class SuppressPropertiesBeanIntrospectorPractice {
 			
 			return MoreObjects.toStringHelper(this).add("name", getName())
 					.add("age", getAge())
-					.add("birth", getBirth())
 					.add("address", getAddress())
 					.toString();
 		}
