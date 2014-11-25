@@ -1,7 +1,9 @@
 package com.doctor.entity;
 
+import org.apache.ibatis.type.Alias;
 
 
+@Alias("BankCard")
 public class BankCard {
 	private Long cardId;
 	 
@@ -10,6 +12,17 @@ public class BankCard {
 	private String accountName;
 	private String certNo;
 	private String phoneNo;
+	
+	public BankCard(){}
+	
+	public BankCard(String identityId, String bankAccountNo, String accountName,String certNo, String phoneNo ){
+		this.identityId = identityId;
+		this.bankAccountNo = bankAccountNo;
+		this.accountName = accountName;
+		this.certNo = certNo;
+		this.phoneNo = phoneNo;
+	}
+	
 	public Long getCardId() {
 		return cardId;
 	}
