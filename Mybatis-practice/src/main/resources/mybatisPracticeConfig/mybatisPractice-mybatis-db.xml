@@ -22,13 +22,18 @@
 		</property>
 	</bean>
 	
+<!-- 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close"> -->
+<!-- 		<property name="driverClassName" value="${mybatisPractice.connection.driver}" /> -->
+<!-- 		<property name="url" value="${mybatisPractice.connection.url}" /> -->
+<!-- 		<property name="username" value="${mybatisPractice.connection.username}" /> -->
+<!-- 		<property name="password" value="${mybatisPractice.connection.password}" /> -->
+<!-- 		<property name="initialSize" value="${mybatisPractice.jdbc.pool.maxIdle}" /> -->
+<!-- 		<property name="maxActive" value="${mybatisPractice.jdbc.pool.maxActive}" /> -->
+<!-- 	</bean> -->
+	
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
-		<property name="driverClassName" value="${mybatisPractice.connection.driver}" />
-		<property name="url" value="${mybatisPractice.connection.url}" />
-		<property name="username" value="${mybatisPractice.connection.username}" />
-		<property name="password" value="${mybatisPractice.connection.password}" />
-		<property name="initialSize" value="${mybatisPractice.jdbc.pool.maxIdle}" />
-		<property name="maxActive" value="${mybatisPractice.jdbc.pool.maxActive}" />
+		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" />
+		<property name="url" value="jdbc:derby:firstdb;create=true" />
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
