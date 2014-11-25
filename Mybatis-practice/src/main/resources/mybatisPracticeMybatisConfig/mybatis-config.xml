@@ -5,4 +5,8 @@
 <configuration>
 
 
+	<mappers>
+		<mapper resource=""/>
+	</mappers>
+
 </configuration>
