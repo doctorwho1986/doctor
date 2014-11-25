@@ -2,89 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="PayMockServerDao.bankcard">
-	<resultMap type="BankCard" id="BaseResultMap">
+<mapper namespace="BankCardDao">
+	<resultMap type="BankCard" id="baseResultMap">
 		<id property="cardId" column="card_id" />
-		<result property="cardId" column="card_id" />
-		<result property="partnerId" column="partner_id" />
 		<result property="identityId" column="identity_id" />
-		<result property="identityType" column="identity_type" />
-		<result property="bankCode" column="bank_code" />
 		<result property="bankAccountNo" column="bank_account_no" />
 		<result property="accountName" column="account_name" />
-		<result property="cardType" column="card_type" />
-		<result property="cardAttribute" column="card_attribute" />
-		<result property="certType" column="cert_type" />
 		<result property="certNo" column="cert_no" />
 		<result property="phoneNo" column="phone_no" />
-		<result property="validityPeriod" column="validity_period" />
-		<result property="verificationValue" column="verification_value" />
-		<result property="province" column="province" />
-		<result property="city" column="city" />
-		<result property="bankBranch" column="bank_branch" />
-		<result property="verifyMode" column="verify_mode" />
-		<result property="extendParam" column="extend_param" />
-		<result property="requestNo" column="request_no" />
-		<result property="isVerified" column="is_verified" />
-		<result property="ticket" column="ticket" />
-		<result property="validCode" column="valid_code" />
-		<result property="createTime" column="create_time" />
-		<result property="updateTime" column="update_time" />
-		<result property="bindBankCardTime" column="bind_bank_card_time" />
-		<result property="unbindBankCardTime" column="unbind_bank_card_time" />
-		<result property="isBindedBankCard" column="is_binded_bank_Card" />
 	</resultMap>
 
 	<sql id="all_column">
-		card_id,partner_id,identity_id,identity_type,bank_code,bank_account_no,account_name,
-		card_type,card_attribute,cert_type,cert_no,phone_no,validity_period,verification_value,
-		province,city,bank_branch,verify_mode,extend_param,request_no,is_verified,ticket,valid_code,
-		create_time,update_time
+		card_id,identity_id,bank_account_no,account_name,cert_no,phone_no
 	</sql>
 
-	<insert id="binding_bank_card" parameterType="BankCard" useGeneratedKeys="true" keyProperty="cardId">
-		insert into bank_card(partner_id,identity_id,identity_type,bank_code,bank_account_no,account_name,
-		card_type,card_attribute,cert_type,cert_no,phone_no,validity_period,verification_value,province,
-		city,bank_branch,verify_mode,extend_param,request_no,create_time,is_binded_bank_Card,bind_bank_card_time)
-		values(#{partnerId},#{identityId},#{identityType},#{bankCode},#{bankAccountNo},#{accountName},
-		#{cardType},#{cardAttribute},#{certType},#{certNo},#{phoneNo},#{validityPeriod},#{verificationValue},
-		#{province},#{city},#{bankBranch},#{verifyMode},#{extendParam},#{requestNo},now(),1,now())
+	<insert id="insert_bank_card" parameterType="BankCard" useGeneratedKeys="true" keyProperty="cardId">
+		insert into bank_card(identity_id,bank_account_no,account_name,cert_no,phone_no)
+		values(#{identityId},#{bankAccountNo},#{accountName},#{certNo},#{phoneNo})
 	</insert>
 
-	<update id="unbindingBankCard" parameterType="map">
-		update bank_card
-		set unbind_bank_card_time=now(),is_binded_bank_Card = 0
-		where partner_id=#{partnerId} and identity_id=#{identityId}
-		and identity_type=#{identityType}
-		and card_id=#{cardId}
-	</update>
-
-	<select id="queryBankCard" parameterType="map" resultMap="BaseResultMap">
-		select
-		<include refid="all_column" />
-		from bank_card
-		where partner_id=#{partnerId} and identity_id=#{identityId}
-		and identity_type=#{identityType}
-		and card_id=#{cardId}
-		and  is_binded_bank_Card = 1
-	</select>
-
-	<select id="queryBankCardByBankCodeAnBankAccountNo" parameterType="map"  resultMap="BaseResultMap">
-		select
-		<include refid="all_column" />
-		from bank_card
-		<where>
-			<choose>
-				<when test="bankCode != null and bankAccountNo != null and cardId == null">
-					bank_code=#{bankCode}
-					and bank_account_no=#{bankAccountNo}
-					and  is_binded_bank_Card = 1
-				</when>
-				<when test="cardId != null">
-					and card_id=#{cardId} and  is_binded_bank_Card = 1
-				</when>
-
-			</choose>
-		</where>
-	</select>
 </mapper>

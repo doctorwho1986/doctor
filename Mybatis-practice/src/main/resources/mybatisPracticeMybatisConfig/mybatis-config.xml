@@ -8,9 +8,13 @@
 		<setting name="localCacheScope" value="STATEMENT"/>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
+	
+	<typeAliases>
+		<package name="com.doctor.entity"/>
+	</typeAliases>
 
 	<mappers>
-		<mapper resource=""/>
+		<mapper resource="mybatisPracticeMybatisConfig/mapper/BankCardMapper.xml"/>
 	</mappers>
 
 </configuration>
