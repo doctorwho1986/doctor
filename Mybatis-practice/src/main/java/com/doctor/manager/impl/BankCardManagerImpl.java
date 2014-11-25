@@ -1,5 +1,8 @@
 package com.doctor.manager.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,5 +29,12 @@ public class BankCardManagerImpl implements BankCardManager {
 	public BankCard queryBankCard(Long id) {
 		return  sqlSessionTemplate.selectOne("BankCardDao.selectReturnMap", id);
 		 
+	}
+
+	public BankCard queryBankCard2(Long id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cardId", id);
+		
+		return  sqlSessionTemplate.selectOne("BankCardDao.selectReturnMap", map);
 	}
 }

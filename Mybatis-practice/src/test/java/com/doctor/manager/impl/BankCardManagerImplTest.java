@@ -73,4 +73,10 @@ public class BankCardManagerImplTest {
 		BankCard bankCard = bankCardManager.queryBankCard(1L);
 		System.out.println(bankCard);
 	}
+	
+	@Test
+	public void test_queryBankCard2(){
+		BankCard bankCard = bankCardManager.queryBankCard2(1L);
+		System.out.println(bankCard);
+	}
 }
