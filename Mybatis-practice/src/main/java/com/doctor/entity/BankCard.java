@@ -2,6 +2,8 @@ package com.doctor.entity;
 
 import org.apache.ibatis.type.Alias;
 
+import com.alibaba.fastjson.JSON;
+
 
 @Alias("BankCard")
 public class BankCard {
@@ -58,6 +60,11 @@ public class BankCard {
 	}
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
+	}
+
+	@Override
+	public String toString() {
+		return JSON.toJSONString(this);
 	}
 	
 	
