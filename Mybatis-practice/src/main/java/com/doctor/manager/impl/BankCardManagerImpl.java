@@ -22,4 +22,9 @@ public class BankCardManagerImpl implements BankCardManager {
 		
 		return false;
 	}
+
+	public BankCard queryBankCard(Long id) {
+		return  sqlSessionTemplate.selectOne("BankCardDao.selectReturnMap", id);
+		 
+	}
 }

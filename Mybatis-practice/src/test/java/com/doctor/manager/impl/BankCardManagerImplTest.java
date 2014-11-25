@@ -58,12 +58,19 @@ public class BankCardManagerImplTest {
 //		st.close();
 //		conn.close();
 	}
+	
 
 	@Test
-	public void test() {
+	public void test_insertBankCard() {
 		BankCard bankCard = new BankCard("88s","ss","bb","dd","cc");
 		boolean b = bankCardManager.insertBankCard(bankCard );
 		assertTrue(b);
 	}
 
+	
+	@Test
+	public void test_queryBankCard(){
+		BankCard bankCard = bankCardManager.queryBankCard(1L);
+		System.out.println(bankCard);
+	}
 }

@@ -20,5 +20,17 @@
 		insert into bank_card(identity_id,bank_account_no,account_name,cert_no,phone_no)
 		values(#{identityId},#{bankAccountNo},#{accountName},#{certNo},#{phoneNo})
 	</insert>
+	
+	<select id="selectReturnMap" parameterType="Long" resultMap="baseResultMap">
+		select <include refid="all_column"/>
+		from bank_card
+		where card_id=#{cardId}
+	</select>
+	
+	<select id="selectReturnType" parameterType="Long" resultType="BankCard" >
+		select <include refid="all_column"/>
+		from bank_card
+		where card_id=#{cardId}
+	</select>
 
 </mapper>
