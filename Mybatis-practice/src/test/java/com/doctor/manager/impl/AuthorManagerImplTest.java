@@ -24,7 +24,7 @@ public class AuthorManagerImplTest {
 	
 	@Test
 	public void testInsertAuthor() {
-		Author author = new Author(null,"doctor","12367890","doctor@doctor.com","bio",FavouriteSection.NEWS);
+		Author author = new Author(null,"doctor","12367890","doctor@doctor.com","bio",FavouriteSection.VIDEOS);
 		boolean b = authorManager.insertAuthor(author);
 		assertTrue(b);
 		assertNotNull(author.getId());
