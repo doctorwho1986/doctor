@@ -27,7 +27,7 @@ public abstract class AbstractIEnumDescriptionHandler extends BaseTypeHandler<IE
 	public AbstractIEnumDescriptionHandler(){
 		MappedTypes annotation = getClass().getAnnotation(MappedTypes.class);
 		if (annotation == null) {
-			throw new RuntimeException("typehandler MappedTypes value is empty ");
+			throw new RuntimeException("typehandler:" + getClass().getName()+ " MappedTypes annotation value is empty ");
 		}
 		
 		type =   (Class<IEnumDescription>) annotation.value()[0];
