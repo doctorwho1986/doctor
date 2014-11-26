@@ -13,6 +13,7 @@ public enum FavouriteSection implements IEnumDescription {
 		this.name = name;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
