@@ -19,7 +19,7 @@
 		 values (#{username},#{password},#{email},#{bio},#{favouriteSection})
 	</insert>
 	
-	<select id="queryById" parameterType="Long">
+	<select id="queryById" parameterType="Long" resultMap="baseResultMap" >
 		select <include refid="all_collum"/>
 		from author
 		where id = #{id}
@@ -30,4 +30,6 @@
 		from author
 		where id = #{id}
 	</delete>
+	
+
 </mapper>
