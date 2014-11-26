@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AuthorDao" >
+	<resultMap type="Author" id="baseResultMap">
+		<id property="id" column="id"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="email" column="email"/>
+		<result property="bio" column="bio"/>
+		<result property="favouriteSection" column="favourite_section"/>
+	</resultMap>
+	<sql id="all_collum">
+		id,username,password,email,bio,favourite_section
+	</sql>
+	
+	<insert id="insertAuthor" useGeneratedKeys="true" keyProperty="id">
+		insert into author ( username,password,email,bio,favourite_section )
+		 values (#{username},#{password},#{email},#{bio},#{favouriteSection})
+	</insert>
+	
+	<select id="queryById" parameterType="Long">
+		select <include refid="all_collum"/>
+		from author
+		where id = #{id}
+	</select>
+	
+	<delete id="deleteById" parameterType="Long">
+		delete 
+		from author
+		where id = #{id}
+	</delete>
+</mapper>

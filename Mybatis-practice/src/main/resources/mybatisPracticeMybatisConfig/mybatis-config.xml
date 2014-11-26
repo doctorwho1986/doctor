@@ -12,9 +12,13 @@
 	<typeAliases>
 		<package name="com.doctor.entity"/>
 	</typeAliases>
+	<typeHandlers>
+		<package name="com.doctor.typehandler"/>
+	</typeHandlers>
 
 	<mappers>
 		<mapper resource="mybatisPracticeMybatisConfig/mapper/BankCardMapper.xml"/>
+		<mapper resource="mybatisPracticeMybatisConfig/mapper/AuthorMapper.xml"/>
 	</mappers>
 
 </configuration>
