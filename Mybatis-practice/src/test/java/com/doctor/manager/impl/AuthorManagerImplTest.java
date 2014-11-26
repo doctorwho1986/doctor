@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.alibaba.fastjson.JSON;
 import com.doctor.entity.Author;
 import com.doctor.enums.FavouriteSection;
 import com.doctor.manager.AuthorManager;
@@ -32,7 +33,8 @@ public class AuthorManagerImplTest {
 
 	@Test
 	public void testQueryById() {
-		fail("Not yet implemented");
+		Author author = authorManager.queryById(2L);
+		System.out.println(JSON.toJSONString(author));
 	}
 
 	@Test
