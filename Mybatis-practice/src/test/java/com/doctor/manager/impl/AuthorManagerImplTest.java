@@ -33,7 +33,7 @@ public class AuthorManagerImplTest {
 
 	@Test
 	public void testQueryById() {
-		Author author = authorManager.queryById(2L);
+		Author author = authorManager.queryById(10000L);
 		System.out.println(JSON.toJSONString(author));
 	}
 
