@@ -10,6 +10,7 @@ public class IEnumDescriptionUtil {
 				return t;
 			}
 		}
-		return null;
+		
+		throw new RuntimeException(type + " not have a valid index value :" + index);
 	}
 }
