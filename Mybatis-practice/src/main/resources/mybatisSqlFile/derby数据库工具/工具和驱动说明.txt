@@ -1,0 +1,3 @@
+包含迄今最新版derby数据库驱动及IDE可视化操作工具
+
+squirrel-sql-3.6-standard.jar 安装 java -jar squirrel-sql-3.6-standard.jar。
