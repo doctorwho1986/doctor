@@ -32,6 +32,15 @@ public class GetClassPractice {
 		System.out.println("接口");
 		new Hello1().printName();
 		new Hello2().printName();
+		
+		System.out.println(Hello.class.isAssignableFrom(Hello1.class));
+		System.out.println(HelloWorld.class.isAssignableFrom(HelloWorld.class));
+		System.out.println(HelloWorld.class.isAssignableFrom(HelloWorldChild2.class)); 
+		
+		System.out.println(Hello.class.isInstance(new Hello1()));
+		System.out.println(Hello.class.isInstance(new Hello2()));
+		System.out.println(Hello.class.isInstance(new HelloWorldChild1()));
+		
 
 	}
 
