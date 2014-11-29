@@ -1,44 +1,60 @@
 <!DOCTYPE HTML>
 <meta charset="utf-8" />
 <html>
+
 	<head>
 		<title>doctor</title>
-		<link href="test.css"  rel="stylesheet"/>
+		<link href="test.css" rel="stylesheet" />
 	</head>
-	
+
 	<body>
-		 <header>
-		 	<h1>Header</h1>
-		 	<h2>Subtitle</h2>
-		 	<h4>HTML5 doctor</h4>
-		 </header>
-		
-		 <div id="container">
-		 	<nav>
-		 		<h3>Nav</h3>
-		 		<a href="http://www.baidu.com/">www.baidu.com</a>
-		 		
-		 		
-		 	</nav>
-		 	<section>
-		 		<article>
-		 			<header>
-		 				<h1>article header</h1>
-		 			</header>
-		 			<p>为了帮助其他人和自己找到最好的电子书，请积极对下载过的电子书资源进行评价。</p>
-		 			<footer>
-		 				<h2>article footer</h2>
-		 			</footer>
-		 		</article>
-		 	</section>
-		 	<aside>
-		 		<h3>Asile</h3>
-		 		<p>HTML5:为了帮助其他人和自己找到最好的电子书，请积极对下载过的电子书资源进行评价。</p>
-		 	</aside>
-		 	<footer>
-		 		<h2>Footer</h2>
-		 	</footer>
-		 </div>
+		<canvas id="canvas1"   height="100" width="100">
+			
+		</canvas>
+		<div >
+				<p id="support"> s</p>
+			</div>
+		<script type="text/javascript">
+			try {
+				document.createElement("canvas").getContext("2d");
+				document.getElementById("support").innerHTML = "html5 canvas is supported";
+
+			} catch (e) {
+				document.getElementById("support").innerHTML="html5 canvas is not supported"
+			}
+		</script>
+		<header>
+			<h1>Header</h1>
+			<h2>Subtitle</h2>
+			<h4>HTML5 doctor</h4>
+		</header>
+
+		<div id="container">
+			<nav>
+				<h3>Nav</h3>
+				<a href="http://www.baidu.com/">www.baidu.com</a>
+
+
+			</nav>
+			<section>
+				<article>
+					<header>
+						<h1>article header</h1>
+					</header>
+					<p>为了帮助其他人和自己找到最好的电子书，请积极对下载过的电子书资源进行评价。</p>
+					<footer>
+						<h2>article footer</h2>
+					</footer>
+				</article>
+			</section>
+			<aside>
+				<h3>Asile</h3>
+				<p>HTML5:为了帮助其他人和自己找到最好的电子书，请积极对下载过的电子书资源进行评价。</p>
+			</aside>
+			<footer>
+				<h2>Footer</h2>
+			</footer>
+		</div>
 	</body>
-	
+
 </html>
