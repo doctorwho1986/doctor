@@ -1,0 +1,7 @@
+移动App开发   (制作时间 2014-4-18)
+用HTML5却不做手机App？那HTML4就够用了。
+用HBuilder直接创建移动App，连上数据线真机联调，打包为ios或Android原生安装包。
+HBuilder支持HTML5+规范，它使得js可以调用二维码、语音输入、摄像头、位置、陀螺仪...几十万原生API！
+
+打开以下网址，下载HTML5+APP入门开发教程：
+http://download.dcloud.net.cn/HTML5Plus%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.pdf
