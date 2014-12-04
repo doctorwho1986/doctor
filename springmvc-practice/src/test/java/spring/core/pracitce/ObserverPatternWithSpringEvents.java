@@ -15,7 +15,7 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @link http://www.javacodegeeks.com/2012/08/observer-pattern-with-spring-events.html
@@ -39,7 +39,7 @@ public class ObserverPatternWithSpringEvents {
 		thread.join();
 	}
 	
-	@ContextConfiguration
+	@Configuration
 	public static class ObserverPatternWithSpringEventsConfigure{
 		
 		@Bean(name="messageEventSource")
