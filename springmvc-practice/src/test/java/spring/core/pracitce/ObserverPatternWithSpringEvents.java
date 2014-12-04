@@ -19,6 +19,8 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @link http://www.javacodegeeks.com/2012/08/observer-pattern-with-spring-events.html
+ * 如何让不受spring管理的类具有spring自动注入的特性．
+ * 例子：java配置方式
  * @author doctor
  *
  * @time   2014年12月3日 下午4:04:44
@@ -32,6 +34,7 @@ public class ObserverPatternWithSpringEvents {
 	@Test 
 	public void test()throws Throwable{
 		context = new AnnotationConfigApplicationContext(ObserverPatternWithSpringEventsConfigure.class);
+		//AutowireCapableBeanFactory有个下面重要的方法可以实现让不受spring管理的类具有spring自动注入的特性．
 		context.getAutowireCapableBeanFactory().autowireBeanProperties(this, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
 		
 		Thread thread = new Thread(messageEventSource);
@@ -74,6 +77,13 @@ public class ObserverPatternWithSpringEvents {
 		}
 	}
 	
+	/**
+	 * 实现ApplicationEventPublisherAware接口，是为了让spring注入ApplicationEventPublisher,
+	 * 它是spring分发事件源
+	 * @author doctor
+	 *
+	 * 2014年12月4日 下午10:52:18
+	 */
 	public static class MessageEventSource implements Runnable,ApplicationEventPublisherAware{
 		private ApplicationEventPublisher applicationEventPublisher;
 		
@@ -88,6 +98,7 @@ public class ObserverPatternWithSpringEvents {
 			try {
 				while (true) {
 					String readLine = reader.readLine();
+					//发布事件
 					applicationEventPublisher.publishEvent(new MessageEvent(this, Thread.currentThread().getName() + "---" + readLine));
 				}
 			} catch (IOException e) {
