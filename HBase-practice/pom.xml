@@ -24,9 +24,8 @@
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase</artifactId>
-			<version>0.99.1</version>
+			<version>0.98.8-hadoop1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -129,10 +128,6 @@
 			<url>http://oss.sonatype.org/content/repositories/github-releases/</url>
 		</repository>
 
-		<repository>
-			<id>taobao</id>
-			<url>http://mvnrepo.code.taobao.org/nexus/content/repositories/releases/</url>
-		</repository>
 	</repositories>
 
 </project>
