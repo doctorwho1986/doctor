@@ -41,7 +41,7 @@
 		<hbase.verson>0.98.5-hadoop2</hbase.verson>
 		<hadoop.version>2.5.1</hadoop.version>
 
-		<jstorm.version>0.9.6.1</jstorm.version>
+		<jstorm.version>0.9.6.2</jstorm.version>
 		<zookeeper.version>3.4.6</zookeeper.version>
 
 
