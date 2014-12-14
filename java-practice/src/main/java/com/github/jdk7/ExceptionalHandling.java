@@ -53,7 +53,7 @@ public class ExceptionalHandling {
 				if (throwable == null) {
 					throwable = e;
 				} else {
-					throwable.addSuppressed(e);
+					throwable.addSuppressed(e);//异常保留
 				}
 			}
 		}
