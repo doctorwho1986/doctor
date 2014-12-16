@@ -19,7 +19,7 @@ public class HBaseConnector {
 	private static final Logger log = LoggerFactory.getLogger(HBaseConnector.class);
 	
 	public static void main(String[] args) throws MasterNotRunningException, ZooKeeperConnectionException, IOException {
-		final String tableName = "docotr_hbase";
+		final String tableName = "doctor_hbase";
 		Configuration configuration = HBaseConfiguration.create();
 		configuration.addResource("hbasePracticeConfigDefault/hbase-site.xml");
 		HBaseAdmin hBaseAdmin = new HBaseAdmin(configuration);
@@ -28,11 +28,11 @@ public class HBaseConnector {
 			hBaseAdmin.disableTable(tableName);
 			hBaseAdmin.deleteTable(tableName);
 		}
-		HTableDescriptor desc = new HTableDescriptor(TableName.valueOf("docotr_hbase"));
+		HTableDescriptor desc = new HTableDescriptor(TableName.valueOf(tableName));
 		desc.addFamily(new HColumnDescriptor("cf1"));
 		desc.addFamily(new HColumnDescriptor("cf2"));
 		hBaseAdmin.createTable(desc );
-		boolean tableAvailable = hBaseAdmin.isTableAvailable("docotr_hbase");
+		boolean tableAvailable = hBaseAdmin.isTableAvailable(tableName);
 		Preconditions.checkArgument(tableAvailable);
 		log.info("{}",tableAvailable);
 		hBaseAdmin.close();
