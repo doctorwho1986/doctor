@@ -8,7 +8,7 @@
 	</appender>
 	<appender name="defaultAppender"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${catalina.home}/logs/springmvc-practice.log</file>
+		<file>${catalina.home}/logs/HBase-practice.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<FileNamePattern>${catalina.home}/logs/HBase-practice.log.out.%d{yyyy-MM-dd}
 			</FileNamePattern>
