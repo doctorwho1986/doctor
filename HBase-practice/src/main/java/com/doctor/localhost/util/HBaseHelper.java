@@ -2,12 +2,12 @@ package com.doctor.localhost.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.Cell;
-import org.apache.hadoop.hbase.CellScanner;
 import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
@@ -81,6 +81,25 @@ public class HBaseHelper {
 		hTable.close();
 	}
 
+	public void delete(String rowKey, HashMap<String, String> familyQualifier) throws IOException {
+		HTable hTable = new HTable(configuration, tableName);
+		Delete delete = new Delete(Bytes.toBytes(rowKey));
+
+		for (Entry<String, String> item : familyQualifier.entrySet()) {
+			if (item.getKey()!= null && item.getValue() != null) {
+				delete.deleteColumns(Bytes.toBytes(item.getKey()), Bytes.toBytes(item.getValue()));
+				continue;
+			}
+			
+			if (item.getKey() != null) {
+				delete.deleteFamily(Bytes.toBytes(item.getKey()));
+			}
+		}
+
+		hTable.delete(delete);
+		hTable.close();
+	}
+
 	public List<Result> scan() throws IOException {
 		HTable hTable = new HTable(configuration, tableName);
 		Scan scan = new Scan();
@@ -96,25 +115,25 @@ public class HBaseHelper {
 	public List<String> toString(List<Result> result) {
 		List<String> list = new ArrayList<>(result.size());
 		HTableDescriptor descriptor = new HTableDescriptor(TableName.valueOf(tableName));
-		
+
 		StringBuilder stringBuilder = new StringBuilder(256);
 		for (Result r : result) {
 			stringBuilder.delete(0, stringBuilder.length());
-			
+
 			stringBuilder.append("{rowKey:" + Bytes.toString(r.getRow())).append(",");
 			Cell[] rawCells = r.rawCells();
 			for (Cell cell : rawCells) {
 				stringBuilder.append(Bytes.toString(CellUtil.cloneFamily(cell)))
-							  .append("-")
-							  .append(Bytes.toString(CellUtil.cloneQualifier(cell)))
-							  .append(":")
-							  .append(Bytes.toString(CellUtil.cloneValue(cell)));
-				
+						.append("-")
+						.append(Bytes.toString(CellUtil.cloneQualifier(cell)))
+						.append(":")
+						.append(Bytes.toString(CellUtil.cloneValue(cell)));
+
 			}
 			stringBuilder.append("}");
 			list.add(stringBuilder.toString());
 		}
-		
+
 		return list;
 	}
 
