@@ -99,7 +99,8 @@ public class HBaseHelper {
 		
 		StringBuilder stringBuilder = new StringBuilder(256);
 		for (Result r : result) {
-			stringBuilder.setLength(0);
+			stringBuilder.delete(0, stringBuilder.length());
+			
 			stringBuilder.append("{rowKey:" + Bytes.toString(r.getRow())).append(",");
 			Cell[] rawCells = r.rawCells();
 			for (Cell cell : rawCells) {
