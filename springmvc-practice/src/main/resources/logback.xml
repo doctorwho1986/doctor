@@ -19,7 +19,6 @@
 	</appender>
 
 	<root level="debug">
-		<appender-ref ref="stdout" />
 		<appender-ref ref="defaultAppender" />
 	</root>
 </configuration> 
