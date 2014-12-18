@@ -1,6 +1,11 @@
 package com.doctor.localhost.util;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +32,9 @@ public class HBaseHelper {
 	private HBaseAdmin hBaseAdmin;
 	private String tableName;
 
+	private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	private Timestamp  timestamp = new Timestamp(System.currentTimeMillis());
+
 	private HBaseHelper(Configuration configuration) throws IOException {
 		this.configuration = configuration;
 		hBaseAdmin = new HBaseAdmin(configuration);
@@ -49,13 +57,17 @@ public class HBaseHelper {
 	}
 
 	public void create(String tableName, String... columnFamilyName) throws IOException {
+		this.tableName = tableName;
+		if (isExist(tableName)) {
+			return;
+		}
 		drop(tableName);
 		HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf(tableName));
 		for (String familyName : columnFamilyName) {
 			tableDescriptor.addFamily(new HColumnDescriptor(familyName));
 		}
 		hBaseAdmin.createTable(tableDescriptor);
-		this.tableName = tableName;
+		
 	}
 
 	public void put(String rowKey, String family, String qualifier, String value) throws IOException {
@@ -86,11 +98,11 @@ public class HBaseHelper {
 		Delete delete = new Delete(Bytes.toBytes(rowKey));
 
 		for (Entry<String, String> item : familyQualifier.entrySet()) {
-			if (item.getKey()!= null && item.getValue() != null) {
+			if (item.getKey() != null && item.getValue() != null) {
 				delete.deleteColumns(Bytes.toBytes(item.getKey()), Bytes.toBytes(item.getValue()));
 				continue;
 			}
-			
+
 			if (item.getKey() != null) {
 				delete.deleteFamily(Bytes.toBytes(item.getKey()));
 			}
@@ -101,34 +113,44 @@ public class HBaseHelper {
 	}
 
 	public List<Result> scan() throws IOException {
-		HTable hTable = new HTable(configuration, tableName);
 		Scan scan = new Scan();
-		ResultScanner resultScanner = hTable.getScanner(scan);
 		List<Result> list = new ArrayList<>();
-		for (Result result : resultScanner) {
-			list.add(result);
+
+		try (HTable hTable = new HTable(configuration, tableName);
+				ResultScanner resultScanner = hTable.getScanner(scan);) {
+
+			for (Result result : resultScanner) {
+				list.add(result);
+			}
 		}
-		resultScanner.close();
 		return list;
 	}
 
-	public List<String> toString(List<Result> result) {
+	public List<String> toString(final List<Result> result) {
+		
 		List<String> list = new ArrayList<>(result.size());
-		HTableDescriptor descriptor = new HTableDescriptor(TableName.valueOf(tableName));
 
 		StringBuilder stringBuilder = new StringBuilder(256);
 		for (Result r : result) {
 			stringBuilder.delete(0, stringBuilder.length());
 
-			stringBuilder.append("{rowKey:" + Bytes.toString(r.getRow())).append(",");
-			Cell[] rawCells = r.rawCells();
-			for (Cell cell : rawCells) {
-				stringBuilder.append(Bytes.toString(CellUtil.cloneFamily(cell)))
-						.append("-")
-						.append(Bytes.toString(CellUtil.cloneQualifier(cell)))
-						.append(":")
-						.append(Bytes.toString(CellUtil.cloneValue(cell)));
+			stringBuilder.append("{rowKey=" + Bytes.toString(r.getRow())).append(",");
+			List<Cell> rawCells = r.listCells();
+			if (rawCells == null) {
+				return list;
+			}
 
+			for (Cell cell : rawCells) {
+				timestamp.setTime(cell.getTimestamp());
+				stringBuilder.append("column=")
+						.append(Bytes.toString(CellUtil.cloneFamily(cell)))
+						.append(":")
+						.append(Bytes.toString(CellUtil.cloneQualifier(cell)))
+						.append(",")
+						.append("timestamp=")
+						.append(timestamp.toLocalDateTime().format(dateTimeFormatter))
+						.append(",value=")
+						.append(Bytes.toString(CellUtil.cloneValue(cell)));
 			}
 			stringBuilder.append("}");
 			list.add(stringBuilder.toString());
