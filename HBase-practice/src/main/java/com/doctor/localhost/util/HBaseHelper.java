@@ -33,7 +33,7 @@ public class HBaseHelper {
 	private String tableName;
 
 	private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	private Timestamp  timestamp = new Timestamp(System.currentTimeMillis());
+	private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
 	private HBaseHelper(Configuration configuration) throws IOException {
 		this.configuration = configuration;
@@ -67,7 +67,7 @@ public class HBaseHelper {
 			tableDescriptor.addFamily(new HColumnDescriptor(familyName));
 		}
 		hBaseAdmin.createTable(tableDescriptor);
-		
+
 	}
 
 	public void put(String rowKey, String family, String qualifier, String value) throws IOException {
@@ -114,6 +114,10 @@ public class HBaseHelper {
 
 	public List<Result> scan() throws IOException {
 		Scan scan = new Scan();
+		return scan(scan);
+	}
+
+	public List<Result> scan(Scan scan) throws IOException {
 		List<Result> list = new ArrayList<>();
 
 		try (HTable hTable = new HTable(configuration, tableName);
@@ -127,7 +131,7 @@ public class HBaseHelper {
 	}
 
 	public List<String> toString(final List<Result> result) {
-		
+
 		List<String> list = new ArrayList<>(result.size());
 
 		StringBuilder stringBuilder = new StringBuilder(256);
@@ -150,8 +154,10 @@ public class HBaseHelper {
 						.append("timestamp=")
 						.append(timestamp.toLocalDateTime().format(dateTimeFormatter))
 						.append(",value=")
-						.append(Bytes.toString(CellUtil.cloneValue(cell)));
+						.append(Bytes.toString(CellUtil.cloneValue(cell)))
+						.append(",");
 			}
+			stringBuilder.deleteCharAt(stringBuilder.lastIndexOf(","));
 			stringBuilder.append("}");
 			list.add(stringBuilder.toString());
 		}
