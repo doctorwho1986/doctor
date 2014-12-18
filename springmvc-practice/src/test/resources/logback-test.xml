@@ -10,7 +10,7 @@
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${catalina.home}/logs/springmvc-practice.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${catalina.home}/logs/spring-practice.log.out.%d{yyyy-MM-dd}
+			<FileNamePattern>${catalina.home}/logs/springmvc-practice.log.out.%d{yyyy-MM-dd}
 			</FileNamePattern>
 		</rollingPolicy>
 		<encoder>
@@ -19,6 +19,7 @@
 	</appender>
 
 	<root level="debug">
+		<appender-ref ref="stdout" />
 		<appender-ref ref="defaultAppender" />
 	</root>
 </configuration> 
