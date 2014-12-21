@@ -1,15 +1,25 @@
 package com.github.dubbo.common.demo.entity;
 
+import java.io.Serializable;
+
 /**
  * @author doctor
  *
  * @since 2014年12月21日 上午10:33:21
  */
-public class User {
+public class User implements Serializable{
+	private static final long serialVersionUID = -7384946482273816485L;
 	private String name;
 	private Integer age;
 	private String sex;
 
+	public User(){}
+	public User(String name,Integer age,String sex){
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+	}
+	
 	public String getName() {
 		return name;
 	}
