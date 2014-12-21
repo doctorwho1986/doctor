@@ -2,6 +2,9 @@ package com.github.dubbo.common.demo.entity;
 
 import java.io.Serializable;
 
+import com.alibaba.fastjson.JSON;
+
+
 /**
  * @author doctor
  *
@@ -44,4 +47,9 @@ public class User implements Serializable{
 		this.sex = sex;
 	}
 
+	@Override
+	public String toString() {
+		return JSON.toJSONString(this);
+	}	
+	
 }
