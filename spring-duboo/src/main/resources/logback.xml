@@ -9,7 +9,7 @@
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${catalina.home}/logs/spring-duboo.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${catalina.home}/logs/practice.log.out.%d{yyyy-MM-dd}
+			<FileNamePattern>${catalina.home}/logs/spring-duboo.log.out.%d{yyyy-MM-dd}
 			</FileNamePattern>
 		</rollingPolicy>
 		<encoder>
@@ -17,9 +17,7 @@
 				%msg%n</pattern>
 		</encoder>
 	</appender>
-	<logger name="org.apache.hadoop" level="INFO" />
 	<root level="info">
-		<appender-ref ref="stdout" />
 		<appender-ref ref="defaultAppender" />
 	</root>
 </configuration> 
