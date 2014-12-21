@@ -4,4 +4,4 @@
  *
  * @since 2014年12月21日 上午10:40:05
  */
-package com.github.dubbo.provider.demo.service;
+package com.github.dubbo.provider.demo.service.impl;
