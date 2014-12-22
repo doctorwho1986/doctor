@@ -16,7 +16,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @time   2014年12月22日 下午6:01:32
  */
-public class MergeServiceWrongRightTest {
+public class MergeServiceRightTest {
 
 	private ClassPathXmlApplicationContext providerContext;
 	private String providerConfigLocation ="/dubboPractice-provider/dubbo-merge/spring-context-provider.xml";
