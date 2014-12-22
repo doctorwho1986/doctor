@@ -17,7 +17,7 @@
 				%msg%n</pattern>
 		</encoder>
 	</appender>
-	<root level="info">
+	<root level="debug">
 		<appender-ref ref="stdout" />
 		<appender-ref ref="defaultAppender" />
 	</root>
