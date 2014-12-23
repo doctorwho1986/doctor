@@ -14,7 +14,7 @@
 
 	<dubbo:protocol name="dubbo" port="20880" />
 
-	<dubbo:service group="demonMerge1" interface="com.github.dubbo.common.demo.service.MergeService"	ref="mergeServiceOne" />
+	<dubbo:service  interface="com.github.dubbo.common.demo.service.MergeService"	ref="mergeServiceOne" scope="remote"  />
 
 
 </beans>

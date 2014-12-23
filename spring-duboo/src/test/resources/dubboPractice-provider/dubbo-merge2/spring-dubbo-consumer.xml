@@ -12,8 +12,8 @@
 <!-- 	<dubbo:registry address="multicast://224.5.6.7:1234?unicast=false"/>  -->
 	<dubbo:registry  protocol="zookeeper"  address="127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183" client="zkclient" />
 
- 
-    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-	<dubbo:reference id="mergeService" interface="com.github.dubbo.common.demo.service.MergeService" group="demonMerge1,demonMerge2" merger="true" />
+<!--  	<dubbo:consumer loadbalance="consistenthash" /> -->
+    <!--  远程服务 ，可以和本地bean一样使用demoService -->
+	<dubbo:reference id="mergeService" interface="com.github.dubbo.common.demo.service.MergeService"  merger="true" scope="remote" cluster="mergeable"  />
 
 </beans>
