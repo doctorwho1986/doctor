@@ -34,10 +34,13 @@ public class JstormBoltTest {
 	
 	@After
 	public void destroy(){
-		jstormBolt1.cleanup();
-		jstormBolt2.cleanup();
-		
-		consumerContext.close();
+		while(true){
+			
+		}
+//		jstormBolt1.cleanup();
+//		jstormBolt2.cleanup();
+//		
+//		consumerContext.close();
 	}
 	@Test
 	public void test() {

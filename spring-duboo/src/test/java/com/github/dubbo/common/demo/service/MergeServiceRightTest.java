@@ -42,8 +42,11 @@ public class MergeServiceRightTest {
 	@After
 	public void destroy() {
 		//这里写个while死循环，eclipse安装zookeeper可视化界面看服务提供和消费者在注册中心的情况
-		providerContext.close();
-		consumerContext.close();
+		while(true){
+			
+		}
+//		providerContext.close();
+//		consumerContext.close();
 	}
 
 	@Test
