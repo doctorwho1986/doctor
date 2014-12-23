@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -24,6 +26,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @time 2014年12月22日 下午6:01:32
  */
 public class MergeServiceWrongTest {
+	private static final Logger log = LoggerFactory.getLogger(MergeServiceWrongTest.class);
 
 	private ClassPathXmlApplicationContext providerContextOne;
 	private String providerConfigLocation = "/dubboPractice-provider/demo-provider/spring-context.xml";
@@ -57,7 +60,9 @@ public class MergeServiceWrongTest {
 
 	@Test
 	public void testGet() {
+		log.info("{dubbo method:'{}'}",MergeService.class);
 		MergeService mergeService = (MergeService) consumerContext.getBean("mergeService");
+		
 		System.out.println(mergeService.get(6));
 	}
 
