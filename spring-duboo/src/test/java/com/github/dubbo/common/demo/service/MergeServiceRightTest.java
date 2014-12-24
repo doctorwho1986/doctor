@@ -54,9 +54,10 @@ public class MergeServiceRightTest {
 		 MergeService mergeService = (MergeService) consumerContext.getBean("mergeService");
 		 List<String> list = mergeService.get(6);
 		 System.out.println(list);
-		 assertThat(list.size(),equalTo(2) );
+		 assertThat(list.size(),equalTo(3) );
 		 assertThat(list.get(0).length(),equalTo(6) );
 		 assertThat(list.get(1).length(),equalTo(6) );
+		 assertThat(list.get(2).length(),equalTo(6) );
 		
 	}
 }

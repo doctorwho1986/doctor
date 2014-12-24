@@ -8,13 +8,13 @@
 	                       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<dubbo:application name="spring-dubbo-merge2-provider" />
-
+	<dubbo:provider cluster="broadcast"/>
 <!--  	<dubbo:registry address="multicast://224.5.6.7:1234?unicast=false" />  -->
 	<dubbo:registry  protocol="zookeeper"  address="127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183" client="zkclient" />
 
 	<dubbo:protocol name="dubbo" port="20880" />
 
-	<dubbo:service  interface="com.github.dubbo.common.demo.service.MergeService"	ref="mergeServiceOne" scope="remote"  />
+	<dubbo:service  interface="com.github.dubbo.common.demo.service.MergeService"	ref="mergeServiceOne" scope="remote"  cluster="broadcast" />
 
 
 </beans>

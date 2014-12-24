@@ -6,6 +6,7 @@
 
  <bean id="mergeServiceOne" class="com.github.dubbo.provider.demo.service.impl.MergeServiceImplOne" />
  <bean id="mergeService2" class="com.github.dubbo.provider.demo.service.impl.MergeServiceImpl2" />
+ <bean id="mergeServiceThree" class="com.github.dubbo.provider.demo.service.impl.MergeServiceImpl" />
 
  <import resource="classpath:/dubboPractice-provider/dubbo-merge/spring-dubbo-provider.xml"/>
 </beans>

@@ -14,6 +14,6 @@
 
  
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-	<dubbo:reference id="mergeService" interface="com.github.dubbo.common.demo.service.MergeService" group="demonMerge1,demonMerge2" merger="true" scope="remote"/>
+	<dubbo:reference id="mergeService" interface="com.github.dubbo.common.demo.service.MergeService" group="*" merger="true" scope="remote"/>
 
 </beans>

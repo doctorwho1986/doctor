@@ -16,6 +16,7 @@
 
 	<dubbo:service group="demonMerge1" interface="com.github.dubbo.common.demo.service.MergeService"	ref="mergeServiceOne" scope="remote"/>
 	<dubbo:service group="demonMerge2" interface="com.github.dubbo.common.demo.service.MergeService"	ref="mergeService2" scope="remote"/>
+	<dubbo:service group="demonMergeThree" interface="com.github.dubbo.common.demo.service.MergeService"	ref="mergeServiceThree" scope="remote"/>
 
 
 </beans>

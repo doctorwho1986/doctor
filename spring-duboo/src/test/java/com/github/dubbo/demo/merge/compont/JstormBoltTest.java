@@ -34,18 +34,18 @@ public class JstormBoltTest {
 	
 	@After
 	public void destroy(){
-		while(true){
-			
-		}
-//		jstormBolt1.cleanup();
-//		jstormBolt2.cleanup();
-//		
-//		consumerContext.close();
+//		while(true){
+//			
+//		}
+		jstormBolt1.cleanup();
+		jstormBolt2.cleanup();
+		
+		consumerContext.close();
 	}
 	@Test
 	public void test() {
 		 MergeService mergeService = (MergeService) consumerContext.getBean("mergeService");
-		 List<String> list = mergeService.get(6);
+		 List<String> list = mergeService.get(2);
 		 System.out.println(list);
 	}
 
