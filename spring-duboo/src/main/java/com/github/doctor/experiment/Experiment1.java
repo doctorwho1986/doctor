@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
- * spring 接口调用不受spring 管理类的方法
+ * spring 接口调用不受spring 管理类的方法，因为jstrom bolt不受spring管理，与dubbo结合提供服务，如何
+ * 让dubbo调用bolt实例方法，每个bolt的实例可能位于同一个机器，或不同机器。他们提供的接口注册在zookeeper上
+ * 除最后的时间戳不一样，其它都是一样的，消费端调用就一个（按集群处理）
  * @author doctor
  *
  * @time   2014年12月24日 上午11:36:12
