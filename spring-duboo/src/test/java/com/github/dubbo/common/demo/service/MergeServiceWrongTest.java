@@ -10,9 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * 一台机器上启动两个应用，客户端只能调到一个，这种聚合不能实现．这应该是集群概念了.
+ * 一台机器上一个jvm进程内，启动两个相同的dubbo服务，客户端只能调到一个，这种聚合不能实现．这也不是是集群概念，
+ * dubbo会按照重复url处理（zookeeper中url是一样的，除最后的时间戳）.
  * 
- * 一个jvm内启动两次dubbo，注册在zookeeper里面的地址是一样的，
+ * 一个jvm 一个进程内启动两个相同dubbo应用，注册在zookeeper里面的地址是一样的（除。。），
  * dubbo 在 RegistryDirectory 369行代码
  * String key = url.toFullString(); // URL参数是排序的
  * if (keys.contains(key)) { // 重复URL
@@ -20,7 +21,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * }
  * 
  * 会把这重复注册的url排除。
- * 
+ * 这和聚合概念不一致。
+ * 见：
  * http://alibaba.github.io/dubbo-doc-static/User+Guide-zh.htm#UserGuide-zh-%E6%9C%8D%E5%8A%A1%E5%88%86%E7%BB%84
  * dubbo 的文档指出：按组合并返回结果，比如菜单服务，接口一样，但有多种实现，用group区分，
  * 现在消费方需从每种group中调用一次返回结果，合并结果返回，这样就可以实现聚合菜单项。
