@@ -11,8 +11,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.github.dubbo.common.demo.service.MergeService;
 /**
- * 模拟jstrom bolt ,bolt一台机器上多实例(有可能实例分到不同机器上），分组聚合实验失败
- * 注：模拟的是一个jvm启动多个dubbo应用（端口一样不会报错）。和集群有区别，集群是一台机器上部署多个相同的dubbo，但端口不一样（一样报错）
+ * 模拟jstrom bolt ,bolt一台机器一个jvm进程内多实例(有可能实例分到不同机器上），分组聚合实验失败
+ * 注：模拟的是一个jvm 一个进程启动多个相同dubbo应用（端口一样，zookeeper注册url，不会递增端口）。
+ * 和集群有区别，集群是一台机器上部署多个相同的dubbo应用，不同jvm进程。
  * ，或者不同机器上部署。
  * @author doctor
  *
