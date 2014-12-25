@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.github.dubbo.common.demo.service.MergeService;
 
 /**
- * 模拟jstrom bolt ,bolt一台机器上多实例，对dubbo提供的服务有什么影响，分组聚合会其作用吗
+ * 模拟jstrom bolt ,bolt一台机器上一个jvm进程内多实例，对dubbo提供的服务有什么影响，分组聚合会其作用吗（结果不会）
  * 
  * @author doctor
  *
