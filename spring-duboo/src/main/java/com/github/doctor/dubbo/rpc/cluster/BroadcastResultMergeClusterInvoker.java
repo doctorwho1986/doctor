@@ -28,7 +28,7 @@ import com.alibaba.dubbo.rpc.cluster.merger.MergerFactory;
 import com.alibaba.dubbo.rpc.cluster.support.AbstractClusterInvoker;
 
 /**
- * BroadcastCluster + MergeCluster 调用集群中每个接口，汇总结果，（用于jstorm bolt启动dubbo，但对于bolt实例数目限制为1个）
+ * BroadcastCluster + MergeCluster 调用集群中每个接口，汇总结果，（用于jstorm bolt启动dubbo，但对于bolt实例数目 一个jvm 限制为1个,）
  * 
  * @author doctor
  *
