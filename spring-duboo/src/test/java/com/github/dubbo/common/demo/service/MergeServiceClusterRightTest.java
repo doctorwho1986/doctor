@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * BroadcastCluster + MergeCluster 调用集群中每个接口，汇总结果，（用于jstorm bolt启动dubbo，但对于bolt实例数目限制为1个）
+ * BroadcastCluster + MergeCluster 调用集群中每个接口，汇总结果，（用于jstorm bolt启动dubbo，但对于每个jvm内bolt实例数目限制为1个）
  * 测试方法，启动俩个集群测试，不要在一个jvm里面（无效集群）
  * @author doctor
  *
