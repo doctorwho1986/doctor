@@ -20,6 +20,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * 
  * 查看zookeeper注册的url路径规律（service,service1,service2....)
  * 
+ * 其实这个url规律是dubbo生成的bean id，
+ * DubboBeanDefinitionParser 100行代码处，
+ *  while(parserContext.getRegistry().containsBeanDefinition(id)) {
+                id = generatedBeanName + (counter ++);
+            }
+ * 
+ * 说明dubbo注册的路径是有id组成的，每个id对应一个bean 声明（一个接口，多个实现情况下出现id自动生成这样）
+ * 
+ * dubbo服务会根据url id找到对应的bean
+ * 
  * @author doctor
  *
  * @time 2014年12月22日 下午6:01:32
