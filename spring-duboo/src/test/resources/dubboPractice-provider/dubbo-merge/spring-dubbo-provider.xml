@@ -12,7 +12,7 @@
 <!--  	<dubbo:registry address="multicast://224.5.6.7:1234?unicast=false" />  -->
 	<dubbo:registry  protocol="zookeeper"  address="127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183" client="zkclient" />
 
-	<dubbo:protocol name="dubbo" port="20880" />
+	<dubbo:protocol name="dubbo" port="-1" />
 
 	<dubbo:service group="demonMerge1" interface="com.github.dubbo.common.demo.service.MergeService"	ref="mergeServiceOne" scope="remote"/>
 	<dubbo:service group="demonMerge2" interface="com.github.dubbo.common.demo.service.MergeService"	ref="mergeService2" scope="remote"/>
