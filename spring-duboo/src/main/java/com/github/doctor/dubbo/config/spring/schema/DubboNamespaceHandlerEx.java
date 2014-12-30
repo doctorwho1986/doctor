@@ -20,6 +20,12 @@ import com.alibaba.dubbo.config.spring.schema.DubboBeanDefinitionParser;
  * 这个要和扩展的BroadcastResultMergeCluster 一起使用，用于jstorm ，一个jvm进程内启动多个bolt实例，每个bolt
  * 实例是一个dubbo服务。
  * 
+ * 服务器端使用：
+ * 配置注意：服务端配置改动的地方：
+ * http://code.alibabatech.com/schema/dubbo 用 http://code.alibabatech.com/schema/dubboex
+ * http://code.alibabatech.com/schema/dubboex/dubbo.xsd 用 http://code.alibabatech.com/schema/dubboex/dubboex.xsd"
+ * 
+ * 测试用例：BroadcastResultMergeServiceImplTest，配置文件
  * @author doctor
  *
  * @time 2014年12月26日 下午6:01:56
