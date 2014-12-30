@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -30,7 +33,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class ApplicationContextBeanRegistrationOfExistingObjects {
 	public ExpectedException exception = ExpectedException.none();
 	private AnnotationConfigApplicationContext context;
-
+	
+	@Autowired
+	@Qualifier("testBean")
+	private TestBean testBean;
 	@Before
 	public void init() {
 		context = new AnnotationConfigApplicationContext(SpringContextConfig.class);
@@ -50,5 +56,14 @@ public class ApplicationContextBeanRegistrationOfExistingObjects {
 		bean = (ApplicationContextBeanRegistrationOfExistingObjects) context.getBean(ApplicationContextBeanRegistrationOfExistingObjects.class);
 		assertNotNull(bean);
 		System.out.println(bean);
+	}
+	
+	
+	@Test
+	public void test_contextBeanRegistrationOfExistingObjects_非托管类属性注入() {
+		assertNull(testBean);
+		context.getBeanFactory().autowireBeanProperties(this, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, false);
+		assertNotNull(testBean);
+		System.out.println(testBean);
 	}
 }
