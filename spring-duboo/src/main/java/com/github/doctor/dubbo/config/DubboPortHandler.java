@@ -1,6 +1,9 @@
 package com.github.doctor.dubbo.config;
 
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -30,8 +33,12 @@ public class DubboPortHandler implements InitializingBean, ApplicationContextAwa
 		// DubboNamespaceHandler 注册了
 		// registerBeanDefinitionParser("protocol", new DubboBeanDefinitionParser(ProtocolConfig.class, true));
 
-		ProtocolConfig protocolConfig = (ProtocolConfig) context.getBean("protocol");
-		protocolConfig.setPort(NetUtils.getAvailablePort());
+//		ProtocolConfig protocolConfig = (ProtocolConfig) context.getBean("protocol");
+//		protocolConfig.setPort(NetUtils.getAvailablePort());
+		Map<String,ProtocolConfig> beansOfType = context.getBeansOfType(ProtocolConfig.class);
+		for (Entry<String, ProtocolConfig> item : beansOfType.entrySet()) {
+			item.getValue().setPort(NetUtils.getAvailablePort());
+		}
 
 	}
 
