@@ -15,5 +15,4 @@
 	<dubbo:protocol name="dubbo" port="-1" />
 
 	<dubbo:service  interface="com.github.dubbo.common.demo.service.BroadcastResultMergeService"	ref="broadcastResultMergeService" scope="remote"/>
-    <bean  class="com.github.doctor.dubbo.config.DubboPortHandler2"/>
 </beans>
