@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+    xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://code.alibabatech.com/schema/dubbo
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
+
+
+	
+	<context:component-scan base-package="com.github.doctor.dubbo.config" />
+
+	<bean class="com.github.doctor.dubbo.config.DubboPortHandler2"/>
+	<bean id="broadcastResultMergeService" class="com.github.dubbo.provider.demo.service.impl.BroadcastResultMergeServiceImpl"/>
+
+	<import resource="classpath:/dubboPractice-provider/dubboBroadcast-resultMerge5/spring-dubbo-provider.xml"/>
+</beans>
