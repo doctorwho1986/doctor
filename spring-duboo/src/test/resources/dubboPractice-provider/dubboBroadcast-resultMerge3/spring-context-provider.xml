@@ -16,7 +16,7 @@
 	
 	<context:component-scan base-package="com.github.doctor.dubbo.config" />
 
-	<bean  class="com.github.doctor.dubbo.config.DubboPortHandler2"/>
+	<bean class="com.github.doctor.dubbo.config.DubboPortHandler2"/>
 	<bean id="broadcastResultMergeService" class="com.github.dubbo.provider.demo.service.impl.BroadcastResultMergeServiceImpl"/>
 
 	<import resource="classpath:/dubboPractice-provider/dubboBroadcast-resultMerge3/spring-dubbo-provider.xml"/>
