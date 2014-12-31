@@ -28,7 +28,9 @@ import com.alibaba.dubbo.rpc.cluster.merger.MergerFactory;
 import com.alibaba.dubbo.rpc.cluster.support.AbstractClusterInvoker;
 
 /**
- * BroadcastCluster + MergeCluster 调用集群中每个接口，汇总结果，（用于jstorm bolt启动dubbo，但对于bolt实例数目 一个jvm 限制为1个,）
+ * BroadcastCluster + MergeCluster 调用集群中每个接口，汇总结果，（用于jstorm bolt启动dubbo，然后合并bolt实例内的内存信息）
+ * 这里用的不是并发的，可以以MergeableClusterInvoker 改写86行，返回结果用可以存储key重复的map结果即可。也可以把那部分处理替代相应
+ * 部分。因为父类不一样。
  * 
  * @author doctor
  *
