@@ -1,1 +1,2 @@
 broadcastResultMerge=com.github.doctor.dubbo.rpc.cluster.BroadcastResultMergeCluster
+mergeResult=com.github.doctor.dubbo.rpc.cluster.MergeResultCluster

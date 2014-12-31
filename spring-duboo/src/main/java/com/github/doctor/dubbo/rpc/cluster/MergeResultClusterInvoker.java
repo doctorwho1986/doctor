@@ -65,7 +65,6 @@ public class MergeResultClusterInvoker<T> extends AbstractClusterInvoker<T> {
 			returnType = null;
 		}
 
-		// Map<String, Future<Result>> results = new HashMap<String, Future<Result>>();
 		MultiValueMap<String, Future<Result>> results = new MultiValueMap<String, Future<Result>>();
 		for (final Invoker<T> invoker : invokers) {
 			Future<Result> future = executor.submit(new Callable<Result>() {
@@ -89,18 +88,6 @@ public class MergeResultClusterInvoker<T> extends AbstractClusterInvoker<T> {
 		RpcException exception = null;
 		List<Result> resultList = new ArrayList<Result>();
 
-		// for (final Invoker<T> invoker : invokers) {
-		// try {
-		// Result result = invoker.invoke(invocation);
-		// resultList.add(result);
-		// } catch (RpcException e) {
-		// exception = e;
-		// log.warn(e.getMessage(), e);
-		// } catch (Throwable e) {
-		// exception = new RpcException(e.getMessage(), e);
-		// log.warn(e.getMessage(), e);
-		// }
-		// }
 		int timeout = getUrl().getMethodParameter(invocation.getMethodName(), Constants.TIMEOUT_KEY, Constants.DEFAULT_TIMEOUT);
 		for (Entry<String, Object> entry : results.entrySet()) {
 			ArrayList<Future<Result>> futures = (ArrayList<Future<Result>>) entry.getValue();
