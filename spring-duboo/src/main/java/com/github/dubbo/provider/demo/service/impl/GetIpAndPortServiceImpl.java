@@ -19,7 +19,7 @@ public class GetIpAndPortServiceImpl implements GetIpAndPortService {
 	@Override
 	public Map<String, String> getMemoryInfo() {
 		Map<String, String> map = new HashMap<>();
-		map.put(NetUtils.getLocalAddress().toString()+dubboPortHandler2.getPort(), "GetIpAndPortServiceImpl method");
+		map.put(NetUtils.getLocalAddress().toString()+":" + dubboPortHandler2.getPort(), "GetIpAndPortServiceImpl method");
 		return map;
 	}
 
