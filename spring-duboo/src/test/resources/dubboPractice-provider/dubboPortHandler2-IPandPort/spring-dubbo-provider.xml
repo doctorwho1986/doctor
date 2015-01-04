@@ -15,4 +15,5 @@
 	<dubbo:protocol name="dubbo" port="-1" />
 
 	<dubbo:service  interface="com.github.dubbo.common.demo.service.GetIpAndPortService"	ref="getIpAndPortService" scope="remote"/>
+	<dubbo:service  interface="com.github.dubbo.common.demo.service.DubboDemoService"	ref="dubboDemoService" scope="remote"/>
 </beans>
