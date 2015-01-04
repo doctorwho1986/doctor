@@ -24,11 +24,19 @@ public class DubboPortHandler2 {
 	@Autowired
 	private ApplicationContext applicationContext;
 
+	private int port = 20080;
+
 	@PostConstruct
 	public void init() {
 		Map<String, ProtocolConfig> beansOfType = applicationContext.getBeansOfType(ProtocolConfig.class);
 		for (Entry<String, ProtocolConfig> item : beansOfType.entrySet()) {
-			item.getValue().setPort(NetUtils.getAvailablePort());
+			port = NetUtils.getAvailablePort();
+			item.getValue().setPort(port);
 		}
 	}
+
+	public int getPort() {
+		return port;
+	}
+
 }
