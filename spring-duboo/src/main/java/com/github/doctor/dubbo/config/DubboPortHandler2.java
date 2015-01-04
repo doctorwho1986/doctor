@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.common.utils.NetUtils;
 import com.alibaba.dubbo.config.ProtocolConfig;
@@ -19,6 +20,7 @@ import com.alibaba.dubbo.config.ProtocolConfig;
  *
  * @time 2014年12月31日 上午9:43:52
  */
+@Component
 public class DubboPortHandler2 {
 
 	@Autowired
