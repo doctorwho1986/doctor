@@ -26,6 +26,7 @@ public class KafkaBolt extends BaseRichBolt {
 	
 	private static final ApplicationContext applicationContext;
 	static{
+		//spring的加载应该放到prepare方法中，bolt序列化后会调用这个方法，初始类变量。静态变量不被序列化。
 		applicationContext = SpringUtil.of("learningJstormConfig/spring-kafkabolt-context.xml");
 		logManagerImp = applicationContext.getBean(LogManagerImp.class);
 	}
