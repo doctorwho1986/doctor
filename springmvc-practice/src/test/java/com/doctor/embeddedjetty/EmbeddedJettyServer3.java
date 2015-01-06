@@ -63,7 +63,7 @@ public class EmbeddedJettyServer3 {
 		AnnotationConfigWebApplicationContext mvcContext = new AnnotationConfigWebApplicationContext();
 		mvcContext.register(springMvcConfiguration);
 		DispatcherServlet dispatcherServlet = new DispatcherServlet(mvcContext);
-		context.addServlet(new ServletHolder(dispatcherServlet), "/");
+		context.addServlet(new ServletHolder(dispatcherServlet), "/");//处理jsp在WEB-INF目录下
 //		context.addServlet(new ServletHolder(new JspServlet()), "*.jsp");
 	}
 
