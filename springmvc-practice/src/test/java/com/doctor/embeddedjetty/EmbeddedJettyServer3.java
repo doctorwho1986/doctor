@@ -1,5 +1,6 @@
 package com.doctor.embeddedjetty;
 
+import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.jetty.server.Server;
@@ -18,23 +19,23 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 public class EmbeddedJettyServer3 {
 	private int port;
-	private String contextPath;
+	private String resourceBase;
 	private Class<?> springRootConfiguration = null;
 	private Class<?> springMvcConfiguration = null;
 
 	private Server server;
 
 	public EmbeddedJettyServer3(Class<?> springRootConfiguration, Class<?> springMvcConfiguration) {
-		this(8080, "/", springRootConfiguration, springMvcConfiguration);
+		this(8080, "", springRootConfiguration, springMvcConfiguration);
 	}
 
-	public EmbeddedJettyServer3(String contextPath, Class<?> springRootConfiguration, Class<?> springMvcConfiguration) {
-		this(8080, contextPath, springRootConfiguration, springMvcConfiguration);
+	public EmbeddedJettyServer3(String resourceBase, Class<?> springRootConfiguration, Class<?> springMvcConfiguration) {
+		this(8080, resourceBase, springRootConfiguration, springMvcConfiguration);
 	}
 
-	public EmbeddedJettyServer3(int port, String contextPath, Class<?> springRootConfiguration, Class<?> springMvcConfiguration) {
+	public EmbeddedJettyServer3(int port, String resourceBase, Class<?> springRootConfiguration, Class<?> springMvcConfiguration) {
 		this.port = port;
-		this.contextPath = contextPath;
+		this.resourceBase = resourceBase;
 		this.springRootConfiguration = springRootConfiguration;
 		this.springMvcConfiguration = springMvcConfiguration;
 		init();
@@ -43,7 +44,13 @@ public class EmbeddedJettyServer3 {
 	public void init() {
 		server = new Server(port);
 		ServletContextHandler context = new ServletContextHandler();
-		context.setContextPath(contextPath);
+		context.setContextPath("/");
+		try {
+			context.setResourceBase(this.getClass().getResource(resourceBase).toURI().toASCIIString());
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		server.setHandler(context);
 
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
@@ -54,7 +61,6 @@ public class EmbeddedJettyServer3 {
 		mvcContext.register(springMvcConfiguration);
 		DispatcherServlet dispatcherServlet = new DispatcherServlet(mvcContext);
 		context.addServlet(new ServletHolder(dispatcherServlet), "/*");
-
 	}
 
 	public void start() throws Exception {
