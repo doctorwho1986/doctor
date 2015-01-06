@@ -17,7 +17,7 @@ public class ContentNegotiatingViewResolverPractice {
 	
 	@Before
 	public void init() throws Throwable{
-		embeddedJettyServer = new EmbeddedJettyServer3("/contentNegotiatingViewResolverPractice",SpringContextConfig.class, SpringMvcConfig.class);
+		embeddedJettyServer = new EmbeddedJettyServer3("/contentNegotiatingViewResolverPractice/webapp",SpringContextConfig.class, SpringMvcConfig.class);
 		embeddedJettyServer.start();
 	}
 	
@@ -27,7 +27,7 @@ public class ContentNegotiatingViewResolverPractice {
 		Response response = Request.Get("http://localhost:8080/test.json").execute();
 		System.out.println(response.returnContent().asString());
 		
-		response = Request.Get("http://localhost:8080/test.htm").execute();
+		response = Request.Get("http://localhost:8080/test.html").execute();
 		System.out.println(response.returnContent().asString());
 		
 	}

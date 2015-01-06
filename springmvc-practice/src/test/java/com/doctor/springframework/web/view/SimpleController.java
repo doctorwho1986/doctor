@@ -10,13 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SimpleController {
 	
-	@RequestMapping({"test.htm","test.json"})
+	@RequestMapping({"/test.html","/test.json"})
 	public ModelAndView test() {
 		Map<String, String> map = new HashMap<>();
 		map.put("test", "json");
 		map.put("test-html", "html");
 		map.put("what", "what");
-		ModelAndView modelAndView = new ModelAndView("contentViewTest");
+		ModelAndView modelAndView = new ModelAndView("/contentViewTest");
 		modelAndView.addObject(map);
 		return modelAndView;
 		

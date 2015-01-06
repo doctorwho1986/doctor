@@ -11,7 +11,7 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 		<property name="defaultContentType" value="text/html"/>
 		<property name="mediaTypes">
 			<map>
-				<entry key="htm" value="text/html"/>
+				<entry key="html" value="text/html"/>
 				<entry key="json" value="application/json"/>
 			</map>
 		</property>
@@ -19,7 +19,7 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 			<list>
 				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-					<property name="prefix" value="/jsp/"/>
+					<property name="prefix" value="/WEB-INF/jsp/"/>
 					<property name="suffix" value=".jsp"></property>
 				</bean>
 			</list>
