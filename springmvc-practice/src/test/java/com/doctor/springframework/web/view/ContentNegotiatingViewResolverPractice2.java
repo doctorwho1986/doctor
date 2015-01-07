@@ -15,20 +15,24 @@ import com.doctor.embeddedjetty.EmbeddedJettyServer3;
  */
 public class ContentNegotiatingViewResolverPractice2 {
 	private EmbeddedJettyServer3 embeddedJettyServer;
-
+	private int port;
 	@Before
 	public void init() throws Throwable {
-		embeddedJettyServer = new EmbeddedJettyServer3("/contentNegotiatingViewResolverPractice/webapp", SpringContextConfig.class, SpringMvcConfig2.class);
+		port = 8989;
+		embeddedJettyServer = new EmbeddedJettyServer3(port,"/contentNegotiatingViewResolverPractice/webapp", SpringContextConfig.class, SpringMvcConfig2.class);
 		embeddedJettyServer.start();
 	}
 
 	@Test
 	public void test() throws Throwable {
 
-		Response response = Request.Get("http://localhost:8080/test.json").execute();
+		Response response = Request.Get("http://localhost:8989/test.json").execute();
 		System.out.println(response.returnContent().asString());
 
-		response = Request.Get("http://localhost:8080/test.html").execute();
+		response = Request.Get("http://localhost:8989/test.html").execute();
+		System.out.println(response.returnContent().asString());
+		
+		response = Request.Get("http://localhost:8989").execute();
 		System.out.println(response.returnContent().asString());
 
 	}

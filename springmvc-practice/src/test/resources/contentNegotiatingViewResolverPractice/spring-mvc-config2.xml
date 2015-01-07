@@ -6,8 +6,9 @@
                            http://www.springframework.org/schema/context/spring-context.xsd
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
+	
 	<mvc:annotation-driven  content-negotiation-manager="contentNegotiationManager"/>
+	<mvc:view-controller path="/" view-name="index"/>
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="mediaTypes">
 			<value>
