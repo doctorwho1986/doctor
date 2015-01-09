@@ -30,6 +30,8 @@ public class ResourceAnnotationPractice {
 		for (String beanName : context.getBeanDefinitionNames()) {
 			System.out.println(beanName);
 		}
+		
+		context.close();
 	}
 
 	@Configuration
