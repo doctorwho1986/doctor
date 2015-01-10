@@ -2,7 +2,9 @@ package com.doctor.springframework.web.view.messageconverter;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
@@ -25,6 +27,8 @@ import com.doctor.embeddedjetty.EmbeddedJettyServer;
  *      这是 RESTful web 服务的一个重要功能。
  *      本文还阐述了使用 HttpMessageConverter 生成多个具象的另一种方式，
  *      并且本文中的示例展示了如何使用 RestTemplate 和 HttpMessageConverter 与服务进行通信。
+ *      
+ *      　
  * 
  * @author doctor
  *
@@ -32,18 +36,21 @@ import com.doctor.embeddedjetty.EmbeddedJettyServer;
  */
 public class HttpMessageConverterPractice {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Throwable {
 		EmbeddedJettyServer server = new EmbeddedJettyServer(HttpMessageConverterPracticeConfig.class);
 		server.start();
 		
 		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-//		httpHeaders.setContentType(MediaType.APPLICATION_XML);
+//		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		httpHeaders.setContentType(MediaType.APPLICATION_XML);
 		
 		HttpEntity<String> httpEntity = new HttpEntity<String>(httpHeaders);
 		RestTemplate restTemplate = new RestTemplate();
-		String forObject = restTemplate.getForObject("http://localhost:8080/test", String.class);
-		System.out.println(forObject);
+//		String forObject = restTemplate.getForObject("http://localhost:8080/test", String.class);
+//		System.out.println(forObject);
+		
+		ResponseEntity<String> responseEntity = restTemplate.exchange("http://localhost:8080/test", HttpMethod.GET, httpEntity, String.class);
+		System.out.println(responseEntity.getBody());
 		
 		server.stop();
 

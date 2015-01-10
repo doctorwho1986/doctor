@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HttpMessageConverterController {
 
 	@RequestMapping(value={"/test"},method=RequestMethod.GET,headers={"Accept=application/json, application/xml"})
-	public PersonBean test() {
+	public PersonBean testRest() {
 		return new PersonBean("doctor", "man", "alien");
 	}
 }
