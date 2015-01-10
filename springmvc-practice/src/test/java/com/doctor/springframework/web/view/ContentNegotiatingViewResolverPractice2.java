@@ -25,15 +25,25 @@ public class ContentNegotiatingViewResolverPractice2 {
 
 	@Test
 	public void test() throws Throwable {
-
+		System.out.println("////////////////////////");
 		Response response = Request.Get("http://localhost:8989/test.json").execute();
 		System.out.println(response.returnContent().asString());
+		System.out.println("////////////////////////");
+
 
 		response = Request.Get("http://localhost:8989/test.html").execute();
 		System.out.println(response.returnContent().asString());
+		System.out.println("////////////////////////");
+
 		
 		response = Request.Get("http://localhost:8989").execute();
 		System.out.println(response.returnContent().asString());
+		System.out.println("////////////////////////");
+
+		
+		response = Request.Get("http://localhost:8989/getcontent.do").execute();
+		System.out.println(response.returnContent().asString());
+		System.out.println("////////////////////////");
 
 	}
 
