@@ -1,5 +1,7 @@
 package com.doctor.spring.context.inject;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
@@ -14,6 +16,10 @@ public class ResourceBean1 {
 	
 	@Resource(name="resourceBean3")
 	private ResourceBean3 resourceBean3;
+	
+	//@Resource也支持集合按Type注入
+	@Resource
+	public List<ResourceInterface> resourceInterfaces;
 
 	public ResourceBean2 getResourceBean2() {
 		return resourceBean2;

@@ -36,6 +36,7 @@ public class ResourceAnnotationPractice {
 		ResourceBean1 bean1 = context.getBean("resourceBean1", ResourceBean1.class);
 		System.out.println(bean1.getResourceBean2());
 		System.out.println(bean1.getResourceBean3());
+		System.out.println(bean1.resourceInterfaces);
 
 		for (String beanName : context.getBeanDefinitionNames()) {
 			System.out.println(beanName);
