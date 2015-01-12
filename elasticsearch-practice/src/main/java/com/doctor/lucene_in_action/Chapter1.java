@@ -23,20 +23,19 @@ import org.apache.lucene.util.Version;
 public class Chapter1 {
 
 	public static void main(String[] args) throws Throwable {
-		String indexDir = "/elasticsearchPractice/lucene-in-action/chapter1/index-dir";// 索引目录存放
-		String dataDir = "/elasticsearchPractice/lucene-in-action/chapter1/data-dir";// 需要处理的文件目录
+		String indexDir = "elasticsearchPractice/lucene-in-action/chapter1/index-dir";// 索引目录存放
+		String dataDir = "elasticsearchPractice/lucene-in-action/chapter1/data-dir";// 需要处理的文件目录
 
 		Instant start = Instant.now();
 
-		System.out.println(Chapter1.class.getResource("/"));
-		FSDirectory fsDirectory = FSDirectory.open(new File(Chapter1.class.getResource(indexDir).getFile()));
+		FSDirectory fsDirectory = FSDirectory.open(new File(Chapter1.class.getClassLoader().getResource(indexDir).getFile()));
 
 		IndexWriterConfig indexWriterConfig = new IndexWriterConfig(Version.LUCENE_4_10_3, new StandardAnalyzer());
 		indexWriterConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 
 		IndexWriter indexWriter = new IndexWriter(fsDirectory, indexWriterConfig);
 
-		indexDoc(indexWriter, new File(Chapter1.class.getResource(dataDir).getFile()));
+		indexDoc(indexWriter, new File(Chapter1.class.getClassLoader().getResource(dataDir).getFile()));
 
 	}
 
