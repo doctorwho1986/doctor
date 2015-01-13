@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -16,7 +17,6 @@ import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
-import org.apache.lucene.index.Term;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
@@ -31,12 +31,15 @@ public class Chapter1 {
 		FSDirectory fsDirectory = FSDirectory.open(new File(Chapter1.class.getClassLoader().getResource(indexDir).getFile()));
 
 		IndexWriterConfig indexWriterConfig = new IndexWriterConfig(Version.LUCENE_4_10_3, new StandardAnalyzer());
-		indexWriterConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
+		indexWriterConfig.setOpenMode(OpenMode.CREATE);
 
 		IndexWriter indexWriter = new IndexWriter(fsDirectory, indexWriterConfig);
 
 		indexDoc(indexWriter, new File(Chapter1.class.getClassLoader().getResource(dataDir).getFile()));
-
+		
+		indexWriter.close();
+		Instant end = Instant.now();
+		System.out.println(ChronoUnit.MILLIS.between(start, end));
 	}
 
 	static void indexDoc(IndexWriter indexWriter, File dataFile) throws Throwable {
@@ -59,7 +62,7 @@ public class Chapter1 {
 				document.add(new LongField("modified", dataFile.lastModified(), Field.Store.NO));
 				document.add(new TextField("contents", new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8))));
 				System.out.println("updating" + dataFile);
-				indexWriter.updateDocument(new Term("path",dataFile.getPath()), document);
+				indexWriter.addDocument(document);
 			} catch (Exception e) {
 				return;
 			}
