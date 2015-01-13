@@ -1,4 +1,4 @@
-package lucene_first_application;
+package com.doctor.lucenetutorial;
 
 import java.io.Closeable;
 import java.io.File;
