@@ -1,0 +1,25 @@
+ This code has many errors if it was to be used in a multithreaded application, but please ignore that for now.
+
+As you can see, the lock() method first checks if the locked member variable is equal to false (check), and if it is it ses locked to true (then act).
+
+If multiple threads had access to the same MyLock instance, the above lock() function would not be guaranteed to work. If a thread A checks the value of locked and sees that it is false, a thread B may also check the value of locked at exactly the same time. Or, in fact, at any time before thread A sets locked to false. Thus, both thread A and thread B may see locked as being false, and both will then act based on that information.
+
+To work properly in a multithreaded application, "check then act" operations must be atomic. By atomic is meant that both the "check" and "act" actions are executed as an atomic (non-dividable) block of code. Any thread that starts executing the block will finish executing the block without interference from other threads. No other threads can execute the atomic block at the same time.
+
+Here is the code example from earlier with the lock() method turned into an atomic block of code using the synchronized keyword: 
+class MyLock {
+
+    private boolean locked = false;
+
+    public synchronized boolean lock() {
+        if(!locked) {
+            locked = true;
+            return true;
+        }
+        return false;
+    }
+}
+
+Now the lock() method is synchronized so only one thread can executed it at a time on the same MyLock instance. The lock() method is effectively atomic.
+
+The atomic lock() method is actually an example of "compare and swap". The lock() method compares the variable locked to the expected value false and if locked is equal to this expected value, it swaps the variable's value to true . 
