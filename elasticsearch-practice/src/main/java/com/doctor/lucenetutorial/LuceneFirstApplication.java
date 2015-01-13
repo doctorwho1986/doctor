@@ -31,6 +31,7 @@ import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.PrefixQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TermRangeQuery;
 import org.apache.lucene.search.TopDocs;
@@ -124,6 +125,10 @@ public class LuceneFirstApplication {
 		printTopDocs(topDocs8, luceneSearcher);
 		
 		//http://www.tutorialspoint.com/lucene/lucene_analysis.htm
+		//lucene_sorting
+		log.info("lucene_sorting-----------");
+		TopDocs topDocs9 = luceneSearcher.search(matchAllDocsQuery, Sort.INDEXORDER);
+		printTopDocs(topDocs9, luceneSearcher);
 		
 		// 清理资源
 		IOUtils.closeQuietly(luceneIndexer);
@@ -156,24 +161,19 @@ public class LuceneFirstApplication {
 	private static class LuceneIndexer implements Closeable {
 		private static final Logger log = LoggerFactory.getLogger(LuceneIndexer.class);
 		private IndexWriter indexWriter;
+		private Directory indexDirectory;
+		private Analyzer analyzer;
 
-		public LuceneIndexer(String indexDir) {
+		public LuceneIndexer(String indexDir) throws IOException {
 			init(indexDir);
 		}
 
-		private void init(String indexDir) {
-			try {
-				Directory indexDirectory;
-				indexDirectory = FSDirectory.open(new File(indexDir));
-				Analyzer analyzer = new StandardAnalyzer();
-				IndexWriterConfig conf = new IndexWriterConfig(Version.LUCENE_4_10_3, analyzer);
-				conf.setOpenMode(OpenMode.CREATE);
-				indexWriter = new IndexWriter(indexDirectory, conf);
-			} catch (IOException e) {
-				String error = String.format("{open error:'can't find dir %s '}", indexDir);
-				log.error(error, e);
-			} finally {
-			}
+		private void init(String indexDir) throws IOException {
+			indexDirectory = FSDirectory.open(new File(indexDir));
+			analyzer = new StandardAnalyzer();
+			IndexWriterConfig conf = new IndexWriterConfig(Version.LUCENE_4_10_3, analyzer);
+			conf.setOpenMode(OpenMode.CREATE);
+			indexWriter = new IndexWriter(indexDirectory, conf);
 
 		}
 
@@ -220,6 +220,8 @@ public class LuceneFirstApplication {
 		@Override
 		public void close() throws IOException {
 			IOUtils.closeQuietly(indexWriter);
+			IOUtils.closeQuietly(indexDirectory);
+			IOUtils.closeQuietly(analyzer);
 		}
 
 	}
@@ -246,6 +248,10 @@ public class LuceneFirstApplication {
 
 		public TopDocs search(Query query) throws IOException {
 			return indexSearcher.search(query, LuceneConstants.max_search);
+		}
+		
+		public TopDocs search(Query query,Sort sort) throws IOException {
+			return indexSearcher.search(query, LuceneConstants.max_search,sort);
 		}
 
 		public Document getDocument(ScoreDoc scoreDoc) throws IOException {
