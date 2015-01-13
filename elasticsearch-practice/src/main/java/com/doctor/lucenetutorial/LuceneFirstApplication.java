@@ -45,10 +45,12 @@ public class LuceneFirstApplication {
 		String dir = "lucene-tutorial/lucene-first-application";
 		dir = LuceneFirstApplication.class.getClassLoader().getResource(dir).getFile();
 		
-		LuceneIndexer luceneIndexer = new LuceneIndexer(dir);
+		String indexDir = LuceneFirstApplication.class.getClassLoader().getResource("lucene-tutorial/tempIndexDir").getFile();
+		
+		LuceneIndexer luceneIndexer = new LuceneIndexer(indexDir);
 		luceneIndexer.createIndex(dir, new TextFileFilter());
 		
-		LuceneSearcher luceneSearcher = new LuceneSearcher(dir);
+		LuceneSearcher luceneSearcher = new LuceneSearcher(indexDir);
 		
 		TopDocs topDocs = luceneSearcher.search("Meena");
 		
@@ -137,6 +139,8 @@ public class LuceneFirstApplication {
 					indexFile(f);
 				}
 			}
+			
+			indexWriter.commit();//解决异常：Exception in thread "main" org.apache.lucene.index.IndexNotFoundException: no segments* file found in MMapDirector
 		}
 		@Override
 		public void close() throws IOException {
