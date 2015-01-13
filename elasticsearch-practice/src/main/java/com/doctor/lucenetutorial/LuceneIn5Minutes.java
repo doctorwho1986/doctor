@@ -18,6 +18,7 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
 
@@ -42,7 +43,9 @@ public class LuceneIn5Minutes {
 		IndexWriterConfig conf = new IndexWriterConfig(Version.LUCENE_4_10_3,analyzer );
 		conf.setOpenMode(OpenMode.CREATE);
 		
-		Directory indexDirectory = FSDirectory.open(new File(file));
+//		Directory indexDirectory = FSDirectory.open(new File(file));
+		Directory indexDirectory = new RAMDirectory();
+		
 		IndexWriter indexWriter = new IndexWriter(indexDirectory, conf);
 		
 		addDocument(indexWriter, "Lucene in Action", "193398817");
