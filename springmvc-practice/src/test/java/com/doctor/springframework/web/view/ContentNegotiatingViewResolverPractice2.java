@@ -44,6 +44,15 @@ public class ContentNegotiatingViewResolverPractice2 {
 		response = Request.Get("http://localhost:8989/getcontent.do").execute();
 		System.out.println(response.returnContent().asString());
 		System.out.println("////////////////////////");
+		
+		
+		response = Request.Get("http://localhost:8989/map.json").execute();
+		System.out.println(response.returnContent().asString());
+		System.out.println("////////////////////////");
+		
+		response = Request.Get("http://localhost:8989/map.html").execute();
+		System.out.println(response.returnContent().asString());
+		System.out.println("////////////////////////");
 
 	}
 
