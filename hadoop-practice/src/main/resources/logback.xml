@@ -7,9 +7,9 @@
 	</appender> 
 	
 	 <appender name="defaultAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${catalina.home}/logs/mybatisPractice.log</file>
+		<file>${catalina.home}/logs/hadoop-practice.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${catalina.home}/logs/mybatisPractice.log.out.%d{yyyy-MM-dd}</FileNamePattern>
+			<FileNamePattern>${catalina.home}/logs/hadoop-practice.log.out.%d{yyyy-MM-dd}</FileNamePattern>
 		</rollingPolicy>		
 		<encoder>
 			<pattern>%-16(%d{MM-dd HH:mm:ss}) %-5thread %-5level %logger{3} - %msg%n</pattern>
