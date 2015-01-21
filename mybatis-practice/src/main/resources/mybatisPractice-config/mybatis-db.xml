@@ -39,7 +39,7 @@
 	      p:dataSource-ref="dataSource"
 	      p:typeHandlersPackage=""
 	      p:typeAliasesPackage=""
-	      p:mapperLocations="classpath*:com/mybatis3/**/*.xml"
+	      p:mapperLocations="classpath:mybatisPractice-mybatisConfig/mapper/*.xml"
 	      p:configLocation="mybatisPractice-mybatisConfig/mybatis-config.xml"/>
     
     <bean name="transactionManager"
