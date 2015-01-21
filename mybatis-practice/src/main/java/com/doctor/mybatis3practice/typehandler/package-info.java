@@ -1,5 +1,5 @@
 /**
- * mybatis typehandler
+ * mybatis typeHandlersPackage
  * @author doctor
  *
  * @time   2015年1月21日 下午6:48:22
