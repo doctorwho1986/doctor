@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:tx="http://www.springframework.org/schema/tx" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	   xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring 
+	                       http://mybatis.org/schema/mybatis-spring.xsd
+		                   http://www.springframework.org/schema/beans 
+		                   http://www.springframework.org/schema/beans/spring-beans.xsd
+		                   http://www.springframework.org/schema/context 
+		                   http://www.springframework.org/schema/context/spring-context.xsd
+		                   http://www.springframework.org/schema/tx 
+		                   http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<mybatis-spring:scan base-package=""/>
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="file:${app}/jdbc_mysql_mybatis.properties" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="properties">
+			<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<property name="location" value="mybatisPractice-defaultProp/jdbc_mysql_mybatis.properties" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<property name="driverClassName" value="${mybatisPractice.connection.driver}" />
+		<property name="url" value="${mybatisPractice.connection.url}" />
+		<property name="initialSize" value="${mybatisPractice.jdbc.pool.maxIdle}" />
+		<property name="maxActive" value="${mybatisPractice.jdbc.pool.maxActive}" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" 
+	      class="org.mybatis.spring.SqlSessionFactoryBean"
+	      p:dataSource-ref="dataSource"
+	      p:typeHandlersPackage=""
+	      p:typeAliasesPackage=""
+	      p:mapperLocations="classpath*:com/mybatis3/**/*.xml"
+	      p:configLocation="mybatisPractice-mybatisConfig/mybatis-config.xml"/>
+    
+    <bean name="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		  p:dataSource-ref="dataSource"/>
+	
+	<bean name="transactionTemplate"
+		  class="org.springframework.transaction.support.TransactionTemplate"
+		  p:transactionManager-ref="transactionManager"/>
+</beans>
+
+
