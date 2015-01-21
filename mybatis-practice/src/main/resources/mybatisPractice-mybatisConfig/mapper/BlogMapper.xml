@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+   
+<mapper namespace="com.doctor.mybatis3practice.mapper.BlogMapper" >
+	<resultMap type="Blog" id="baseResultMap">
+		<id property="id" column="id"/>
+		<result property="authorId" column="author_id"/>
+		<result property="title" column="title"/>
+	</resultMap>
+	<sql id="all_collum">
+		id,author_id,title
+	</sql>
+	
+	<insert id="insertBlog" useGeneratedKeys="true" keyProperty="id">
+		insert into blog ( author_id,title)
+		 values (#{authorId},#{title})
+	</insert>
+	
+	<select id="queryById" parameterType="Long" resultMap="baseResultMap">
+		select <include refid="all_collum"/>
+		from blog
+		where id = #{id}
+	</select>
+	
+</mapper>
