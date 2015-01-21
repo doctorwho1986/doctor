@@ -37,8 +37,8 @@
 	<bean id="sqlSessionFactory" 
 	      class="org.mybatis.spring.SqlSessionFactoryBean"
 	      p:dataSource-ref="dataSource"
-	      p:typeHandlersPackage=""
-	      p:typeAliasesPackage=""
+	      p:typeHandlersPackage="com.doctor.mybatis3practice.typehandler"
+	      p:typeAliasesPackage="com.doctor.mybatis3practice.domain"
 	      p:mapperLocations="classpath:mybatisPractice-mybatisConfig/mapper/*.xml"
 	      p:configLocation="mybatisPractice-mybatisConfig/mybatis-config.xml"/>
     
