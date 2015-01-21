@@ -14,7 +14,7 @@
 		                   http://www.springframework.org/schema/tx 
 		                   http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
-	<mybatis-spring:scan base-package=""/>
+	<mybatis-spring:scan base-package="com.doctor.mybatis3practice.mapper"/>
 	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="file:${app}/jdbc_mysql_mybatis.properties" />
@@ -22,7 +22,7 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 		<property name="properties">
 			<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-				<property name="location" value="mybatisPractice-defaultProp/jdbc_mysql_mybatis.properties" />
+				<property name="location" value="classpath:mybatisPractice-defaultProp/jdbc_mysql_mybatis.properties" />
 			</bean>
 		</property>
 	</bean>
@@ -40,7 +40,7 @@
 	      p:typeHandlersPackage="com.doctor.mybatis3practice.typehandler"
 	      p:typeAliasesPackage="com.doctor.mybatis3practice.domain"
 	      p:mapperLocations="classpath:mybatisPractice-mybatisConfig/mapper/*.xml"
-	      p:configLocation="mybatisPractice-mybatisConfig/mybatis-config.xml"/>
+	      p:configLocation="classpath:mybatisPractice-mybatisConfig/mybatis-config.xml"/>
     
     <bean name="transactionManager"
 		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager"

@@ -14,7 +14,7 @@
                            http://www.springframework.org/schema/tx 
                            http://www.springframework.org/schema/tx/spring-txxsd">
 
-	<context:component-scan base-package="" />
-	<import resource="mybatisPractice-config/mybatis-db.xml"/>
+	<context:component-scan base-package="com.doctor.mybatis3practice.manager.impl" />
+	<import resource="classpath:mybatisPractice-config/mybatis-db.xml"/>
 
 </beans>
