@@ -44,4 +44,24 @@ public class BlogManagerImplTest {
 		assertTrue(b);
 	}
 
+	@Test
+	public void test_existTable() {
+		String tableName = "blog1";
+		boolean existTable = blogManager.existTable(tableName);
+		System.out.println("existTable " + tableName + ": " + existTable);
+	}
+
+	@Test
+	public void test_dropTable() {
+		String tableName = "blog1";
+		blogManager.dropTable(tableName);
+
+	}
+
+	@Test
+	public void test_createNewTable() {
+		String tableName = "blog1";
+		boolean b = blogManager.createNewTable(tableName);
+		System.out.println(b);
+	}
 }

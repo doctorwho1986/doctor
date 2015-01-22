@@ -10,4 +10,8 @@ import com.doctor.mybatis3practice.domain.Blog;
 public interface BlogManager {
 	Blog queryBlog(Long id);
 	boolean insertBlog(Blog blog);
+	boolean createNewTable(String tableName);
+	void dropTable(String tableName);
+	boolean existTable(String tableName);
+	
 }
