@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
  * 自定义Annotation，得到注解类中Annotation设定的注解值 即：遍历自定义Annotation中的方法，反射执行方法，结果就是
  * 对应的注解值。
  * 
- * 对应复杂注解的处理参看：{@code AnnotationUtils}
+ * 对应复杂注解的处理参看：{@code AnnotatedElementUtils}
  * 
  * @author doctor
  *
