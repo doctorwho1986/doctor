@@ -8,8 +8,7 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Method;
 
 /**
- * 自定义Annotation，得到注解类中Annotation设定的注解值
- * 即：遍历自定义Annotation中的方法，反射执行方法，结果就是
+ * 自定义Annotation，得到注解类中Annotation设定的注解值 即：遍历自定义Annotation中的方法，反射执行方法，结果就是
  * 对应的注解值。
  * 
  * 对应复杂注解的处理参看：{@code AnnotationUtils}
@@ -24,6 +23,9 @@ public class AnnotationPractice {
 	public static void main(String[] args) throws ReflectiveOperationException {
 		MyAnnotation myAnnotation = AnnotationP.class.getAnnotation(MyAnnotation.class);
 		System.out.println(myAnnotation);
+		// 输出：
+		// @com.doctor.spring.core.AnnotationPractice$MyAnnotation(value=AnnotationP,
+		// num=12, address=[1, 2])
 
 		for (Method method : myAnnotation.annotationType().getDeclaredMethods()) {
 			if (!method.isAccessible()) {
@@ -38,6 +40,12 @@ public class AnnotationPractice {
 				}
 			}
 		}
+		// 输出：
+		// invoke methd num result:12
+		// invoke methd value result:AnnotationP
+		// invoke methd address result:[Ljava.lang.String;@74a14482
+		// 1
+		// 2
 
 	}
 
