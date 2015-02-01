@@ -2,12 +2,14 @@ package com.doctor.mybatis3practice.manager.impl;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.core.IsEqual.*;
+
 import java.time.Instant;
 
 import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -22,6 +24,9 @@ public class ProductManagerImplTest {
 	private ProductManager productManager;
 	
 	private String tableName = "product";
+	
+	@Resource
+	private JdbcTemplate jdbcTemplate;
 
 	@Test
 	public void test_CrateTable() {
@@ -49,4 +54,5 @@ public class ProductManagerImplTest {
 		assertThat(product.toString(),equalTo(queryById.toString()) );
 		
 	}
+	
 }
