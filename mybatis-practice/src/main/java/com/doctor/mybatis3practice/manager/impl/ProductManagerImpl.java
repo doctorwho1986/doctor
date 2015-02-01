@@ -36,4 +36,11 @@ public class ProductManagerImpl implements ProductManager {
 		return 1==count ? true:false;
 	}
 
+	@Override
+	public Product queryById(String tableName, Long id) {
+		Preconditions.checkArgument(StringUtils.isNotBlank(tableName));
+		Preconditions.checkNotNull(id);
+		return productMapper.queryById(tableName, id);
+	}
+
 }

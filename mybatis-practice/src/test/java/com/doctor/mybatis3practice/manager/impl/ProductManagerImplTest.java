@@ -1,7 +1,7 @@
 package com.doctor.mybatis3practice.manager.impl;
 
 import static org.junit.Assert.*;
-
+import static org.hamcrest.core.IsEqual.*;
 import java.time.Instant;
 
 import javax.annotation.Resource;
@@ -36,5 +36,17 @@ public class ProductManagerImplTest {
 		boolean insertProduct = productManager.insertProduct(tableName, product);
 		assertTrue(insertProduct);
 		System.out.println(product.getProductId());
+	}
+	
+	@Test
+	public void test_queryById(){
+		Product product = new Product("who", "no desc", Instant.now());
+		boolean insertProduct = productManager.insertProduct(tableName, product);
+		assertTrue(insertProduct);
+		
+		Product queryById = productManager.queryById(tableName, product.getProductId());
+		assertNotNull(queryById);
+		assertThat(product.toString(),equalTo(queryById.toString()) );
+		
 	}
 }

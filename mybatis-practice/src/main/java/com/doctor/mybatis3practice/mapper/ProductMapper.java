@@ -22,4 +22,8 @@ public interface ProductMapper {
 	@Insert("insert into ${tableName} ( name,description,createTime) values (#{product.name},#{product.description},#{product.createTime})")
 	@Options(useGeneratedKeys = true, keyProperty = "product.productId")
 	int insertProduct(@Param("tableName") String tableName, @Param("product") Product product);
+
+	@Select( "select * from ${tableName} "
+			+ "where productId = #{id}")
+	Product queryById(@Param("tableName") String tableName,@Param("id") Long id);
 }
