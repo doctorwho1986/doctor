@@ -26,6 +26,10 @@ public class Product implements Serializable {
 		this.createTime = createTime;
 	}
 
+	public Product(Long productId,String name, String description, Instant createTime){
+		this(name,description,createTime);
+		this.productId = productId;
+	}
 	public Long getProductId() {
 		return productId;
 	}
