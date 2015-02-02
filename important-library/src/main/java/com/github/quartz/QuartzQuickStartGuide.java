@@ -1,12 +1,14 @@
 package com.github.quartz;
 
 import java.time.LocalDateTime;
+import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.quartz.CronScheduleBuilder;
 import org.quartz.Job;
 import org.quartz.JobBuilder;
+import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -34,6 +36,9 @@ public class QuartzQuickStartGuide {
 			
 			JobDetail jobDetail = JobBuilder.newJob(HelloJob.class)
 					   .withIdentity(UUID.randomUUID().toString(),"jobs")
+					   .usingJobData("tableName", "table_a")
+					   .usingJobData("appenOnly",true)
+					   .usingJobData("orientation","row")
 					   .build();
 			
 			Trigger trigger = TriggerBuilder.newTrigger()
@@ -58,6 +63,14 @@ public class QuartzQuickStartGuide {
 		private static final Logger log = LoggerFactory.getLogger(HelloJob.class);
 		@Override
 		public void execute(JobExecutionContext context) throws JobExecutionException {
+			JobDataMap dataMap = context.getJobDetail().getJobDataMap();
+			log.info("{JobDataMap:'begin'}");
+			for (Entry<String, Object> item : dataMap.entrySet()) {
+				log.info("{key:{},value:{}}",item.getKey(),item.getValue());
+			}
+			
+			log.info("{JobDataMap:'end'}");
+
 			log.info("helloJob! " + LocalDateTime.now());
 			
 		}
