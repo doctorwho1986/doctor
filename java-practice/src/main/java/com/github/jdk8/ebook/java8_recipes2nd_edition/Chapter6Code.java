@@ -50,7 +50,7 @@ public class Chapter6Code {
 		List<String> collect = Stream.of("c", "dca", "cddd", "abccss", "ba", "aab").parallel().sorted(Comparator.comparing(String::length)).collect(Collectors.toList());
 		collect.forEach(System.out::println);
 
-		// ***java8 函数引用 -> 一种利用现有函数简单推理为函数表达式，从而生成对应接口实现类默认的抽象方法体。***
+		// ***java8 函数引用 -> 一种利用现有函数简单推理为函数表达式即简化的函数表达式（省去了参数，-> 符号，只有更简化函数表达式体），[从而生成对应接口实现类默认的抽象方法体]。***
 		// 函数表达式可以推理成java的匿名类，那么现有的函数就可以推理成函数表达式。只要现有的函数符合要生成的方法的签名即可（入参，返回值，函数名无关紧要）
 		// 参数和返回值有编译器从上下文获得。从而省去了参数。只提供方法名就可以。
 		// 所以（arg) -> {} 函数表达式，可以简化为利用现有的函数引用：<class or instance name>::<methodName>。
