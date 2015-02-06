@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * @author 日志，自定义抛出异常都必须带者从异常出现代码中的 e
+ * @author 日志，自定义抛出异常都必须带者从异常出现代码中的 e slf4j1.6版本之前。
  * 
- *         log规范 log info/warn/error 
+ *         log规范 log info/warn/error
  * 
  *         log参数只能两种：log.error(msg)，log.error(msg, e)，
  *         没有exception时才能用前者，
@@ -36,6 +36,24 @@ import org.slf4j.LoggerFactory;
  * 
  *         所以希望用参数化，并带异常的，最好还是使用String.format()方式，或字符串拼接方式。
  * 
+ *         //slf4j版本1.60之后
+ *         In the presence of an exception/throwable, is it possible to parameterize a logging statement?
+ * 
+ *         Yes, as of SLF4J 1.6.0, but not in previous versions. The SLF4J API supports parametrization in the presence of an exception, assuming the exception is the last parameter. Thus,
+ * 
+ *         String s = "Hello world";
+ *         try {
+ *         Integer i = Integer.valueOf(s);
+ *         } catch (NumberFormatException e) {
+ *         logger.error("Failed to format {}", s, e);
+ *         }
+ * 
+ *         will print the NumberFormatException with its stack trace as expected. The java compiler will invoke the error method taking a String and two Object arguments. SLF4J, in accordance with the programmer's most probable intention, will interpret NumberFormatException instance as a throwable
+ *         instead of an unused Object parameter. In SLF4J versions prior to 1.6.0, the NumberFormatException instance was simply ignored.
+ * 
+ *         If the exception is not the last argument, it will be treated as a plain object and its stack trace will NOT be printed. However, such situations should not occur in practice.
+ * 
+ * 
  * 
  *
  */
@@ -61,7 +79,7 @@ public class ExceptionRule {
 		} catch (Exception e) {
 			String error = "error";
 			log.error("{error:{}}", error);
-			throw new RuntimeException(error);
+			return false;
 		}
 	}
 
@@ -71,8 +89,9 @@ public class ExceptionRule {
 			return true;
 		} catch (Exception e) {
 			String error = "error";
-			log.error("{error:{},{}}", error,e);
-			throw new RuntimeException(error, e);
+			log.error("{error:{}}", error, e);
+			log.error(String.format("error:%s", error), e);
+			return false;
 		}
 	}
 }
