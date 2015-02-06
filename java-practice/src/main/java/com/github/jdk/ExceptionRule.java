@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
  * 
  *         所以希望用参数化，并带异常的，最好还是使用String.format()方式，或字符串拼接方式。
  * 
- *         //slf4j版本1.60之后
+ *         //slf4j版本1.60之后,这种限制变宽松了，但是异常必须是最后一个参数。
  *         In the presence of an exception/throwable, is it possible to parameterize a logging statement?
  * 
  *         Yes, as of SLF4J 1.6.0, but not in previous versions. The SLF4J API supports parametrization in the presence of an exception, assuming the exception is the last parameter. Thus,
@@ -89,8 +89,15 @@ public class ExceptionRule {
 			return true;
 		} catch (Exception e) {
 			String error = "error";
+			log.info("right --------");
 			log.error("{error:{}}", error, e);
+			log.info("right --------");
+
 			log.error(String.format("error:%s", error), e);
+			
+			log.info("wrong --------");
+			log.error("{error:{}}", e, error);
+
 			return false;
 		}
 	}
