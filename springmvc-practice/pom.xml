@@ -271,10 +271,10 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
+			    <!-- Adapt this to a version found on http://central.maven.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
+				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.2.7.v20150116</version>
-				 <!-- http://central.maven.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
+				<version>${jetty.version}</version>
 			</plugin>
 
 			<plugin>
@@ -307,8 +307,6 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
-
-
 
 		<repository>
 			<id>CN</id>
