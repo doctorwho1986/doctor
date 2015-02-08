@@ -33,7 +33,7 @@
 
 		<javax.servlet.version>9.2.2.v20140723</javax.servlet.version>
 
-		<jetty.version>9.3.0.M1</jetty.version>
+		<jetty.version>9.2.7.v20150116</jetty.version>
 	</properties>
 
 	<dependencyManagement>
@@ -275,6 +275,12 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jetty.version}</version>
+				<configuration>
+					<scanIntervalSeconds>6</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
+				</configuration>
 			</plugin>
 
 			<plugin>
@@ -326,10 +332,6 @@
 			<id>clojars</id>
 			<url>http://clojars.org/repo/</url>
 		</repository>
-		<repository>
-			<id>twitter4j</id>
-			<url>http://twitter4j.org/maven2</url>
-		</repository>
 
 		<repository>
 			<id>ibiblio</id>
@@ -344,11 +346,6 @@
 		<repository>
 			<id>github-releases</id>
 			<url>http://oss.sonatype.org/content/repositories/github-releases/</url>
-		</repository>
-
-		<repository>
-			<id>taobao</id>
-			<url>http://mvnrepo.code.taobao.org/nexus/content/repositories/releases/</url>
 		</repository>
 	</repositories>
 
