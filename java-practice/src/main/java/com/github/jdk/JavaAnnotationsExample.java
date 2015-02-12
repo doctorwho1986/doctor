@@ -42,6 +42,7 @@ public class JavaAnnotationsExample {
 		System.out.println("方法参数注解获取值");
 		
 		for (Method method : methods) {
+			//方法获取参数注解示例。二维数组
 			Annotation[][] parameterAnnotations = method.getParameterAnnotations();
 			for (Annotation[] annotations : parameterAnnotations) {
 				for (Annotation annotation : annotations) {
