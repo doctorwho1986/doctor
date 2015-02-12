@@ -42,5 +42,17 @@ public interface JavaForJsUtil {
 		String file = classT.getResource(fileName).getFile();
 		return new FileReader(file);
 	}
+	
+	/**
+	 * java类名与js文件名相同，且在同一包下
+	 * @param classT
+	 * @return
+	 * @throws FileNotFoundException
+	 */
+	static Reader getDefaultJSFileInPackage(Class<?> classT) throws FileNotFoundException {
+		String file = classT.getResource(classT.getSimpleName()+".js").getFile();
+		return new FileReader(file);
+	}
 
+	
 }
