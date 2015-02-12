@@ -9,6 +9,7 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Method;
 
 /**
+ * java流行的框架中spring,mybatis都利用了注解，mybatis在方法及方法的参数中都利用了注解．他们是如何工作的呢
  * 方法注解获取注解值和方法参数注解获取注解值
  * @author doctor
  *
