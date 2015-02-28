@@ -1,7 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-	http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	                         http://maven.apache.org/maven-v4_0_0.xsd">
+	                         
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.github</groupId>
+	<groupId>com.doctor</groupId>
 	<artifactId>springmvc-practice</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
@@ -11,9 +14,14 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<guava.version>17.0</guava.version>
-
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>2.4</commons-io.version>
 
@@ -33,7 +41,7 @@
 
 		<javax.servlet.version>9.2.2.v20140723</javax.servlet.version>
 
-		<jetty.version>9.2.7.v20150116</jetty.version>
+		<jetty.version>9.2.8.v20150217</jetty.version>
 	</properties>
 
 	<dependencyManagement>
@@ -155,6 +163,7 @@
 			<version>2.2</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -226,9 +235,6 @@
 			<artifactId>logback-core</artifactId>
 			<version>${logback-classic.version}</version>
 		</dependency>
-
-
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
@@ -261,15 +267,6 @@
 	<build>
 		<finalName>springmvc-practice</finalName>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
 			<plugin>
 			    <!-- Adapt this to a version found on http://central.maven.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
 				<groupId>org.eclipse.jetty</groupId>
