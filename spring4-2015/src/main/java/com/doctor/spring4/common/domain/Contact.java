@@ -7,7 +7,7 @@ import com.google.common.base.MoreObjects;
  * 
  * @author doctor
  *
- * @since 2015年3月3日 上午12:02:51
+ * @since 2015年3月3日 上午00:02:51
  */
 public class Contact {
 	private Long id;
