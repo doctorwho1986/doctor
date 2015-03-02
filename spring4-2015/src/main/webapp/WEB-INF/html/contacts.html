@@ -1,0 +1,26 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contacts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<table th:if="${not #lists.isEmpty(contacts)}">
+    <tr>
+    	<th>id </th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>birth</th>
+    </tr>
+    <tr th:each="contact : ${contacts}">
+    	<td th:text="${contact.id}"> The id</td>
+    	<td th:text="${contact.firstName}"> The firstName</td>
+        <td th:text="${contact.lastName}">The lastName</td>
+        <td th:text="${contact.birth}">The birth</td>
+    </tr>
+</table>
+
+</body>
+</html>
