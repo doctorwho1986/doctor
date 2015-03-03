@@ -31,7 +31,7 @@ import com.alibaba.druid.pool.DruidDataSource;
  * @time 2015年3月3日 下午2:57:10
  */
 @Configuration
-@Import({ DataSourceConfig.MybatisGreenplumConfig.class })
+@Import({ DataSourceConfig.MybatisH2Config.class })
 public class DataSourceConfig {
 
 	@Bean
@@ -42,72 +42,72 @@ public class DataSourceConfig {
 	@Target(ElementType.TYPE)
 	@Retention(RetentionPolicy.RUNTIME)
 	@Documented
-	public @interface DbGreenplum {
+	public @interface DbH2 {
 
 	}
 
 	/**
-	 * Greenplum 数据原配置
+	 * H2 数据原配置
 	 * 
 	 * @author doctor
 	 *
 	 * @time 2015年3月3日 下午3:26:15
 	 */
 	@Configuration
-	@MapperScan(basePackages = { "com.doctor.spring4.common.mapper" }, annotationClass = DbGreenplum.class, sqlSessionFactoryRef = "DbGreenplumSqlSessionFactory")
-	@PropertySource("classpath:/spring4_2015Pro/jdbc-greenplum.properties")
-	public static class MybatisGreenplumConfig {
+	@MapperScan(basePackages = { "com.doctor.spring4.common.mapper" }, annotationClass = DbH2.class, sqlSessionFactoryRef = "DbH2SqlSessionFactory")
+	@PropertySource("classpath:/spring4_2015Pro/jdbc-H2.properties")
+	public static class MybatisH2Config {
 
-		@Value("${jdbc.greenplum.url}")
+		@Value("${jdbc.H2.url}")
 		private String url;
 
-		@Value("${jdbc.greenplum.user}")
+		@Value("${jdbc.H2.user}")
 		private String user;
 
-		@Value("${jdbc.greenplum.password}")
+		@Value("${jdbc.H2.password}")
 		private String password;
 
-		@Value("${jdbc.greenplum.driverClassName}")
+		@Value("${jdbc.H2.driverClassName}")
 		private String driverClassName;
 
-		@Value("${jdbc.greenplum.initialSize}")
+		@Value("${jdbc.H2.initialSize}")
 		private int initialSize;
 
-		@Value("${jdbc.greenplum.minIdle}")
+		@Value("${jdbc.H2.minIdle}")
 		private int minIdle;
 
-		@Value("${jdbc.greenplum.maxActive}")
+		@Value("${jdbc.H2.maxActive}")
 		private int maxActive;
 
-		@Value("${jdbc.greenplum.maxWait}")
+		@Value("${jdbc.H2.maxWait}")
 		private long maxWait;
 
-		@Value("${jdbc.greenplum.minEvictableIdleTimeMillis}")
+		@Value("${jdbc.H2.minEvictableIdleTimeMillis}")
 		private long minEvictableIdleTimeMillis;
 
-		@Value("${jdbc.greenplum.timeBetweenEvictionRunsMillis}")
+		@Value("${jdbc.H2.timeBetweenEvictionRunsMillis}")
 		private long timeBetweenEvictionRunsMillis;
 
-		@Value("${jdbc.greenplum.validationQuery}")
+		@Value("${jdbc.H2.validationQuery}")
 		private String validationQuery;
 
-		@Value("${jdbc.greenplum.testWhileIdle}")
+		@Value("${jdbc.H2.testWhileIdle}")
 		private boolean testWhileIdle;
 
-		@Value("${jdbc.greenplum.testOnBorrow}")
+		@Value("${jdbc.H2.testOnBorrow}")
 		private boolean testOnBorrow;
 
-		@Value("${jdbc.greenplum.testOnReturn}")
+		@Value("${jdbc.H2.testOnReturn}")
 		private boolean testOnReturn;
 
-		@Value("${jdbc.greenplum.poolPreparedStatements}")
+		@Value("${jdbc.H2.poolPreparedStatements}")
 		private boolean poolPreparedStatements;
 
-		@Value("${jdbc.greenplum.maxPoolPreparedStatementPerConnectionSize}")
+		@Value("${jdbc.H2.maxPoolPreparedStatementPerConnectionSize}")
 		private int maxPoolPreparedStatementPerConnectionSize;
 
-		@Bean(name = "DbGreenplumDataSource", initMethod = "init", destroyMethod = "close")
-		public DataSource DbGreenplumDataSource() {
+		@Bean(name = "DbH2DataSource", initMethod = "init", destroyMethod = "close")
+		public DataSource DbH2DataSource() {
 			DruidDataSource druidDataSource = new DruidDataSource();
 			druidDataSource.setUrl(url);
 			druidDataSource.setUsername(user);
@@ -133,9 +133,9 @@ public class DataSourceConfig {
 			return druidDataSource;
 		}
 
-		@Bean(name = "DbGreenplumSqlSessionFactory")
-		@Resource(name = "DbGreenplumDataSource")
-		public SqlSessionFactory DbGreenplumSqlSessionFactory(DataSource dataSource) throws Exception {
+		@Bean(name = "DbH2SqlSessionFactory")
+		@Resource(name = "DbH2DataSource")
+		public SqlSessionFactory DbH2SqlSessionFactory(DataSource dataSource) throws Exception {
 			SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 
 			sqlSessionFactoryBean.setDataSource(dataSource);
