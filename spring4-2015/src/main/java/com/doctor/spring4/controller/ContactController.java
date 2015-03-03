@@ -19,7 +19,7 @@ public class ContactController {
 	@Autowired
 	private ContactManager contactManager;
 
-	@RequestMapping("/contacts")
+	@RequestMapping({"/contacts.json","/contacts.html"})
 	public String contacts(Model model) {
 		model.addAttribute("contacts", contactManager.getContacts());
 		return "contacts";
