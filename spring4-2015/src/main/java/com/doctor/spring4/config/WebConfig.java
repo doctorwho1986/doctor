@@ -2,10 +2,14 @@ package com.doctor.spring4.config;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
+
+import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.accept.ContentNegotiationManager;
@@ -26,6 +30,7 @@ import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.doctor.spring4.controller" })
+@ImportResource({"classpath:/spring4_2015Config/contentNegotiationManager-config.xml"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	// @Bean
@@ -36,6 +41,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	// internalResourceViewResolver.setSuffix(".jsp");
 	// return internalResourceViewResolver;
 	// }
+
+	@Resource(name = "mediaTypes")
+	private Properties mediaTypes;
+
+	@Resource(name = "defaultContentType")
+	private MediaType defaultContentType;
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -83,10 +94,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		contentNegotiationManagerFactoryBean.setFavorPathExtension(true);
 		contentNegotiationManagerFactoryBean.setFavorParameter(false);
 
-		contentNegotiationManagerFactoryBean.addMediaType("json", MediaType.APPLICATION_JSON);
-		contentNegotiationManagerFactoryBean.addMediaType("html", MediaType.TEXT_HTML);
-
-		contentNegotiationManagerFactoryBean.setDefaultContentType(MediaType.APPLICATION_JSON);
+//		contentNegotiationManagerFactoryBean.addMediaType("json", MediaType.APPLICATION_JSON);
+//		contentNegotiationManagerFactoryBean.addMediaType("html", MediaType.TEXT_HTML);
+//		contentNegotiationManagerFactoryBean.setDefaultContentType(MediaType.APPLICATION_JSON);
+	
+		contentNegotiationManagerFactoryBean.setMediaTypes(mediaTypes);
+		contentNegotiationManagerFactoryBean.setDefaultContentType(defaultContentType);
+		
 		return contentNegotiationManagerFactoryBean.getObject();
 	}
 
