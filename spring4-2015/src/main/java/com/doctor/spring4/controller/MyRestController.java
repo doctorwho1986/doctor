@@ -24,7 +24,7 @@ public class MyRestController {
 	}
 
 	/**
-	 * java反射不会得到方法参数@PathVariable　注解的此参数的名字，spring如何做到的呢，详见：
+	 * java反射不会得到方法参数@PathVariable　注解的此参数的名字(其实得到的是arg0,arg1,...)，spring如何做到的呢，详见：
 	 * {@link org.springframework.core.LocalVariableTableParameterNameDiscoverer}
 	 * 利用字节码技术得到的．mybatis注解的mapper是采用java 反射技术，多个参数必须给注解提供具体变量名值．
 	 * 
