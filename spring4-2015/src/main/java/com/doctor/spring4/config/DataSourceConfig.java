@@ -54,7 +54,7 @@ public class DataSourceConfig {
 	@Configuration
 	@MapperScan(basePackages = { "com.doctor.spring4.common.mapper" }, annotationClass = DbH2.class, sqlSessionFactoryRef = "DbH2SqlSessionFactory")
 	@PropertySource("classpath:/spring4_2015Pro/jdbc-H2.properties")
-	public static class MybatisH2Config {
+	static class MybatisH2Config {
 
 		@Value("${jdbc.H2.url}")
 		private String url;
