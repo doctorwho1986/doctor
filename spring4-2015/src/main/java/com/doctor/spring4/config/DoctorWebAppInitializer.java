@@ -5,7 +5,13 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+/**
+ * 
+ * @author doctor
+ *
+ * @time 2015年3月4日 下午4:02:09
+ */
+public class DoctorWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -27,7 +33,7 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("utf-8");
 		characterEncodingFilter.setForceEncoding(true);
-		return new  Filter[]{characterEncodingFilter};
+		return new Filter[] { characterEncodingFilter };
 	}
 
 }
