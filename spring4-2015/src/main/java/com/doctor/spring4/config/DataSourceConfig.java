@@ -15,7 +15,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
@@ -31,7 +30,6 @@ import com.alibaba.druid.pool.DruidDataSource;
  * @time 2015年3月3日 下午2:57:10
  */
 @Configuration
-@Import({ DataSourceConfig.MybatisH2Config.class })
 public class DataSourceConfig {
 
 	@Bean
@@ -48,7 +46,7 @@ public class DataSourceConfig {
 
 	/**
 	 * H2 数据原配置
-	 * 
+	 * 不用import ,原因文档见：{@code Configuration}文档中的With nested 　Configuration　 classes部分
 	 * @author doctor
 	 *
 	 * @time 2015年3月3日 下午3:26:15
