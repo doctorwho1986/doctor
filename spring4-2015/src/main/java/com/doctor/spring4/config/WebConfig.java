@@ -27,10 +27,17 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 
+/**
+ * 视图配置感觉xml配置要好，随时可动态改变，重启应用即可．
+ * 
+ * @author doctor
+ *
+ * @since 2015年3月5日 上午1:12:25
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.doctor.spring4.controller" })
-@ImportResource({"classpath:/spring4_2015Config/contentNegotiationManager-config.xml"})
+@ImportResource({ "classpath:/spring4_2015Config/contentNegotiationManager-config.xml" })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	// @Bean
@@ -94,13 +101,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		contentNegotiationManagerFactoryBean.setFavorPathExtension(true);
 		contentNegotiationManagerFactoryBean.setFavorParameter(false);
 
-//		contentNegotiationManagerFactoryBean.addMediaType("json", MediaType.APPLICATION_JSON);
-//		contentNegotiationManagerFactoryBean.addMediaType("html", MediaType.TEXT_HTML);
-//		contentNegotiationManagerFactoryBean.setDefaultContentType(MediaType.APPLICATION_JSON);
-	
+		// contentNegotiationManagerFactoryBean.addMediaType("json", MediaType.APPLICATION_JSON);
+		// contentNegotiationManagerFactoryBean.addMediaType("html", MediaType.TEXT_HTML);
+		// contentNegotiationManagerFactoryBean.setDefaultContentType(MediaType.APPLICATION_JSON);
+
 		contentNegotiationManagerFactoryBean.setMediaTypes(mediaTypes);
 		contentNegotiationManagerFactoryBean.setDefaultContentType(defaultContentType);
-		
+
 		return contentNegotiationManagerFactoryBean.getObject();
 	}
 
