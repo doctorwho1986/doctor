@@ -47,6 +47,9 @@ public class DataSourceConfig {
 	/**
 	 * H2 数据原配置
 	 * 不用import ,原因文档见：{@code Configuration}文档中的With nested 　Configuration　 classes部分
+	 * spring源码如何处理见：
+	 * {@link org.springframework.context.annotation.ConfigurationClassParser#processMemberClasses(ConfigurationClass, SourceClass) }
+	 * 
 	 * @author doctor
 	 *
 	 * @time 2015年3月3日 下午3:26:15
@@ -110,22 +113,22 @@ public class DataSourceConfig {
 			druidDataSource.setUrl(url);
 			druidDataSource.setUsername(user);
 			druidDataSource.setPassword(password);
-			
+
 			druidDataSource.setDriverClassName(driverClassName);
-			
+
 			druidDataSource.setInitialSize(initialSize);
 			druidDataSource.setMinIdle(minIdle);
 			druidDataSource.setMaxActive(maxActive);
 			druidDataSource.setMaxWait(maxWait);
-			
+
 			druidDataSource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
 			druidDataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
-			
+
 			druidDataSource.setValidationQuery(validationQuery);
 			druidDataSource.setTestWhileIdle(testWhileIdle);
 			druidDataSource.setTestOnBorrow(testOnBorrow);
 			druidDataSource.setTestOnReturn(testOnReturn);
-			
+
 			druidDataSource.setPoolPreparedStatements(poolPreparedStatements);
 			druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
 			return druidDataSource;
