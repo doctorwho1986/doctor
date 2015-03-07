@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/util 
+						http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="birthDate" class="java.time.LocalDateTime" factory-method="now" />
+	
+	<util:map id="map" map-class="java.util.HashMap">
+		<entry key="name">
+			<value>doctor</value>
+		</entry>
+		<entry key="birth">
+			<ref bean="birthDate"/>
+		</entry>
+	</util:map>
+	
+	<util:properties id="props">
+		<prop key="jdbc.url">xxxxx</prop>
+		<prop key="jdb.user">doctor</prop>
+	</util:properties>
+	
+	<util:set id="set">
+		<value>1</value>
+		<value>2</value>
+	</util:set>
+	
+	<util:list id="list"> 
+		<value>66</value>
+		<value>88</value>
+	</util:list>
+</beans>
