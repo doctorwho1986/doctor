@@ -17,3 +17,15 @@ items.push("three");
 print(items.length ==itemsRef.length);
 print(items);
 print(itemsRef);
+
+
+//对象的创建
+print("对象的创建");
+
+function Person(name) {
+ 	this.name = name;
+}
+
+var  p = new Person("doctor who");
+print(p.name)
+print(p.constructor == Person)
