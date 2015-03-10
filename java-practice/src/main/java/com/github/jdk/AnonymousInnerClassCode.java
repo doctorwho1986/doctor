@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 匿名内部类
+ * java 之　匿名内部类
  * mybatis３中动态sql语句的生成用到了．
  * @see http://mybatis.github.io/mybatis-3/statement-builders.html
  * @author doctor
