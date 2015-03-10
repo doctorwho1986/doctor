@@ -7,6 +7,10 @@ import org.apache.ibatis.cache.impl.PerpetualCache;
 import org.junit.Test;
 
 /**
+ * mybatis3 PerpetualCache
+ * ---------------------------
+ * 
+ * 
  * PerpetualCache 不支持多线程，因为没能实现接口的锁功能，而且内部的map不是并发的map.
  * PerpetualCache　缓存的功能是由内部的map结构来实现的．
  * 
@@ -25,7 +29,7 @@ public class PerpetualCachePractice {
 		cache.putObject("name", "doctor who");
 		assertThat(cache, equalTo(new PerpetualCache(id)));
 		assertThat(cache.getSize(), equalTo(1));
-		
+
 		assertThat(cache.getObject("name"), equalTo("doctor who"));
 		assertThat(cache.getObject("age"), equalTo(null));
 	}

@@ -8,6 +8,9 @@ import org.apache.ibatis.cache.impl.PerpetualCache;
 import org.junit.Test;
 
 /**
+ * mybatis3 FifoCache
+ * ---------------------------
+ * 
  * １.FifoCache采用组合模式，FifoCache内部有一个维护具有长度限制的key键值链表，和一个底层的实际实现缓存．
  * ２.key链表主要是为何key的fifo顺序，而缓存存储主要交给了底层的缓存．
  * 
@@ -18,7 +21,7 @@ import org.junit.Test;
  * 
  * @author doctor {@link https://github.com/doctorwho1986}
  *
- * @time 2015年3月10日  
+ * @time 2015年3月10日
  */
 public class FifoCachePractice {
 
