@@ -254,7 +254,7 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>java</goal> <!-- mvn exec:java　web　控制台页面 -->
+							<goal>java</goal> <!-- mvn exec:java　web　控制台页面　路径 url:jdbc:h2:/home/xx/xx/spring4-2015/database/h2database -->
 						</goals>
 					</execution>
 				</executions>
