@@ -33,7 +33,13 @@ public class DoctorWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("utf-8");
 		characterEncodingFilter.setForceEncoding(true);
+		
 		return new Filter[] { characterEncodingFilter };
+	}
+
+	@Override
+	protected String getServletName() {
+		return "spring4-2015-" + super.getServletName();
 	}
 
 }
