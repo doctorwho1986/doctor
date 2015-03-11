@@ -20,7 +20,7 @@ public class UserMapperTest {
 	@Resource
 	private UserMapper userMapper;
 
-	@Resource(name = "Dbh2JdbcTemplate")
+	@Resource(name = "dbh2JdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
 	
 	private String tableName = "spring4_2015_user";

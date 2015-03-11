@@ -14,8 +14,8 @@ import com.doctor.spring4.config.RootConfig;
 @Import({RootConfig.class})
 public class TestConfig {
 
-	@Bean(name = "Dbh2JdbcTemplate")
-	@Resource(name="DbH2DataSource")
+	@Bean(name = "dbh2JdbcTemplate")
+	@Resource(name="dbH2DataSource")
 	public JdbcTemplate jdbcTemplate(DataSource dataSource){
 		return new JdbcTemplate(dataSource);
 	}
