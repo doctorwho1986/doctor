@@ -55,7 +55,7 @@ public class DataSourceConfig {
 	 * @time 2015年3月3日 下午3:26:15
 	 */
 	@Configuration
-	@MapperScan(basePackages = { "com.doctor.spring4.common.mapper" }, annotationClass = DbH2.class, sqlSessionFactoryRef = "DbH2SqlSessionFactory")
+	@MapperScan(basePackages = { "com.doctor.spring4.common.mapper" }, annotationClass = DbH2.class, sqlSessionFactoryRef = "dbH2SqlSessionFactory")
 	@PropertySource("classpath:/spring4_2015Pro/jdbc-H2.properties")
 	static class MybatisH2Config {
 
@@ -107,8 +107,8 @@ public class DataSourceConfig {
 		@Value("${jdbc.H2.maxPoolPreparedStatementPerConnectionSize}")
 		private int maxPoolPreparedStatementPerConnectionSize;
 
-		@Bean(name = "DbH2DataSource", initMethod = "init", destroyMethod = "close")
-		public DataSource DbH2DataSource() {
+		@Bean(name = "dbH2DataSource", initMethod = "init", destroyMethod = "close")
+		public DataSource dbH2DataSource() {
 			DruidDataSource druidDataSource = new DruidDataSource();
 			druidDataSource.setUrl(url);
 			druidDataSource.setUsername(user);
@@ -134,8 +134,8 @@ public class DataSourceConfig {
 			return druidDataSource;
 		}
 
-		@Bean(name = "DbH2SqlSessionFactory")
-		@Resource(name = "DbH2DataSource")
+		@Bean(name = "dbH2SqlSessionFactory")
+		@Resource(name = "dbH2DataSource")
 		public SqlSessionFactory DbH2SqlSessionFactory(DataSource dataSource) throws Exception {
 			SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 
