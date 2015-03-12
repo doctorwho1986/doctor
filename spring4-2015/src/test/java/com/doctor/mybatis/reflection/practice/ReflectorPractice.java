@@ -15,6 +15,9 @@ import org.junit.Test;
  * 
  * {@code Invoker}的子类封装了属性（get,set属性）和方法的一致调用方式．
  * 
+ * 方法的签名：返回类型：方法名，参数类型名，参数类型名，．．．．，放到map里面，对于重载的set方法，
+ * java反射只能得到一个方法．
+ * 
  * @author doctor　
  *
  * @time 2015年3月12日 　
@@ -33,13 +36,16 @@ public class ReflectorPractice {
 		assertThat(reflectorAddress.findPropertyName("id"), equalTo("id"));
 
 		assertThat(reflectorPerson.findPropertyName("address"), equalTo("address"));
-		assertThat(reflectorPerson.findPropertyName("city"), equalTo("null"));
+		assertThat(reflectorPerson.findPropertyName("city"), equalTo(null));
 
 	}
 
 	@Test
 	public void test_getGetInvoker() {
 		Invoker getInvoker = reflectorAddress.getGetInvoker("city");
+		System.out.println(getInvoker);
+		
+		getInvoker = reflectorPerson.getGetInvoker("address");
 		System.out.println(getInvoker);
 	}
 
@@ -90,6 +96,10 @@ public class ReflectorPractice {
 
 		public void setAddress(Address address) {
 			this.address = address;
+		}
+		
+		public void setAddress(Long id) {
+			this.address = new Address(id, null, null);
 		}
 
 	}
