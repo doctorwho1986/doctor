@@ -3,6 +3,8 @@ package com.doctor.spring4.common.mapper;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.IsEqual.*;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -11,7 +13,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.doctor.spring4.common.domain.User;
 import com.doctor.spring4.test.config.TestConfig;
+import com.google.common.collect.Lists;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestConfig.class })
@@ -48,6 +52,13 @@ public class UserMapperTest {
 		int num = userMapper.existTable("TABLES");
 		assertThat(count, equalTo(num));
 		assertThat(num, equalTo(1));
+	}
+	
+	@Test
+	public void test_insertAll(){
+		List<User> users = Lists.newArrayList(new User(1L, "doctor", "doctor", "xxx", "xx", "ss@foxm", "s", 2L),new User(2L, "doctorw", "doctorw", "xxxx", "xxx", "xss@foxm", "xs", 2L));
+		int count = userMapper.insertAll(users);
+		assertThat(count, equalTo(2));
 	}
 
 }

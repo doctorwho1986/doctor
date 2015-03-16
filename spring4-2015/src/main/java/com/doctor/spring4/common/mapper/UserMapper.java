@@ -1,9 +1,15 @@
 package com.doctor.spring4.common.mapper;
 
+import java.text.MessageFormat;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.doctor.spring4.common.domain.User;
 import com.doctor.spring4.config.DataSourceConfig.DbH2;
 
 /**
@@ -32,4 +38,24 @@ public interface UserMapper {
 
 	@Select("select count(1)  from information_schema.tables t where t.table_name = #{tableName}")
 	int existTable(String tableName);
+
+	@InsertProvider(type = UserMapperProvider.class, method = "inserAll")
+	int insertAll(List<User> list);
+
+	public static class UserMapperProvider {
+
+		public String inserAll(Map<String, List<User>> map) {
+			List<User> list = map.get("list");
+			StringBuilder stringBuilder = new StringBuilder(256);
+			stringBuilder.append("insert into  \"spring4_2015_user\" (\"loginName\", \"name\", \"password\", \"salt\",\"email\",\"status\",\"teamId\") values ");
+			MessageFormat messageFormat = new MessageFormat("(#'{'list[{0}].loginName},#'{'list[{0}].name},#'{'list[{0}].password},#'{'list[{0}].salt},#'{'list[{0}].email},#'{'list[{0}].status},#'{'list[{0}].teamId})");
+			for (int i = 0; i < list.size(); i++) {
+				stringBuilder.append(messageFormat.format(new Integer[]{i}));
+				stringBuilder.append(",");
+			}
+			stringBuilder.setLength(stringBuilder.length() - 1);
+			return stringBuilder.toString();
+		}
+
+	}
 }
