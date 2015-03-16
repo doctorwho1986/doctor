@@ -18,7 +18,10 @@ public class StackTraceElementPractice {
 		StackTraceElement stackTraceElement = stackTrace[stackTrace.length - 1];
 		System.out.println(stackTraceElement.getFileName());
 		System.out.println(stackTraceElement.getLineNumber());
-
+		//输出：
+		//2
+		//StackTraceElementPractice.java
+		//16
 	}
 
 }
