@@ -18,8 +18,8 @@ public class SimHashPractice {
 
 	@Test
 	public void test_() {
-		List<String> list1 = Lists.newArrayList("name=doctor", "age=12", "sex=man");
-		List<String> list2 = Lists.newArrayList("name=doctor", "age=12", "sex=mans");
+		List<String> list1 = Lists.newArrayList("name=doctor", "age=12", "sex=男");
+		List<String> list2 = Lists.newArrayList("name=doctor", "age=12", "sex=男是");
 		System.out.println(hammingDistance(list1, list2));
 	}
 
